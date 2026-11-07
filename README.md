@@ -1,27 +1,27 @@
 <p align="center">
-  <img src="docs/screenshots/cover.jpg" alt="Tario Market — a red, big-box style storefront Layout for Selldone, on desktop and phone" width="100%">
+  <img src="docs/screenshots/cover.jpg" alt="Valero Market — a black, after-dark food hall storefront Layout for Selldone, on desktop and phone" width="100%">
 </p>
 
-<h1 align="center">Tario Market</h1>
+<h1 align="center">Valero Market</h1>
 
 <p align="center">
-  <b>A bright red, big-box style storefront for a Selldone grocery marketplace.</b><br>
+  <b>A black, after-dark food hall storefront for a Selldone grocery marketplace.</b><br>
   A custom Selldone Layout built on the official <a href="https://github.com/selldone/storefront">selldone/storefront</a>.
 </p>
 
 <p align="center">
-  <a href="https://tario.selldone.shop"><img src="https://img.shields.io/badge/live%20shop-tario.selldone.shop-CC0000?style=flat-square" alt="Live shop"></a>
-  <a href="https://github.com/selldone-custom-layouts/official-tario/wiki"><img src="https://img.shields.io/badge/docs-wiki-6C3DF4?style=flat-square" alt="Wiki"></a>
-  <a href="https://github.com/selldone-custom-layouts/official-tario/wiki/Install-with-AI"><img src="https://img.shields.io/badge/set%20up-with%20AI-f39f37?style=flat-square" alt="Set up with AI"></a>
+  <a href="https://valero.selldone.shop"><img src="https://img.shields.io/badge/live%20shop-valero.selldone.shop-0b0b0c?style=flat-square" alt="Live shop"></a>
+  <a href="https://github.com/selldone-custom-layouts/official-valero/wiki"><img src="https://img.shields.io/badge/docs-wiki-C9A96E?style=flat-square" alt="Wiki"></a>
+  <a href="https://github.com/selldone-custom-layouts/official-valero/wiki/Install-with-AI"><img src="https://img.shields.io/badge/set%20up-with%20AI-f39f37?style=flat-square" alt="Set up with AI"></a>
   <img src="https://img.shields.io/badge/Selldone-Layout-2B2F7A?style=flat-square" alt="Selldone Layout">
   <img src="https://img.shields.io/badge/Vue-3-1fc8a9?style=flat-square&logo=vuedotjs&logoColor=white" alt="Vue 3">
 </p>
 
 <p align="center">
-  <a href="https://tario.selldone.shop"><b>Open the live shop</b></a> ·
-  <a href="https://github.com/selldone-custom-layouts/official-tario/wiki/Install-with-AI">Set it up with AI</a> ·
-  <a href="https://github.com/selldone-custom-layouts/official-tario/wiki/Manual-Setup">Manual setup</a> ·
-  <a href="https://github.com/selldone-custom-layouts/official-tario/wiki/Shop-Requirements">What your shop needs</a> ·
+  <a href="https://valero.selldone.shop"><b>Open the live shop</b></a> ·
+  <a href="https://github.com/selldone-custom-layouts/official-valero/wiki/Install-with-AI">Set it up with AI</a> ·
+  <a href="https://github.com/selldone-custom-layouts/official-valero/wiki/Manual-Setup">Manual setup</a> ·
+  <a href="https://github.com/selldone-custom-layouts/official-valero/wiki/Shop-Requirements">What your shop needs</a> ·
   <a href="https://github.com/selldone-custom-layouts">All Selldone custom layouts</a>
 </p>
 
@@ -29,83 +29,76 @@
 
 ## What it is
 
-**Tario Market** dresses a grocery marketplace like a big-box store:
-- red for every action and every saving;
-- near-black headings in a heavy sans;
-- a big-box home: a hero that turns, round categories, rows of cards with a red **Add to cart**, promo tiles and lifestyle photos;
-- white cards on light-grey wells;
-- aisle and search pages with a chip bar of filters, a product page with a framed buy box, and a cart page with a free-shipping meter.
+**Valero Market** dresses a grocery marketplace as an after-dark food hall:
 
-It runs on **[tario.selldone.shop](https://tario.selldone.shop)**, a second address of the same Selldone shop, molino. The shop's main address keeps its own Layout, [Molino Market Hall](https://github.com/selldone-custom-layouts/official-molino). Selldone lets each domain of a shop carry its own Layout.
+- a black page with ivory type, champagne hairlines and small capitals;
+- Cormorant Garamond headings and Jost text, square corners, no shadows;
+- an editorial hero, the aisles as a numbered index, hairline grids of cards with packshots on ivory squares;
+- a product page with the sellers as hairline rows and folding sections, a full-height bag panel, makers' pages, and a magazine-style journal.
 
-Selldone's own basket, checkout, payments, vendor offers and orders keep working underneath. Nothing about the shop is hard-coded: the name, logo, aisles, sellers and prices all come from the shop that runs it.
+It runs on **[valero.selldone.shop](https://valero.selldone.shop)**, another address of the same Selldone shop, molino. The shop's main address keeps its own Layout, [Molino Market Hall](https://github.com/selldone-custom-layouts/official-molino). Selldone lets each domain of a shop carry its own Layout.
 
-## Highlights
+Everything is read from the shop: products, prices, savings, sellers, aisles, delivery methods and articles. Nothing about molino is written into the code.
 
-- **Header:** a red promo strip with the shop's own free-shipping rule, then the wordmark with its round red dot, **Categories**, Deals, New arrivals and **Sellers** menus, a wide search pill with a round red button, Sign in and the cart with its count.
-- **Home:**
-  - a split hero that turns: the week's deals ("up to N% off", read live), what is new, and the fresh aisle;
-  - "Shop by category" as rows of round pictures;
-  - **Top deals** and **New arrivals** rows;
-  - "Deals for every aisle": promo tiles that say what each aisle has on offer;
-  - "Ways to get it": pickup, delivery and shipping with their free rules, from the shop's settings;
-  - "Fresh finds": three tall editorial tiles;
-  - "Trending in" every aisle, and the sellers.
+## Highlights, page by page
 
-  Eleven lifestyle photos ship in [`assets/tario/`](assets/tario/); a missing one is replaced by the aisle's own packshots. Empty sections fold away.
-- **Cards:** the price first and large (red on offer, "reg $x" and "Sale" beside it), the name, "★★★★☆ 4.2 (19)" once rated, who sells it, and a square red **Add to cart** that turns into "− 1 in cart +" in place; products with sizes say "Choose options".
-- **Aisle, search, Deals and All products:** the title, the aisle's types as round shortcuts (Milk, Eggs, Butter…), and one row of filter chips over a four-across grid: **Filter & sort** opens every filter in a panel (a sheet on a phone), Deals switches the offers on, and Price, Size, Type and the aisle's other filters each open a small menu. The filters are the aisle's own Selldone filters. A search also shows the aisles its results sit in.
-- **Product page:**
-  - pictures with thumbnails under them and the product's highlights;
-  - a framed buy box: **Pickup | Delivery | Shipping** from the shop's own delivery methods, the price with the saving, the sizes, a **Compare sellers** table, and Add to cart;
-  - "Goes well with": the product and two partners from neighbouring aisles, added with one button;
-  - folding Specifications, Shipping & delivery and Ratings & reviews.
-- **Cart page:** "Cart · 4 items · 2 sellers, one checkout", a free-shipping meter from the shop's own rule, a card per seller with Visit shop and Remove, "How do you want it?" tiles, Deliver to (a map-first address sheet) and Your receipt goes to, and an order summary whose red button leads to whatever is still missing.
-- **Cart drawer:** the meter, the lines under each seller, three products often added, and View cart / Check out.
-- **Seller page:** a banner with the seller's mark and live numbers, tabs (Shop, Deals, New, About), the seller's aisles, their deals and every product with the same chip bar.
-- **Sign-in, About, journal, 404:** a sign-in card with the shop's own ways in; About with a photo, the shop's numbers on a red band and its sellers; a journal with a featured story and a grid; a 404 with a search and the aisles.
-- **Orders and account:** the order page with a package per seller, chat and the receipt, and the buyer account with its side menu.
-- **Everywhere:** no "Added to cart" pop-ups and no phone bottom bar.
+| Page | What you see |
+| --- | --- |
+| Header | A champagne announcement line (free-shipping rule, free pickup, the makers); Aisles (a numbered index of every aisle), Offers, Journal and Makers; the wordmark in spaced serif capitals; Search, Account and Bag (n) |
+| Home | "The market, *after hours.*" over a dimmed photo; 01 The aisles; 02 This week's edit (the biggest savings); 03 Of the season; 04 The makers; 05 From the journal; the ways to get it |
+| Aisle, catalogue, search | A very large serif title, the types as tracked words, one hairline filter bar, cards on ivory squares |
+| Product | A serif title, the delivery choice, the sellers as hairline rows, "Add to bag", folding details, "Goes well with" |
+| Bag | A full-height black panel, a free-shipping meter, View bag and Check out; the bag page with the summary and the map-first address sheet |
+| Maker (seller) | "The maker", the name in very large serif, the mark in a champagne ring, their aisles and products |
+| Journal, article, About, Terms, 404 | Typographic: big serif headings, hairline numbers, a magazine journal, "Not on the shelf." with an outlined 404 |
+| Sign in | A split window: a dark photo with one serif line beside the shop's own ways in |
+
+## Screenshots
+
+| Desktop | Phone |
+| --- | --- |
+| ![Home on desktop](docs/screenshots/desktop-home.jpg) | ![Home on a phone](docs/screenshots/phone-home.jpg) |
+| ![An aisle on desktop](docs/screenshots/desktop-aisle.jpg) | ![An aisle on a phone](docs/screenshots/phone-aisle.jpg) |
+| ![A product on desktop](docs/screenshots/desktop-product.jpg) | ![A product on a phone](docs/screenshots/phone-product.jpg) |
+| ![The bag on desktop](docs/screenshots/desktop-basket.jpg) | ![The bag on a phone](docs/screenshots/phone-basket.jpg) |
 
 ## Use it on your shop
 
-| You want to… | Read |
+| Wiki page | What it covers |
 | --- | --- |
-| Let an AI agent (Claude Code, Codex…) set it up for your shop | [Install with AI](https://github.com/selldone-custom-layouts/official-tario/wiki/Install-with-AI) |
-| Do it yourself, step by step | [Manual Setup](https://github.com/selldone-custom-layouts/official-tario/wiki/Manual-Setup) |
-| Know what data your shop needs for the design to look right | [Shop Requirements](https://github.com/selldone-custom-layouts/official-tario/wiki/Shop-Requirements) |
-| Build, upload and verify a release | [Build and Upload](https://github.com/selldone-custom-layouts/official-tario/wiki/Build-and-Upload) |
-| Put the Layout live on your shop, or on one domain of it | [Go Live](https://github.com/selldone-custom-layouts/official-tario/wiki/Go-Live) |
-| Change colours, fonts, sections or pages | [Customize](https://github.com/selldone-custom-layouts/official-tario/wiki/Customize) |
-| Fix a blank page, a rejected upload or an old version showing | [Troubleshooting](https://github.com/selldone-custom-layouts/official-tario/wiki/Troubleshooting) |
+| [Install with AI](https://github.com/selldone-custom-layouts/official-valero/wiki/Install-with-AI) | A copy-paste prompt for Claude Code or Codex, and what only you do (CLI sign-in, 2FA) |
+| [Manual Setup](https://github.com/selldone-custom-layouts/official-valero/wiki/Manual-Setup) | Fork, remotes, install, `.env`, dev server, the manifest |
+| [Shop Requirements](https://github.com/selldone-custom-layouts/official-valero/wiki/Shop-Requirements) | The shop data the design needs |
+| [Build and Upload](https://github.com/selldone-custom-layouts/official-valero/wiki/Build-and-Upload) | The release script and why each step exists |
+| [Go Live](https://github.com/selldone-custom-layouts/official-valero/wiki/Go-Live) | Attaching the exact version, one Layout per domain, verification |
+| [Customize](https://github.com/selldone-custom-layouts/official-valero/wiki/Customize) | Tokens, where each part is, rules that keep it working |
+| [Troubleshooting](https://github.com/selldone-custom-layouts/official-valero/wiki/Troubleshooting) | Blank page, MIME, rejected uploads, old version showing |
 
-The wiki's source is also in [`docs/wiki/`](docs/wiki/).
-
-## Quick start (developers)
+## For developers
 
 ```bash
-git clone --recurse-submodules https://github.com/selldone-custom-layouts/official-tario.git
-cd official-tario
-npm install --force
-npm run serve            # dev server on http://localhost:9124
+git clone https://github.com/selldone-custom-layouts/official-valero.git
+cd official-valero
+npm install
+npm run serve          # dev server on the port in .env (VITE_APP_DEV_SERVER_PORT)
+bash scripts/release.sh 1.0.1 desk   # build, check, package, upload (see the wiki)
 ```
-
-Releases: `bash scripts/release.sh <new-version> desk`. See [Build and Upload](https://github.com/selldone-custom-layouts/official-tario/wiki/Build-and-Upload).
 
 ## Where things are
 
-| Area | Files |
+| Part | Files |
 | --- | --- |
-| The home page (design A) and its photos | [`components/tario/`](components/tario/), [`style/tario-home.scss`](style/tario-home.scss), [`assets/tario/`](assets/tario/) |
-| Tario's dress: header, footer, wells, checkout steps | [`style/tario-skin.scss`](style/tario-skin.scss), [`style/tario-home.scss`](style/tario-home.scss) |
-| Tokens: red, near-black, Inter, corners | [`style/kalio-tokens.scss`](style/kalio-tokens.scss) |
-| What Tario changed from Molino, and why | [`TARIO.md`](TARIO.md) |
-| The components and every behaviour (shared with Molino) | [`components/kalio/`](components/kalio/), [`KALIO.md`](KALIO.md) |
-| Release tooling | [`scripts/`](scripts/) |
-| Selldone storefront's original README | [`README.selldone.md`](README.selldone.md) |
+| Tokens (colours, type, geometry) | `style/kalio-tokens.scss` |
+| Vuetify's dark theme in Valero's colours | `storefront.ts` |
+| Valero's look: base, header, footer, card, home | `style/valero-d.scss` |
+| Valero's look: every other page | `style/valero-d-pages.scss` |
+| Home | `components/valero/ValeroHome.vue`, `valero-home.ts` |
+| Card and rows | `components/valero/ValeroCard.vue`, `ValeroRow.vue` |
+| Header, phone menu, bag panel, footer, sign-in | `components/kalio/shell/` |
+| Name and mark | `components/kalio/kalio-brand.ts`, `assets/brand/valero-mark.svg` |
+| Photos | `assets/valero/` |
+| Design notes and releases | [`VALERO.md`](VALERO.md), and [`KALIO.md`](KALIO.md) for every shared behaviour |
 
-The code shares its components with [Molino Market Hall](https://github.com/selldone-custom-layouts/official-molino): the class names start with `k-` and the files with `kalio-`. Tario's own pieces start with `t-` / `tario-`.
+## Credits
 
-## Credits and license
-
-Built on the official [Selldone Storefront](https://github.com/selldone/storefront) (MIT License, © Selldone); see [`LICENSE.md`](LICENSE.md). Part of **[Selldone Custom Layouts](https://github.com/selldone-custom-layouts)**.
+Built on [selldone/storefront](https://github.com/selldone/storefront) (MIT). Selldone's original README is kept as [`README.selldone.md`](README.selldone.md). Started from [Tario Market](https://github.com/selldone-custom-layouts/official-tario), which started from [Molino Market Hall](https://github.com/selldone-custom-layouts/official-molino).

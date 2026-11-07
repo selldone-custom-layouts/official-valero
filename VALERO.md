@@ -47,4 +47,4 @@ The hero, "Of the season" and sign-in pictures are the four journal photos the o
 
 ## Releases
 
-- **1.0.0 (7 November 2026):** first release: design D on every page.
+- **1.0.0 (7 November 2026):** first release: design D on every page. Selldone layout 28, pinned on valero.selldone.shop (domain 1236).
