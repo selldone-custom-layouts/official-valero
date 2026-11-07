@@ -14,10 +14,10 @@
   bar while it is open, as Selldone's did.
 -->
 <template>
-  <!-- Tario 1.2.0 (sign-in design A): one card in the middle of the page
-       the shopper is on (a sheet from the bottom on a phone): the shop's
-       mark, "Sign in or create account", the shop's own ways in, why an
-       account helps, and the terms. -->
+  <!-- Valero (sign-in, design D): on a computer a split window, a dark photo
+       with one serif line beside the form; on a phone the form alone, as a
+       sheet from the bottom. The shop's own ways in, why an account helps,
+       and the terms. -->
   <v-dialog
     v-model="show"
     :fullscreen="false"
@@ -26,24 +26,29 @@
     aria-labelledby="k-signin-title"
     class="k-signin-overlay t-signin-overlay"
     content-class="k-signin t-signin"
-    max-width="460"
+    :max-width="compact || !photo ? 460 : 940"
     scrollable
   >
+    <div :class="{ '-split': !compact && photo }" class="v-signin">
+    <div v-if="!compact && photo" aria-hidden="true" class="v-signin__photo">
+      <img :src="photo" alt="" />
+      <p>Your bag waits for you, whenever you come back.</p>
+    </div>
     <div class="t-signin__card">
       <button aria-label="Close" class="t-signin__x" type="button" @click="show = false">
         <v-icon>close</v-icon>
       </button>
-      <p class="t-signin__mark"><i aria-hidden="true"></i>{{ shopTitle }}</p>
-      <h2 id="k-signin-title" class="t-signin__title">Sign in or create account</h2>
+      <p class="t-signin__mark v-caps">Welcome to {{ shopTitle }}</p>
+      <h2 id="k-signin-title" class="t-signin__title">Sign in</h2>
       <p class="t-signin__lede">
-        {{ sellerCount > 1 ? `One account for every seller on ${shopTitle}.` : `Your account is made as you sign in.` }}
+        {{ sellerCount > 1 ? `One account for every maker on ${shopTitle}, your orders and your saved things.` : `Your account is made as you sign in.` }}
       </p>
       <s-shop-login v-model:show="show" class="k-signin__methods t-signin__methods" />
       <ul class="t-signin__perks">
         <li><v-icon size="20">local_shipping</v-icon>Follow every order to your door</li>
         <li><v-icon size="20">replay</v-icon>Buy your usual again in one tap</li>
         <li><v-icon size="20">favorite_border</v-icon>Keep favourites for next week</li>
-        <li v-if="sellerCount > 1"><v-icon size="20">storefront</v-icon>One cart across {{ sellerCount }} independent sellers</li>
+        <li v-if="sellerCount > 1"><v-icon size="20">storefront</v-icon>One bag across {{ sellerCount }} independent makers</li>
       </ul>
       <p class="t-signin__legal">
         By continuing you agree to {{ shopTitle }}’s
@@ -52,8 +57,9 @@
         <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY }" @click="show = false">Privacy</router-link>.
       </p>
       <div v-if="busyUser" class="k-signin__busy">
-        <v-progress-circular color="#fff" indeterminate size="36" width="3" />
+        <v-progress-circular color="#f4f1ea" indeterminate size="36" width="3" />
       </div>
+    </div>
     </div>
   </v-dialog>
 </template>
@@ -63,6 +69,7 @@ import { throttle } from "lodash-es";
 import SShopLogin from "@selldone/components-vue/storefront/login/SShopLogin.vue";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
 import { aisleImage, aisles, tintFor, vendors } from "../kalio-catalog";
+import { photo } from "../../valero/valero-home";
 
 /* Selldone's words for the ways in ("Login with Google", "Login by
    Email") and for the email steps, as a shop says them now. English only;
@@ -95,6 +102,10 @@ export default {
   },
 
   computed: {
+    /** The photo beside the form on a computer (assets/valero/). */
+    photo() {
+      return photo("valero-signin-bread");
+    },
     shopTitle() {
       return this.$shop?.title || "Kalio";
     },

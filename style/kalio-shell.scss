@@ -46,7 +46,7 @@ $k-header-strip: 46px;
       width: 11px;
       height: 11px;
       margin-top: 1px;
-      border-radius: 11px 0 11px 0;
+      border-radius: 0 0 11px 0;
       background: var(--k-leaf);
     }
   }
@@ -96,7 +96,7 @@ $k-header-strip: 46px;
     transition: background-color 140ms ease;
 
     &:hover {
-      background: #f6dede;
+      background: var(--k-raise);
     }
   }
 
@@ -206,7 +206,7 @@ $k-header-strip: 46px;
     background: var(--k-green);
     /* !important: Selldone's base reset [type=button] { color: inherit } has
        the same weight and loads after this sheet. */
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
@@ -223,7 +223,7 @@ $k-header-strip: 46px;
       height: 22px;
       padding: 0 6px;
       border-radius: var(--k-pill);
-      background: #fff;
+      background: var(--k-card);
       color: var(--k-green);
       font-style: normal;
       font-size: 12.5px;
@@ -295,7 +295,7 @@ $k-header-strip: 46px;
       inset-inline: 12px;
       bottom: 0;
       height: 3px;
-      border-radius: 3px 3px 0 0;
+      border-radius: 0 0 0;
       background: var(--k-green);
       transform: scaleX(0);
       transition: transform 160ms ease;
@@ -362,7 +362,7 @@ $k-header-strip: 46px;
   height: 32px;
   border: 1px solid var(--k-line);
   border-radius: 50%;
-  background: #fff;
+  background: var(--k-card);
   box-shadow: var(--k-shadow);
   transform: translateY(-50%);
 
@@ -629,8 +629,8 @@ $k-header-strip: 46px;
   &__receipt {
     margin: 2px 0 6px;
     padding: 18px 18px 16px;
-    border-radius: 22px;
-    background: var(--k-well);
+    border-radius: 0;
+    background: var(--k-raise);
   }
 
   &__sum {
@@ -700,7 +700,7 @@ $k-header-strip: 46px;
     margin-top: 14px;
     border-radius: var(--k-pill);
     background: var(--k-green-deep);
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     font-size: 16.5px;
     font-weight: 700;
     text-decoration: none;
@@ -711,7 +711,7 @@ $k-header-strip: 46px;
     }
 
     .v-icon {
-      color: #fff;
+      color: var(--k-on-green);
     }
   }
 
@@ -736,7 +736,7 @@ $k-header-strip: 46px;
     place-items: center;
     width: 44px;
     height: 44px;
-    border-radius: 12px;
+    border-radius: 0;
     background: var(--k-well);
 
     img {
@@ -781,7 +781,7 @@ $k-header-strip: 46px;
     height: 30px;
     border: 1px solid var(--k-line);
     border-radius: var(--k-pill);
-    background: #fff;
+    background: var(--k-card);
     text-align: center;
 
     button {
@@ -845,7 +845,7 @@ $k-header-strip: 46px;
   &__band {
     padding: 44px 0;
     border-top: 1px solid var(--k-line-soft);
-    background: var(--k-well);
+    background: var(--k-raise);
   }
 
   &__band-row {
@@ -965,14 +965,14 @@ $k-header-strip: 46px;
     line-height: 1;
     letter-spacing: -0.02em;
     text-transform: lowercase;
-    color: #fffaf0 !important;
+    color: var(--k-on-green) !important;
     text-decoration: none;
 
     i {
       width: 12px;
       height: 12px;
       margin-top: 1px;
-      border-radius: 12px 0 12px 0;
+      border-radius: 0 0 12px 0;
       background: #ff8a8a;
     }
   }
@@ -989,7 +989,7 @@ $k-header-strip: 46px;
     margin-top: 16px;
 
     .v-btn {
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
   }
 
@@ -1014,7 +1014,7 @@ $k-header-strip: 46px;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #f5c4c4;
+    color: var(--k-on-green);
   }
 
   &__col {
@@ -1036,14 +1036,14 @@ $k-header-strip: 46px;
       cursor: pointer;
 
       &:hover {
-        color: #fff !important;
+        color: var(--k-on-green) !important;
         text-decoration: underline;
         text-underline-offset: 3px;
       }
     }
 
     .-more {
-      color: #f5c4c4 !important;
+      color: var(--k-on-green) !important;
       font-weight: 600;
     }
   }
@@ -1053,7 +1053,7 @@ $k-header-strip: 46px;
     height: 28px;
     border-radius: 50%;
     object-fit: cover;
-    background: #fff;
+    background: var(--k-card);
   }
 
   &__base {
@@ -1073,7 +1073,7 @@ $k-header-strip: 46px;
       text-decoration: none;
 
       &:hover {
-        color: #fff !important;
+        color: var(--k-on-green) !important;
       }
     }
 
@@ -1214,7 +1214,7 @@ $k-header-strip: 46px;
       .v-btn--active,
       .v-btn.bg-primary {
         background: var(--k-green-deep) !important;
-        color: #fff !important;
+        color: var(--k-on-green) !important;
       }
     }
 
@@ -1437,7 +1437,7 @@ $k-filter-gap: 36px;
     .v-list-item {
       min-height: 36px !important;
       padding: 2px 6px !important;
-      border-radius: 10px !important;
+      border-radius: 0 !important;
 
       .v-list-item__overlay {
         display: none;
@@ -1514,9 +1514,9 @@ $k-filter-gap: 36px;
         width: 18px;
         height: 18px;
         padding: 0 !important;
-        border-radius: 5px;
-        border: 1.5px solid #c9c4b8;
-        background: #fff !important;
+        border-radius: 0;
+        border: 1.5px solid var(--k-line);
+        background: var(--k-card) !important;
         transition: background-color 140ms ease, border-color 140ms ease;
       }
     }
@@ -1532,7 +1532,7 @@ $k-filter-gap: 36px;
     &.s--smart-toggle--checked .mnh > .flex-grow-0 > div {
       border-color: var(--k-ink);
       background: var(--k-ink) !important;
-      box-shadow: inset 0 0 0 3px #fff;
+      box-shadow: inset 0 0 0 3px var(--k-paper);
     }
   }
 
@@ -1594,7 +1594,7 @@ $k-filter-gap: 36px;
   }
 
   .v-slider-thumb__surface {
-    background: #fff !important;
+    background: var(--k-card) !important;
     border: 2px solid var(--k-ink);
     box-shadow: 0 4px 10px -4px rgba(20, 20, 20, 0.45) !important;
 
@@ -1606,7 +1606,7 @@ $k-filter-gap: 36px;
 
   .v-slider-thumb__label {
     background: var(--k-green-deep) !important;
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     font-size: 12px;
 
     &::before {
@@ -1635,7 +1635,7 @@ $k-filter-gap: 36px;
       width: 10px;
       height: 2px;
       margin-left: -5px;
-      border-radius: 1px;
+      border-radius: 0;
       background: var(--k-line-strong);
     }
 
@@ -1643,7 +1643,7 @@ $k-filter-gap: 36px;
       display: block;
       padding: 8px 10px;
       border: 1px solid var(--k-line);
-      border-radius: 12px;
+      border-radius: 0;
       background: var(--k-paper);
       font-size: 14px;
       font-weight: 600;
@@ -1681,10 +1681,10 @@ $k-filter-gap: 36px;
   .v-chip--selected {
     border-color: var(--k-ink) !important;
     background: var(--k-ink) !important;
-    color: #fff !important;
+    color: var(--k-on-green) !important;
 
     .v-chip__filter {
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
   }
 }
@@ -1810,12 +1810,12 @@ $k-filter-gap: 36px;
    phone the card rises from the bottom and the green half is a header. */
 
 .k-signin-overlay > .v-overlay__scrim {
-  background: #1a1a1a;
+  background: var(--k-green);
   opacity: 0.58;
 }
 
 .k-signin {
-  border-radius: 30px !important;
+  border-radius: 0 !important;
   overflow: hidden;
   box-shadow: 0 40px 90px -30px rgba(8, 26, 18, 0.55) !important;
 }
@@ -1837,7 +1837,7 @@ $k-filter-gap: 36px;
   display: flex;
   flex-direction: column;
   padding: 40px 36px 34px;
-  color: #fff;
+  color: var(--k-on-green);
   background:
     radial-gradient(360px 260px at 0% 110%, rgba(59, 170, 92, 0.32), transparent 70%),
     radial-gradient(300px 220px at 110% -10%, rgba(255, 255, 255, 0.08), transparent 70%),
@@ -1855,13 +1855,13 @@ $k-filter-gap: 36px;
   line-height: 1;
   letter-spacing: -0.02em;
   text-transform: lowercase;
-  color: #fffaf0;
+  color: var(--k-on-green);
 
   i {
     width: 11px;
     height: 11px;
     margin-top: 1px;
-    border-radius: 11px 0 11px 0;
+    border-radius: 0 0 11px 0;
     background: #ff8a8a;
   }
 }
@@ -1873,7 +1873,7 @@ $k-filter-gap: 36px;
   font-weight: 600;
   line-height: 1.12;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: var(--k-on-green);
 }
 
 .k-signin__perks {
@@ -1898,7 +1898,7 @@ $k-filter-gap: 36px;
     height: 36px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.1);
-    color: #ffd0d0;
+    color: var(--k-on-green);
   }
 }
 
@@ -1915,7 +1915,7 @@ $k-filter-gap: 36px;
     height: 64px;
     border-radius: 50%;
     border: 3px solid var(--k-green-deep);
-    background: var(--k-tint, #fff);
+    background: var(--k-tint, var(--k-paper));
     overflow: hidden;
 
     & + span {
@@ -2028,7 +2028,7 @@ $k-filter-gap: 36px;
 
     &:hover {
       border-color: var(--k-green) !important;
-      background: #fbfaf5 !important;
+      background: var(--k-raise) !important;
     }
 
     .v-btn__overlay {
@@ -2075,7 +2075,7 @@ $k-filter-gap: 36px;
   .widget-buttons .v-btn {
     border-radius: var(--k-pill) !important;
     background: var(--k-green-deep) !important;
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     text-transform: none !important;
     letter-spacing: 0 !important;
   }
@@ -2136,7 +2136,7 @@ $k-filter-gap: 36px;
 
   .k-signin__close {
     top: 14px;
-    color: #fff !important; /* Selldone's [type=button] reset loads after */
+    color: var(--k-on-green) !important; /* Selldone's [type=button] reset loads after */
 
     &:hover {
       background: rgba(255, 255, 255, 0.12);
@@ -2163,7 +2163,7 @@ $k-filter-gap: 36px;
     max-width: 100% !important;
     margin: 0 !important;
     max-height: 94vh !important;
-    border-radius: 28px 28px 0 0 !important;
+    border-radius: 0 0 0 !important;
   }
 
   .k-signin__card {
@@ -2175,7 +2175,7 @@ $k-filter-gap: 36px;
    sign-in card: Kalio's type, a rounded field and a deep green pill. It is
    found by its body text, the one thing that sheet always has. */
 .v-bottom-sheet > .v-overlay__content.rounded-t-xl:has(.typo-body) {
-  border-radius: 28px 28px 0 0 !important;
+  border-radius: 0 0 0 !important;
   overflow: hidden;
 
   > .v-card {
@@ -2212,7 +2212,7 @@ $k-filter-gap: 36px;
   }
 
   .v-field {
-    border-radius: 16px !important;
+    border-radius: 0 !important;
     font-size: 17px;
   }
 
@@ -2255,7 +2255,7 @@ $k-filter-gap: 36px;
     .v-btn--variant-elevated {
       padding: 0 28px !important;
       background: var(--k-green-deep) !important;
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
 
     .v-btn--variant-text {
@@ -2277,7 +2277,7 @@ $k-filter-gap: 36px;
   border-radius: var(--k-radius) !important;
   background: var(--k-green-deep) !important;
   box-shadow: 0 18px 40px -18px rgba(20, 20, 20, 0.6) !important;
-  color: #fff !important;
+  color: var(--k-on-green) !important;
   font-family: var(--k-body);
 
   .v-snackbar__content {
@@ -2291,7 +2291,7 @@ $k-filter-gap: 36px;
     gap: 10px;
 
     .v-icon {
-      color: #ffd6d6 !important;
+      color: var(--k-on-green) !important;
     }
   }
 
@@ -2300,7 +2300,7 @@ $k-filter-gap: 36px;
     margin-inline-end: 6px;
     padding: 0 18px !important;
     border-radius: var(--k-pill) !important;
-    background: #fff !important;
+    background: var(--k-card) !important;
     color: var(--k-green-deep) !important;
     font-weight: 700;
     letter-spacing: 0 !important;

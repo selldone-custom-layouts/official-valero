@@ -31,7 +31,7 @@
 
     &.-main {
       background: var(--k-green);
-      color: #fff !important;
+      color: var(--k-on-green) !important;
 
       &:hover {
         background: var(--k-green-deep);
@@ -40,7 +40,7 @@
 
     &.-line {
       border-color: var(--k-line-strong);
-      background: #fff;
+      background: var(--k-card);
       color: var(--k-ink) !important;
 
       &:hover {
@@ -51,14 +51,14 @@
 
     &.-pay {
       background: var(--k-coral);
-      color: #fff !important;
+      color: var(--k-on-green) !important;
 
       &:hover {
         background: #b23816;
       }
 
       .v-icon {
-        color: #fff !important;
+        color: var(--k-on-green) !important;
       }
     }
 
@@ -83,7 +83,7 @@
   padding: 0 6px;
   border-radius: var(--k-pill);
   background: var(--k-coral);
-  color: #fff;
+  color: var(--k-on-green);
   font-size: 11.5px;
   font-weight: 700;
   line-height: 1;
@@ -111,7 +111,7 @@
   }
 
   &.-go {
-    background: #e6f0fb;
+    background: var(--k-raise);
     color: #1d4f91;
   }
 
@@ -121,12 +121,12 @@
   }
 
   &.-pay {
-    background: #fdf0d5;
+    background: var(--k-raise);
     color: #8a5800;
   }
 
   &.-off {
-    background: #fde4e1;
+    background: var(--k-raise);
     color: #a3261c;
   }
 
@@ -176,7 +176,7 @@
   overflow: hidden;
   border-radius: 50%;
   background: var(--k-green);
-  color: #fff;
+  color: var(--k-on-green);
   font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -189,7 +189,7 @@
 
   // a guest: a person outline, white on the green (was an empty disc)
   .v-icon {
-    color: #fff !important;
+    color: var(--k-on-green) !important;
   }
 
   &.-lg {
@@ -208,7 +208,7 @@
   padding: 0 16px;
   border: 1px solid var(--k-line-strong);
   border-radius: var(--k-pill);
-  background: #fff;
+  background: var(--k-card);
   color: var(--k-ink-2) !important;
   font: inherit;
   font-size: 14.5px;
@@ -228,11 +228,11 @@
 .k-acct__in {
   border-color: var(--k-green);
   background: var(--k-green);
-  color: #fff !important;
+  color: var(--k-on-green) !important;
 
   &:hover {
     background: var(--k-green-deep);
-    color: #fff !important;
+    color: var(--k-on-green) !important;
   }
 }
 
@@ -240,7 +240,7 @@
 
 .k-acct__hero {
   padding: 34px 0 0;
-  background: linear-gradient(180deg, var(--k-green-soft), #fdf4f4 70%, #fff);
+  background: linear-gradient(180deg, var(--k-green-soft), var(--k-raise) 70%, var(--k-paper));
 }
 
 .k-acct__hi {
@@ -304,7 +304,7 @@
     em {
       padding: 2px 8px;
       border-radius: var(--k-pill);
-      background: #fff;
+      background: var(--k-card);
       font-size: 12px;
       font-style: normal;
       font-weight: 700;
@@ -344,7 +344,7 @@
   position: sticky;
   top: 20px;
   padding: 22px 14px 12px;
-  border-radius: 26px;
+  border-radius: 0;
   background: var(--k-wash);
 }
 
@@ -392,7 +392,7 @@
   gap: 12px;
   height: 44px;
   padding: 0 12px;
-  border-radius: 14px;
+  border-radius: 0;
   color: var(--k-ink-2) !important;
   font-size: 15px;
   font-weight: 600;
@@ -415,7 +415,7 @@
   }
 
   &.-on {
-    background: #fff;
+    background: var(--k-card);
     box-shadow: 0 1px 3px rgba(20, 20, 20, 0.08), inset 3px 0 0 var(--k-green);
     color: var(--k-green-deep) !important;
 
@@ -571,7 +571,7 @@
       }
 
       &.-on {
-        background: #fff;
+        background: var(--k-card);
         box-shadow: 0 1px 4px rgba(20, 20, 20, 0.14);
         color: var(--k-green-deep) !important;
       }
@@ -586,8 +586,8 @@
   &__ghost {
     display: block;
     height: 76px;
-    border-radius: 20px;
-    background: linear-gradient(90deg, var(--k-wash) 25%, #fbfaf6 50%, var(--k-wash) 75%) 0 0 / 300% 100%;
+    border-radius: 0;
+    background: linear-gradient(90deg, var(--k-wash) 25%, var(--k-raise) 50%, var(--k-wash) 75%) 0 0 / 300% 100%;
     animation: k-ghost 1.4s linear infinite;
   }
 
@@ -597,8 +597,8 @@
     gap: 12px;
     padding: 46px 20px;
     border: 1px dashed var(--k-line-strong);
-    border-radius: 24px;
-    background: var(--k-well);
+    border-radius: 0;
+    background: var(--k-raise);
     text-align: center;
 
     .v-icon {
@@ -616,8 +616,8 @@
   &__table {
     overflow: hidden;
     border: 1px solid var(--k-line);
-    border-radius: 22px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
   }
 
   &__row {
@@ -637,12 +637,12 @@
     }
 
     &:hover:not(.-head) {
-      background: var(--k-well);
+      background: var(--k-raise);
     }
 
     &.-head {
       padding-block: 12px;
-      background: var(--k-well);
+      background: var(--k-raise);
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.08em;
@@ -694,7 +694,7 @@
     place-items: center;
     width: 44px;
     height: 44px;
-    border-radius: 12px;
+    border-radius: 0;
     background: var(--k-well);
 
     img {
@@ -715,8 +715,8 @@
       padding: 0 5px;
       border-radius: var(--k-pill);
       background: var(--k-ink);
-      box-shadow: 0 0 0 2px #fff;
-      color: #fff;
+      box-shadow: 0 0 0 2px var(--k-paper);
+      color: var(--k-on-green);
       font-size: 10.5px;
       font-style: normal;
       font-weight: 700;
@@ -731,7 +731,7 @@
     &.-big {
       width: 60px;
       height: 60px;
-      border-radius: 16px;
+      border-radius: 0;
 
       img {
         width: 46px;
@@ -803,8 +803,8 @@
 .k-ocardx {
   overflow: hidden;
   border: 1px solid var(--k-line);
-  border-radius: 24px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
 
   &__head {
     display: flex;
@@ -813,7 +813,7 @@
     gap: 8px 14px;
     padding: 15px 22px;
     border-bottom: 1px solid var(--k-line-soft);
-    background: var(--k-well);
+    background: var(--k-raise);
   }
 
   &__code {
@@ -893,7 +893,7 @@
   &__seg {
     display: block;
     height: 6px;
-    border-radius: 3px;
+    border-radius: 0;
     background: var(--k-line);
   }
 
@@ -980,8 +980,8 @@
   height: 46px;
   padding: 0 12px 0 16px;
   border: 1px solid var(--k-line);
-  border-radius: 14px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
   color: var(--k-ink) !important;
   font: inherit;
   font-size: 14.5px;
@@ -1004,8 +1004,8 @@
     min-width: 236px;
     padding: 8px;
     border: 1px solid var(--k-line);
-    border-radius: 18px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
     box-shadow: 0 18px 40px -20px rgba(20, 20, 20, 0.45);
     font-family: var(--k-body);
 
@@ -1015,7 +1015,7 @@
       gap: 10px;
       height: 42px;
       padding: 0 12px;
-      border-radius: 12px;
+      border-radius: 0;
       color: var(--k-ink-2) !important;
       font-size: 14.5px;
       font-weight: 600;
@@ -1034,7 +1034,7 @@
       }
 
       &:hover {
-        background: var(--k-well);
+        background: var(--k-raise);
       }
 
       &.-on {
@@ -1058,8 +1058,8 @@
 .k-orders__selldone {
   overflow: hidden;
   border: 1px solid var(--k-line);
-  border-radius: 22px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
 }
 
 /* ━━━━━━━━ B: the Overview ━━━━━━━━ */
@@ -1075,8 +1075,8 @@
   &__latest {
     padding: 24px 26px;
     border: 1px solid var(--k-line);
-    border-radius: 28px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
     box-shadow: 0 30px 60px -48px rgba(20, 20, 20, 0.5);
 
     &.-empty {
@@ -1182,7 +1182,7 @@
         height: 29px;
         border: 2px solid var(--k-line);
         border-radius: 50%;
-        background: #fff;
+        background: var(--k-card);
         font-style: normal;
       }
 
@@ -1191,7 +1191,7 @@
         background: var(--k-green);
 
         .v-icon {
-          color: #fff !important;
+          color: var(--k-on-green) !important;
         }
       }
 
@@ -1252,7 +1252,7 @@
     place-items: center;
     width: 52px;
     height: 52px;
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--k-well);
 
     img {
@@ -1287,8 +1287,8 @@
     width: min(240px, 70%);
     height: 13px;
     margin: 3px 0 6px;
-    border-radius: 7px;
-    background: linear-gradient(90deg, var(--k-wash) 25%, #fbfaf6 50%, var(--k-wash) 75%) 0 0 / 300% 100%;
+    border-radius: 0;
+    background: linear-gradient(90deg, var(--k-wash) 25%, var(--k-raise) 50%, var(--k-wash) 75%) 0 0 / 300% 100%;
     animation: k-ghost 1.4s linear infinite;
   }
 
@@ -1345,7 +1345,7 @@
   align-content: space-between;
   min-height: 150px;
   padding: 18px;
-  border-radius: 22px;
+  border-radius: 0;
   background: var(--k-wash);
   color: var(--k-ink) !important;
   text-decoration: none;
@@ -1355,8 +1355,8 @@
     place-items: center;
     width: 40px;
     height: 40px;
-    border-radius: 12px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
 
     .v-icon {
       color: var(--k-green) !important;
@@ -1383,7 +1383,7 @@
   }
 
   &:is(a):hover {
-    background: #efece4;
+    background: var(--k-raise);
   }
 
   &.-save {
@@ -1405,15 +1405,15 @@
     gap: 14px;
     min-height: 0;
     border: 1px solid var(--k-line);
-    background: #fff;
+    background: var(--k-card);
 
     > span:last-child {
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
   }
 
   &.-pay .k-tile__ico {
-    background: #fdf0d5;
+    background: var(--k-raise);
 
     .v-icon {
       color: #8a5800 !important;
@@ -1442,8 +1442,8 @@
   gap: 4px;
   padding: 16px 18px;
   border: 1px solid var(--k-line);
-  border-radius: 20px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
   color: var(--k-ink-2) !important;
   font-size: 14px;
   line-height: 1.45;
@@ -1477,7 +1477,7 @@
     gap: 8px;
     border-style: dashed;
     border-color: var(--k-line-strong);
-    background: var(--k-well);
+    background: var(--k-raise);
     color: var(--k-green-deep) !important;
     font-weight: 700;
 
@@ -1499,8 +1499,8 @@
     min-width: 0;
     padding: 12px 12px 14px;
     border: 1px solid var(--k-line);
-    border-radius: 20px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
   }
 
   &__pic {
@@ -1508,7 +1508,7 @@
     display: grid;
     place-items: center;
     height: 124px;
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--k-well);
 
     a {
@@ -1533,7 +1533,7 @@
     padding: 3px 9px;
     border-radius: var(--k-pill);
     background: var(--k-green);
-    color: #fff;
+    color: var(--k-on-green);
     font-size: 11.5px;
     font-weight: 700;
   }
@@ -1550,11 +1550,11 @@
     border-radius: 50%;
     background: var(--k-green);
     box-shadow: 0 6px 14px -6px rgba(20, 20, 20, 0.6);
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     cursor: pointer;
 
     .v-icon {
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
 
     &:hover {
@@ -1630,7 +1630,7 @@
   .k-acct__rail {
     position: static;
     padding: 14px;
-    border-radius: 22px;
+    border-radius: 0;
   }
 
   .k-acct__me {
@@ -1659,7 +1659,7 @@
       height: 40px;
       padding: 0 14px;
       border-radius: var(--k-pill);
-      background: #fff;
+      background: var(--k-card);
       font-size: 14px;
 
       em {
@@ -1669,11 +1669,11 @@
       &.-on {
         background: var(--k-green);
         box-shadow: none;
-        color: #fff !important;
+        color: var(--k-on-green) !important;
 
         .v-icon,
         em {
-          color: #fff !important;
+          color: var(--k-on-green) !important;
         }
       }
     }
@@ -1808,7 +1808,7 @@
 
   .k-ahome__latest {
     padding: 18px;
-    border-radius: 24px;
+    border-radius: 0;
   }
 
   .k-ahome__head .k-tag {
@@ -1941,7 +1941,7 @@
     border-radius: var(--k-pill) !important;
 
     .v-btn {
-      background: #fff !important;
+      background: var(--k-card) !important;
       color: var(--k-ink) !important;
       box-shadow: none !important;
     }
@@ -1952,7 +1952,7 @@
     .v-btn.v-btn--active,
     .v-application & .v-btn.dark-flat {
       background: var(--k-green) !important;
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
   }
 
@@ -1992,8 +1992,8 @@
   gap: 14px;
   padding: 16px 18px;
   border: 1px solid var(--k-line);
-  border-radius: 20px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
 
   &__ico {
     display: grid;
@@ -2001,7 +2001,7 @@
     place-items: center;
     width: 44px;
     height: 44px;
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--k-green-soft);
 
     .v-icon {
@@ -2033,7 +2033,7 @@
 .v-application .k-acct .v-btn-toggle .v-btn.dark-flat,
 .v-application .k-acct .v-btn-toggle .v-btn.v-btn--active {
   background-image: linear-gradient(var(--k-green), var(--k-green)) !important;
-  color: #fff !important;
+  color: var(--k-on-green) !important;
 }
 
 /* ▆▆▆▆▆▆▆▆ The address book (5 November 2026) ▆▆▆▆▆▆▆▆
@@ -2056,8 +2056,8 @@
     gap: 18px;
     padding: 14px 16px 14px 14px;
     border: 1px solid var(--k-line);
-    border-radius: 22px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
   }
 
   &__map {
@@ -2065,8 +2065,8 @@
     place-items: center;
     width: 76px;
     height: 76px;
-    border-radius: 18px;
-    background: var(--k-well);
+    border-radius: 0;
+    background: var(--k-raise);
     overflow: hidden;
 
     img {
@@ -2145,7 +2145,7 @@
     padding: 0 14px;
     border: 1px solid var(--k-line);
     border-radius: var(--k-pill);
-    background: #fff;
+    background: var(--k-card);
     /* !important: Selldone's [type=button] { color: inherit } loads later. */
     color: var(--k-ink) !important;
     font-family: var(--k-body);
@@ -2178,12 +2178,12 @@
     &.-danger {
       border-color: var(--k-coral);
       background: var(--k-coral);
-      color: #fff !important;
+      color: var(--k-on-green) !important;
 
       &:hover:not(:disabled) {
         border-color: #a8361a;
         background: #a8361a;
-        color: #fff !important;
+        color: var(--k-on-green) !important;
       }
     }
 
@@ -2208,7 +2208,7 @@
     &__map {
       width: 60px;
       height: 60px;
-      border-radius: 14px;
+      border-radius: 0;
     }
 
     &__acts {

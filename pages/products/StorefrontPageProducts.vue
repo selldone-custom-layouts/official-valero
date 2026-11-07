@@ -66,15 +66,15 @@
       <!-- ▆▆▆▆▆▆▆▆ Seller: hero + shelf ▆▆▆▆▆▆▆▆ -->
       <!-- Replaces Selldone's one-line s-shop-vendor-header, which carries only
            the seller's name and avatar — no commerce state — so nothing is lost. -->
-      <!-- Tario: the seller page A (banner, tabs, aisles, deals). -->
-      <tario-seller-top v-if="vendor_id" :tab="seller_tab" :vendor-id="vendor_id" class="k-wrap" @tab="sellerTab" />
+      <!-- Valero: the seller page A (banner, tabs, aisles, deals). -->
+      <valero-seller-top v-if="vendor_id" :tab="seller_tab" :vendor-id="vendor_id" class="k-wrap" @tab="sellerTab" />
 
-      <!-- ▆▆▆▆▆▆▆▆ Aisle and catalogue: Tario's shop page (design A) ▆▆▆▆▆▆▆▆ -->
+      <!-- ▆▆▆▆▆▆▆▆ Aisle and catalogue: Valero's shop page (design A) ▆▆▆▆▆▆▆▆ -->
       <!-- A title, the aisle's types as round shortcuts, one row of filter
-           chips over the grid (TarioFilterBar), not a filter column. The
+           chips over the grid (ValeroFilterBar), not a filter column. The
            listing below does the fetching; the bar hands it every change. -->
       <div v-if="!show_home" :class="{ '-seller': !!vendor_id }" class="t-shelf k-wrap">
-        <tario-shelf-top
+        <valero-shelf-top
           v-if="!vendor_id"
           :aisle="listing_parent"
           :category-name="category_name"
@@ -85,7 +85,7 @@
           :total="catalogue_total"
           @pick-type="pickType"
         />
-        <tario-filter-bar
+        <valero-filter-bar
           :filters="filters_def"
           :model-value="t_filter"
           :sort="t_sort"
@@ -106,8 +106,8 @@
       <!-- Shown on the bare shop page only. Every narrowing action the
            listing performs travels as a query parameter, so the home page
            gets out of the way the moment a shopper searches or filters. -->
-      <!-- Tario: a big-box home (design A, 7 November 2026), not Molino's. -->
-      <tario-home v-if="show_home" />
+      <!-- Valero: a big-box home (design A, 7 November 2026), not Molino's. -->
+      <valero-home v-if="show_home" />
       </div>
 
       <!-- ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Products Listing ▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆ -->
@@ -128,7 +128,7 @@
 
       <!-- ▆▆▆▆▆▆▆▆ Under the grid ▆▆▆▆▆▆▆▆ -->
       <div v-if="!show_home && !vendor_id" class="t-shelf -after k-wrap">
-        <tario-row
+        <valero-row
           v-if="catalogue && search_query"
           :limit="12"
           lazy
@@ -152,13 +152,13 @@
 <script lang="ts">
 import SProductsListing from "@selldone/components-vue/storefront/products/listing/SProductsListing.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
-import TarioHome from "../../components/tario/TarioHome.vue";
-import TarioShelfTop from "../../components/tario/shop/TarioShelfTop.vue";
-import TarioFilterBar from "../../components/tario/shop/TarioFilterBar.vue";
-import TarioRow from "../../components/tario/TarioRow.vue";
-import { fromRoute } from "../../components/tario/shop/tario-filters";
+import ValeroHome from "../../components/valero/ValeroHome.vue";
+import ValeroShelfTop from "../../components/valero/shop/ValeroShelfTop.vue";
+import ValeroFilterBar from "../../components/valero/shop/ValeroFilterBar.vue";
+import ValeroRow from "../../components/valero/ValeroRow.vue";
+import { fromRoute } from "../../components/valero/shop/valero-filters";
 import { aisleRoute, aisles, countProducts, offers, vendors } from "../../components/kalio/kalio-catalog";
-import TarioSellerTop from "../../components/tario/shop/TarioSellerTop.vue";
+import ValeroSellerTop from "../../components/valero/shop/ValeroSellerTop.vue";
 import {StorefrontSeo} from "../../helpers/StorefrontSeo";
 import KalioQuickBuy from "../../components/kalio/KalioQuickBuy.vue";
 import { hostQuickBuy } from "../../components/kalio/kalio-listing-quick-buy";
@@ -169,12 +169,12 @@ export default {
   name: "StorefrontPageProducts",
   components: {
     SProductsListing,
-    TarioHome,
-    TarioShelfTop,
-    TarioFilterBar,
-    TarioRow,
+    ValeroHome,
+    ValeroShelfTop,
+    ValeroFilterBar,
+    ValeroRow,
     KalioQuickBuy,
-    TarioSellerTop,
+    ValeroSellerTop,
   },
   mixins: [TemplateMixin],
 
@@ -348,7 +348,7 @@ export default {
       StorefrontSeo.updateProducts(data, this.getShop(), this.seoNavigation);
     },
 
-    /* ── Tario's filter bar talks to the listing directly ── */
+    /* ── Valero's filter bar talks to the listing directly ── */
     readRoute() {
       this.t_filter = fromRoute(this.$route.query);
       this.t_sort = this.$route.query?.sort || null;

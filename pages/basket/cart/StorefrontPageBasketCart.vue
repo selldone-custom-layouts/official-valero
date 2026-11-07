@@ -34,9 +34,9 @@
     <div class="k-wrap k-cart__wrap">
       <!-- Tario 1.2.0 (cart design A): a cart page with a summary beside it. -->
       <div class="k-cart__head t-co__head">
-        <h1 class="k-cart__title">Cart</h1>
+        <h1 class="k-cart__title">Your bag</h1>
         <span v-if="basket?.items?.length" class="t-co__count">
-          {{ units }} {{ units === 1 ? "item" : "items" }}<template v-if="seller_count > 1"> · {{ seller_count }} sellers, one checkout</template>
+          {{ units }} {{ units === 1 ? "item" : "items" }}<template v-if="seller_count > 1"> · {{ seller_count }} makers, one checkout</template>
         </span>
         <s-shop-share-order-button v-if="basket?.items?.length" :basket="basket" class="k-cart__share" />
       </div>
@@ -495,7 +495,7 @@ import { TimeSpans } from "@selldone/core-js/enums/logistic/TimeSpans";
 import KalioCartLines from "../../../components/kalio/checkout/KalioCartLines.vue";
 import KalioOftenAdded from "../../../components/kalio/KalioOftenAdded.vue";
 import KalioAddressSheet from "../../../components/kalio/checkout/KalioAddressSheet.vue";
-import { freeShippingFrom, waysOf } from "../../../components/tario/tario-home";
+import { freeShippingFrom, waysOf } from "../../../components/valero/valero-home";
 
 export default {
   name: "StorefrontPageBasketCart",
@@ -1007,7 +1007,7 @@ export default {
     shop_ways() {
       return waysOf(this.$shop).slice(0, 3);
     },
-    /* Tario: the shop's free-shipping threshold and how far this cart is. */
+    /* Valero: the shop's free-shipping threshold and how far this cart is. */
     free_from() {
       return freeShippingFrom(this.$shop);
     },

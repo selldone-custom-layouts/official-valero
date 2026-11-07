@@ -1,10 +1,10 @@
 {
   "deploy_server": "https://layouts.selldone.com",
   "deploy_path": "",
-  "package": "tario-market",
-  "name": "Tario Market",
-  "version": "1.2.5",
+  "package": "valero-market",
+  "name": "Valero Market",
+  "version": "1.0.0",
   "storefront": true,
   "backoffice": false,
-  "description": "A bright red, big-box style storefront for a grocery marketplace: a promo strip, a split hero, round categories, rows of cards with Add to cart, aisle pages with a chip bar of filters, a product page with a framed buy box and sellers side by side, a cart page with a free-shipping meter and a summary, and seller, journal and About pages of its own."
+  "description": "A black, after-dark food hall storefront for a grocery marketplace: an editorial hero, the aisles as a numbered index, hairline grids of cards on ivory wells, a split product page with the sellers as a table, a full-height bag panel, a numbered checkout, makers' pages and a magazine journal, in Cormorant Garamond and Jost."
 }

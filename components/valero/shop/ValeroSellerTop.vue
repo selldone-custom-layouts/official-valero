@@ -1,5 +1,5 @@
 <!--
-  Tario — the top of a seller's page (seller page design A, 7 November 2026).
+  Valero — the top of a seller's page (seller page design A, 7 November 2026).
 
   A banner with a photo of what the seller sells most, their round mark,
   their name and a line built from their own aisles ("breads, dairy and
@@ -7,7 +7,7 @@
   under it narrow the listing below (Shop, Deals, New) or jump to About.
   Then the seller's aisles as tiles with how many products each holds, and
   a row of the seller's deals. The page's listing (every product of this
-  seller, with Tario's filter bar) follows under "All of Mason's products".
+  seller, with Valero's filter bar) follows under "All of Mason's products".
 
   Selldone's seller record has a name, a mark and a description; the
   numbers and aisles come from the seller's own product list.
@@ -17,7 +17,7 @@
     <nav aria-label="Breadcrumb" class="t-crumbs">
       <router-link :to="{ name: window.$storefront.routes.SHOP_PAGE }">{{ $shop.title }}</router-link>
       <v-icon aria-hidden="true" size="16">chevron_right</v-icon>
-      <span>Sellers</span>
+      <span>The makers</span>
       <v-icon aria-hidden="true" size="16">chevron_right</v-icon>
       <span aria-current="page">{{ vendor ? vendor.name : "Seller" }}</span>
     </nav>
@@ -30,8 +30,9 @@
           <v-icon v-else size="40">storefront</v-icon>
         </span>
         <div class="t-sban__who">
+          <p class="v-caps vh-gold t-sban__eyebrow">The maker</p>
           <h1>{{ vendor ? vendor.name : "" }}</h1>
-          <p>An independent seller on {{ $shop.title }}<template v-if="sells_line"> · {{ sells_line }}</template></p>
+          <p>An independent maker on {{ $shop.title }}<template v-if="sells_line"> · {{ sells_line }}</template></p>
         </div>
         <div class="t-sban__facts">
           <div v-if="total !== null"><b>{{ total.toLocaleString() }}</b><span>{{ total === 1 ? "product" : "products" }}</span></div>
@@ -63,23 +64,23 @@
       </div>
     </section>
 
-    <tario-row
+    <valero-row
       v-if="on_sale"
       :key="'deals-' + vendorId"
       :filter="{ only_has_discount: true }"
       :limit="12"
-      :title="`Deals from ${vendor ? vendor.name : 'this seller'}`"
+      :title="`Offers from ${vendor ? vendor.name : 'this maker'}`"
       :vendor="vendorId"
       sort="bestselling"
     />
 
     <section id="t-seller-about" class="t-sabout">
-      <h2 class="t-sec__title">About {{ vendor ? vendor.name : "this seller" }}</h2>
+      <h2 class="t-sec__title">About {{ vendor ? vendor.name : "this maker" }}</h2>
       <p v-if="vendor && vendor.description">{{ vendor.description }}</p>
       <p v-else>
-        {{ vendor ? vendor.name : "This seller" }} is one of {{ seller_count > 1 ? seller_count : "the" }} independent sellers on
+        {{ vendor ? vendor.name : "This maker" }} is one of {{ seller_count > 1 ? seller_count : "the" }} independent makers on
         {{ $shop.title }}<template v-if="sells_line">, with {{ sells_line }}</template>. Everything they sell joins the
-        same cart as the other sellers' products, with one checkout.
+        same bag as the other makers' products, with one checkout.
       </p>
     </section>
 
@@ -91,24 +92,24 @@
 </template>
 
 <script>
-import TarioRow from "../TarioRow.vue";
-import { photo } from "../tario-home";
+import ValeroRow from "../ValeroRow.vue";
+import { photo } from "../valero-home";
 import { aisleImage, aisleRoute, aisles, countProducts, featured, offers, vendorImage, vendors } from "../../kalio/kalio-catalog";
 
 /* The banner's photo, from the seller's first aisle. */
 const COVERS = [
-  [/bread|bakery/i, "tario-tile-bakery"],
-  [/breakfast|cereal/i, "tario-tile-breakfast"],
-  [/produce|fruit|veg/i, "tario-finds-produce"],
-  [/meat|seafood|fish/i, "tario-tile-meat"],
-  [/snack/i, "tario-tile-snacks"],
-  [/household|clean/i, "tario-tile-household"],
-  [/coffee|beverage|drink/i, "tario-finds-coffee"],
+  [/bread|bakery/i, "valero-tile-bakery"],
+  [/breakfast|cereal/i, "valero-tile-breakfast"],
+  [/produce|fruit|veg/i, "valero-finds-produce"],
+  [/meat|seafood|fish/i, "valero-tile-meat"],
+  [/snack/i, "valero-tile-snacks"],
+  [/household|clean/i, "valero-tile-household"],
+  [/coffee|beverage|drink/i, "valero-finds-coffee"],
 ];
 
 export default {
-  name: "TarioSellerTop",
-  components: { TarioRow },
+  name: "ValeroSellerTop",
+  components: { ValeroRow },
   inject: ["$shop"],
   emits: ["tab"],
 
@@ -143,7 +144,7 @@ export default {
       const first = this.aisleTiles[0]?.aisle;
       const label = first ? `${first.title || ""} ${first.name || ""}` : "";
       const hit = COVERS.find(([re]) => re.test(label));
-      return photo(hit ? hit[1] : "tario-hero-1-weekly") || photo("tario-hero-1-weekly");
+      return photo(hit ? hit[1] : "valero-hero-1-weekly") || photo("valero-hero-1-weekly");
     },
   },
 

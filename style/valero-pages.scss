@@ -1,12 +1,12 @@
-/* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Tario — every page after the home (1.2.0) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+/* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Valero — every page after the home (1.2.0) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
 
    The owner chose these on 7 November 2026 from two mockups per page
-   (kalio-design/tario-options/index.html): the shop page A (a chip bar of
+   (kalio-design/valero-options/index.html): the shop page A (a chip bar of
    filters), the product page B (a framed buy box, "Frequently bought
    together", folding sections), the cart A (a cart page with a summary),
    and A for the seller page, search, cart drawer, sign-in, order page,
    account, orders, About/Contact, Terms/Privacy, journal, article and 404.
-   Loaded last: Tario's own t- classes, and overrides of Kalio's pages. */
+   Loaded last: Valero's own t- classes, and overrides of Kalio's pages. */
 
 $t-phone: 760px;
 $t-tablet: 1100px;
@@ -19,7 +19,7 @@ $t-tablet: 1100px;
   &.-red {
     border: 0;
     background: var(--k-green);
-    color: #fff !important;
+    color: var(--k-on-green) !important;
 
     &:hover {
       background: var(--k-green-deep);
@@ -28,7 +28,7 @@ $t-tablet: 1100px;
 
   &.-line {
     border: 1.5px solid var(--k-line-strong);
-    background: #fff;
+    background: var(--k-card);
     color: var(--k-ink) !important;
 
     &:hover {
@@ -90,12 +90,12 @@ $t-tablet: 1100px;
     width: 20px;
     height: 20px;
     border: 1.5px solid var(--k-line-strong);
-    border-radius: 4px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
 
     .v-icon {
       opacity: 0;
-      color: #fff;
+      color: var(--k-on-green);
     }
   }
 
@@ -134,7 +134,7 @@ $t-tablet: 1100px;
     height: 20px;
     border: 1.5px solid var(--k-line-strong);
     border-radius: 50%;
-    background: #fff;
+    background: var(--k-card);
   }
 
   input:checked + &__dot {
@@ -160,8 +160,8 @@ $t-tablet: 1100px;
     position: relative;
     width: 40px;
     height: 24px;
-    border-radius: 12px;
-    background: #cfcfcf;
+    border-radius: 0;
+    background: var(--k-line-strong);
     transition: background-color 140ms ease;
 
     &::after {
@@ -172,7 +172,7 @@ $t-tablet: 1100px;
       width: 18px;
       height: 18px;
       border-radius: 50%;
-      background: #fff;
+      background: var(--k-card);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
       transition: left 140ms ease;
     }
@@ -272,7 +272,7 @@ $t-tablet: 1100px;
     width: 96px;
     height: 96px;
     border-radius: 50%;
-    background: #e5eef7;
+    background: var(--k-raise);
     box-shadow: inset 0 0 0 2px transparent;
     transition: box-shadow 140ms ease;
 
@@ -331,7 +331,7 @@ $t-tablet: 1100px;
     gap: 8px;
     height: 40px;
     padding: 0 14px 0 6px;
-    border-radius: 999px;
+    border-radius: 0;
     background: var(--k-wash);
     color: var(--k-ink) !important;
     font-size: 14.5px;
@@ -343,7 +343,7 @@ $t-tablet: 1100px;
       height: 28px;
       border-radius: 50%;
       object-fit: cover;
-      background: #fff;
+      background: var(--k-card);
     }
 
     b {
@@ -352,7 +352,7 @@ $t-tablet: 1100px;
     }
 
     &:hover {
-      background: #ececec;
+      background: var(--k-raise);
     }
   }
 }
@@ -362,7 +362,7 @@ $t-tablet: 1100px;
   margin-top: 24px;
   border-top: 1px solid var(--k-line);
   border-bottom: 1px solid var(--k-line);
-  background: #fff;
+  background: var(--k-card);
 
   &__row {
     display: flex;
@@ -429,8 +429,8 @@ $t-tablet: 1100px;
   height: 38px;
   padding: 0 14px;
   border: 1px solid var(--k-line-strong);
-  border-radius: 999px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
   color: var(--k-ink);
   font-family: var(--k-body);
   font-size: 14.5px;
@@ -449,13 +449,13 @@ $t-tablet: 1100px;
 
   &.-on {
     border-color: var(--k-ink);
-    background: #f2f2f2;
+    background: var(--k-raise);
   }
 
   &.-all {
     border-color: var(--k-ink);
     background: var(--k-ink);
-    color: #fff;
+    color: var(--k-on-green);
   }
 
   &__n {
@@ -464,9 +464,9 @@ $t-tablet: 1100px;
     min-width: 20px;
     height: 20px;
     padding: 0 6px;
-    border-radius: 10px;
+    border-radius: 0;
     background: var(--k-green);
-    color: #fff;
+    color: var(--k-on-green);
     font-size: 12px;
     font-weight: 800;
   }
@@ -477,8 +477,8 @@ $t-tablet: 1100px;
   max-height: 70vh;
   overflow-y: auto;
   padding: 16px;
-  border-radius: 12px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
   box-shadow: 0 18px 44px -12px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(0, 0, 0, 0.06);
   font-family: var(--k-body);
   text-align: start;
@@ -523,7 +523,7 @@ $t-tablet: 1100px;
       place-items: center;
       height: 40px;
       border: 1px solid var(--k-line-strong);
-      border-radius: 8px;
+      border-radius: 0;
     }
   }
 
@@ -539,7 +539,7 @@ $t-tablet: 1100px;
     width: 100%;
     padding: 10px 12px;
     border: 0;
-    border-radius: 8px;
+    border-radius: 0;
     background: none;
     color: var(--k-ink);
     font-size: 15px;
@@ -578,7 +578,7 @@ $t-tablet: 1100px;
     top: 48px;
     left: 0;
     width: 100vw;
-    border-radius: 18px 18px 0 0;
+    border-radius: 0 0 0;
     overflow: hidden;
   }
 }
@@ -614,7 +614,7 @@ $t-tablet: 1100px;
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #fff;
+  background: var(--k-card);
   font-family: var(--k-body);
   text-align: start;
 
@@ -687,8 +687,8 @@ $t-tablet: 1100px;
   height: 36px;
   padding: 0 12px;
   border: 1px solid var(--k-line-strong);
-  border-radius: 999px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
   color: var(--k-ink);
   font-size: 14px;
   font-weight: 600;
@@ -697,7 +697,7 @@ $t-tablet: 1100px;
   &.-on {
     border-color: var(--k-ink);
     background: var(--k-ink);
-    color: #fff;
+    color: var(--k-on-green);
   }
 }
 
@@ -742,7 +742,7 @@ $t-tablet: 1100px;
       align-items: center;
       height: 40px;
       padding: 0 16px;
-      border-radius: 999px;
+      border-radius: 0;
       background: var(--k-wash);
       color: var(--k-ink) !important;
       font-size: 14.5px;
@@ -750,7 +750,7 @@ $t-tablet: 1100px;
       text-decoration: none;
 
       &:hover {
-        background: #ececec;
+        background: var(--k-raise);
       }
     }
   }
@@ -798,14 +798,14 @@ $t-tablet: 1100px;
 }
 
 .t-pdp__stage {
-  border-radius: 16px !important;
+  border-radius: 0 !important;
   background: var(--k-well) !important;
 }
 
 .t-hl {
   margin-top: 16px;
   padding: 16px 18px;
-  border-radius: 14px;
+  border-radius: 0;
   background: var(--k-wash);
 
   h4 {
@@ -890,8 +890,8 @@ $t-tablet: 1100px;
   margin-top: 16px;
   padding: 18px;
   border: 1px solid var(--k-line);
-  border-radius: 14px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
 
   .k-pdp__price {
     margin-top: 16px;
@@ -916,8 +916,8 @@ $t-tablet: 1100px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
   padding: 4px;
-  border-radius: 10px;
-  background: #f2f2f2;
+  border-radius: 0;
+  background: var(--k-raise);
 
   &.-n1 {
     grid-template-columns: minmax(0, 1fr);
@@ -936,7 +936,7 @@ $t-tablet: 1100px;
     height: 40px;
     padding: 0 6px;
     border: 0;
-    border-radius: 8px;
+    border-radius: 0;
     background: none;
     color: var(--k-muted);
     font-size: 14.5px;
@@ -945,7 +945,7 @@ $t-tablet: 1100px;
     cursor: pointer;
 
     &.-on {
-      background: #fff;
+      background: var(--k-card);
       color: var(--k-ink);
       box-shadow: 0 1px 4px rgba(0, 0, 0, 0.14);
     }
@@ -1008,7 +1008,7 @@ $t-tablet: 1100px;
     border-radius: 0;
 
     &.-on {
-      background: #fff7f7;
+      background: var(--k-raise);
     }
 
     &__dot {
@@ -1068,7 +1068,7 @@ $t-tablet: 1100px;
     gap: 18px;
     padding: 22px;
     border: 1px solid var(--k-line);
-    border-radius: 16px;
+    border-radius: 0;
   }
 
   &__it {
@@ -1087,7 +1087,7 @@ $t-tablet: 1100px;
     max-width: 150px;
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 0;
     background: var(--k-well);
     cursor: pointer;
 
@@ -1115,12 +1115,12 @@ $t-tablet: 1100px;
     width: 22px;
     height: 22px;
     border: 1.5px solid var(--k-line-strong);
-    border-radius: 5px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
 
     .v-icon {
       opacity: 0;
-      color: #fff;
+      color: var(--k-on-green);
     }
   }
 
@@ -1342,7 +1342,7 @@ $t-tablet: 1100px;
   gap: 16px;
   margin: 18px 0 22px;
   padding: 14px 18px;
-  border-radius: 12px;
+  border-radius: 0;
   background: var(--k-wash);
   font-size: 15.5px;
 
@@ -1366,14 +1366,14 @@ $t-tablet: 1100px;
   &__bar {
     height: 6px;
     margin-top: 8px;
-    border-radius: 3px;
-    background: #e3e3e3;
+    border-radius: 0;
+    background: var(--k-line-strong);
     overflow: hidden;
 
     i {
       display: block;
       height: 100%;
-      border-radius: 3px;
+      border-radius: 0;
       background: var(--k-green);
       transition: width 300ms ease;
     }
@@ -1386,7 +1386,7 @@ $t-tablet: 1100px;
   }
 
   &.-done {
-    background: #eef7ee;
+    background: var(--k-raise);
 
     > .v-icon,
     b {
@@ -1455,8 +1455,8 @@ $t-tablet: 1100px;
 /* Lines: a card per seller, "Visit shop", the unit price and Remove. */
 .k-lines__seller {
   border: 1px solid var(--k-line) !important;
-  border-radius: 14px !important;
-  background: #fff !important;
+  border-radius: 0 !important;
+  background: var(--k-card) !important;
 }
 
 .k-lines__who {
@@ -1502,7 +1502,7 @@ $t-tablet: 1100px;
 
 .k-cart .k-lines__qty {
   border: 1.5px solid var(--k-green) !important;
-  border-radius: 8px !important;
+  border-radius: 0 !important;
 
   button {
     color: var(--k-green) !important;
@@ -1540,13 +1540,13 @@ $t-tablet: 1100px;
     align-items: flex-start !important;
     padding: 14px !important;
     border: 1px solid var(--k-line-strong) !important;
-    border-radius: 10px !important;
-    background: #fff !important;
+    border-radius: 0 !important;
+    background: var(--k-card) !important;
 
     &.-on {
       border-color: var(--k-ink) !important;
       box-shadow: inset 0 0 0 1px var(--k-ink) !important;
-      background: #fff !important;
+      background: var(--k-card) !important;
     }
   }
 
@@ -1602,8 +1602,8 @@ $t-tablet: 1100px;
   gap: 10px;
   padding: 14px;
   border: 1px solid var(--k-line-strong);
-  border-radius: 10px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
   color: var(--k-ink);
   font-family: var(--k-body);
   text-align: start;
@@ -1656,11 +1656,11 @@ $t-tablet: 1100px;
 /* The summary's button is always red: it takes the shopper to what is missing. */
 .k-cart .k-cart__go.-off {
   background: var(--k-green) !important;
-  color: #fff !important;
+  color: var(--k-on-green) !important;
   opacity: 1 !important;
 
   * {
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     opacity: 1 !important;
   }
 }
@@ -1730,7 +1730,7 @@ $t-tablet: 1100px;
   .k-bdrawer__pic {
     width: 56px !important;
     height: 56px !important;
-    border-radius: 8px !important;
+    border-radius: 0 !important;
     background: var(--k-well) !important;
 
     img {
@@ -1748,7 +1748,7 @@ $t-tablet: 1100px;
   .k-bdrawer__qty {
     width: max-content;
     border: 1.5px solid var(--k-green) !important;
-    border-radius: 8px !important;
+    border-radius: 0 !important;
 
     button {
       color: var(--k-green) !important;
@@ -1778,7 +1778,7 @@ $t-tablet: 1100px;
     flex: none;
     padding: 14px 20px 18px;
     border-top: 1px solid var(--k-line);
-    background: #fff;
+    background: var(--k-card);
     transition: opacity 140ms ease;
 
     &.-settling {
@@ -1818,7 +1818,7 @@ $t-tablet: 1100px;
 .t-meter2 {
   margin-top: 12px;
   padding: 12px 14px;
-  border-radius: 10px;
+  border-radius: 0;
   background: var(--k-wash);
   font-size: 14.5px;
 
@@ -1829,8 +1829,8 @@ $t-tablet: 1100px;
   .t-meter__bar {
     height: 6px;
     margin-top: 8px;
-    border-radius: 3px;
-    background: #e3e3e3;
+    border-radius: 0;
+    background: var(--k-line-strong);
     overflow: hidden;
 
     i {
@@ -1844,7 +1844,7 @@ $t-tablet: 1100px;
 /* ▆▆▆▆▆▆▆▆ Sign-in A: one card in the middle ▆▆▆▆▆▆▆▆ */
 
 .k-signin.t-signin {
-  border-radius: 18px !important;
+  border-radius: 0 !important;
 
   @media (max-width: 599px) {
     position: fixed !important;
@@ -1854,7 +1854,7 @@ $t-tablet: 1100px;
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
-    border-radius: 18px 18px 0 0 !important;
+    border-radius: 0 0 0 !important;
   }
 }
 
@@ -1863,7 +1863,7 @@ $t-tablet: 1100px;
   max-height: calc(100vh - 48px);
   overflow-y: auto;
   padding: 30px 30px 24px;
-  background: #fff;
+  background: var(--k-card);
   font-family: var(--k-body);
   text-align: center;
   color: var(--k-ink);
@@ -1972,10 +1972,10 @@ $t-tablet: 1100px;
 .t-sban {
   position: relative;
   margin-top: 14px;
-  border-radius: 16px;
+  border-radius: 0;
   overflow: hidden;
   background: #1f2a22;
-  color: #fff;
+  color: var(--k-on-green);
 
   &__cover {
     height: 150px;
@@ -1998,9 +1998,9 @@ $t-tablet: 1100px;
     flex: none;
     width: 112px;
     height: 112px;
-    border: 5px solid #fff;
+    border: 5px solid var(--k-paper);
     border-radius: 50%;
-    background: #fff;
+    background: var(--k-card);
     color: var(--k-green);
     overflow: hidden;
 
@@ -2020,12 +2020,12 @@ $t-tablet: 1100px;
       font-size: 38px;
       font-weight: 800;
       letter-spacing: -0.03em;
-      color: #fff;
+      color: var(--k-on-green);
     }
 
     p {
       margin: 4px 0 0;
-      color: #d9e2dc;
+      color: var(--k-on-green);
       font-size: 15.5px;
     }
   }
@@ -2042,7 +2042,7 @@ $t-tablet: 1100px;
     }
 
     span {
-      color: #c8d3cc;
+      color: var(--k-on-green);
       font-size: 13px;
     }
   }
@@ -2129,7 +2129,7 @@ $t-tablet: 1100px;
   align-content: start;
   gap: 8px;
   padding: 16px 10px;
-  border-radius: 14px;
+  border-radius: 0;
   background: var(--k-wash);
   color: var(--k-ink) !important;
   font-size: 14px;
@@ -2151,7 +2151,7 @@ $t-tablet: 1100px;
   }
 
   &:hover {
-    background: #efefef;
+    background: var(--k-raise);
   }
 }
 
@@ -2232,7 +2232,7 @@ $t-tablet: 1100px;
       &.-on {
         background: var(--k-ink);
         border-color: var(--k-ink);
-        color: #fff;
+        color: var(--k-on-green);
       }
     }
   }
@@ -2256,7 +2256,7 @@ $t-tablet: 1100px;
     display: grid;
     place-items: center;
     aspect-ratio: 16 / 10;
-    border-radius: 16px;
+    border-radius: 0;
     background: var(--k-wash);
     overflow: hidden;
 
@@ -2337,7 +2337,7 @@ $t-tablet: 1100px;
     display: grid;
     place-items: center;
     aspect-ratio: 4 / 3;
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--k-wash);
     overflow: hidden;
 
@@ -2378,8 +2378,8 @@ $t-tablet: 1100px;
     align-items: flex-end;
     min-height: 380px;
     margin-top: 18px;
-    border-radius: 18px;
-    background: #e9e2d6 center / cover no-repeat;
+    border-radius: 0;
+    background: var(--k-raise) center / cover no-repeat;
     overflow: hidden;
   }
 
@@ -2387,8 +2387,8 @@ $t-tablet: 1100px;
     max-width: 620px;
     margin: 28px;
     padding: 26px 28px;
-    border-radius: 14px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
 
     h1 {
       margin: 6px 0 10px;
@@ -2421,9 +2421,9 @@ $t-tablet: 1100px;
     grid-auto-flow: column;
     grid-auto-columns: minmax(0, 1fr);
     margin-top: 26px;
-    border-radius: 14px;
+    border-radius: 0;
     background: var(--k-green);
-    color: #fff;
+    color: var(--k-on-green);
     text-align: center;
 
     div {
@@ -2441,7 +2441,7 @@ $t-tablet: 1100px;
     }
 
     span {
-      color: #ffd6d6;
+      color: var(--k-on-green);
       font-size: 14px;
     }
   }
@@ -2461,7 +2461,7 @@ $t-tablet: 1100px;
 
     div {
       padding: 20px;
-      border-radius: 14px;
+      border-radius: 0;
       background: var(--k-wash);
     }
 
@@ -2495,7 +2495,7 @@ $t-tablet: 1100px;
     gap: 14px;
     padding: 16px;
     border: 1px solid var(--k-line);
-    border-radius: 14px;
+    border-radius: 0;
     color: var(--k-ink) !important;
     text-decoration: none;
 
@@ -2537,7 +2537,7 @@ $t-tablet: 1100px;
     align-items: center;
     gap: 28px;
     padding: 28px;
-    border-radius: 16px;
+    border-radius: 0;
     background: var(--k-wash);
 
     h2 {
@@ -2679,8 +2679,8 @@ $t-tablet: 1100px;
     height: 48px;
     margin-top: 24px;
     padding: 0 6px 0 18px;
-    border-radius: 999px;
-    background: #f2f2f2;
+    border-radius: 0;
+    background: var(--k-raise);
 
     input {
       flex: 1;
@@ -2699,7 +2699,7 @@ $t-tablet: 1100px;
       border: 0;
       border-radius: 50%;
       background: var(--k-green);
-      color: #fff;
+      color: var(--k-on-green);
       cursor: pointer;
     }
   }

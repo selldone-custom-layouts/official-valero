@@ -24,14 +24,14 @@ An AI coding agent (for example **Claude Code** or **OpenAI Codex**) can set thi
 Fill in the four values in braces first.
 
 ```text
-Set up the Selldone custom Layout "Tario Market" on my Selldone shop.
+Set up the Selldone custom Layout "Valero Market" on my Selldone shop.
 
 My shop handle: {SHOP_HANDLE}        (as in {SHOP_HANDLE}.myselldone.com)
 My shop id: {SHOP_ID}
 My GitHub account: {GITHUB_USER}
 New Layout package name (lowercase, permanent, unique to me): {PACKAGE}   e.g. mybrand-market
 
-Source: https://github.com/selldone-custom-layouts/official-tario
+Source: https://github.com/selldone-custom-layouts/official-valero
 
 Before you change anything, read completely: README.md, KALIO.md, every file in
 docs/wiki/, and .ai-agent/AGENTS.md, .ai-agent/SKILL.md, .ai-agent/AI_WORKFLOW.md.

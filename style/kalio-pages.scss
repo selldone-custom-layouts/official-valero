@@ -26,7 +26,7 @@
 /* kalio-sections' shimmer (its k-shimmer keyframes are global); a
    placeholder cannot be extended across Sass modules. */
 %k-pages-skeleton {
-  background: linear-gradient(90deg, var(--k-wash) 25%, #efece4 50%, var(--k-wash) 75%);
+  background: linear-gradient(90deg, var(--k-wash) 25%, var(--k-raise) 50%, var(--k-wash) 75%);
   background-size: 200% 100%;
   animation: k-shimmer 1.4s linear infinite;
 
@@ -41,8 +41,8 @@
   gap: 12px;
   padding: 14px 18px;
   border: 1px dashed #d9b765;
-  border-radius: 16px;
-  background: #fdf0d5;
+  border-radius: 0;
+  background: var(--k-raise);
   color: #5b4300;
   font-family: var(--k-body);
   font-size: 14.5px;
@@ -90,7 +90,7 @@
     height: 26px;
     border-radius: 50%;
     background: var(--k-green);
-    color: #fff;
+    color: var(--k-on-green);
     font-size: 11px;
     font-style: normal;
     font-weight: 700;
@@ -105,7 +105,7 @@
   padding: 0 16px;
   border: 1px solid var(--k-line);
   border-radius: var(--k-pill);
-  background: #fff;
+  background: var(--k-card);
   color: var(--k-ink) !important;
   font-family: var(--k-body);
   font-size: 14.5px;
@@ -184,7 +184,7 @@
   img {
     max-width: 100%;
     height: auto;
-    border-radius: 18px;
+    border-radius: 0;
   }
 
   figure {
@@ -242,7 +242,7 @@
   span {
     display: block;
     height: 18px;
-    border-radius: 9px;
+    border-radius: 0;
     @extend %k-pages-skeleton;
 
     &:nth-child(2) {
@@ -269,9 +269,9 @@
     gap: 24px;
     margin-top: 10px;
     padding: 40px 44px;
-    border-radius: 32px;
+    border-radius: 0;
     background: var(--k-green-deep);
-    color: #fff;
+    color: var(--k-on-green);
 
     h1 {
       margin: 8px 0 0;
@@ -280,7 +280,7 @@
       font-weight: 600;
       line-height: 1;
       letter-spacing: -0.02em;
-      color: #fff;
+      color: var(--k-on-green);
     }
 
     p {
@@ -288,7 +288,7 @@
       margin: 12px 0 0;
       font-size: 17px;
       line-height: 1.5;
-      color: #f3d4d4;
+      color: var(--k-on-green);
     }
   }
 
@@ -298,14 +298,14 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #f6c9c9 !important;
+    color: var(--k-on-green) !important;
   }
 
   &__count {
     margin: 0 !important;
     text-align: end;
     font-size: 14px !important;
-    color: #f6c9c9 !important;
+    color: var(--k-on-green) !important;
 
     b {
       display: block;
@@ -313,7 +313,7 @@
       font-size: 44px;
       font-weight: 600;
       line-height: 1;
-      color: #fff;
+      color: var(--k-on-green);
     }
   }
 
@@ -374,7 +374,7 @@
     &.-skeleton .k-jentry {
       height: 150px;
       margin-top: 18px;
-      border-radius: 22px;
+      border-radius: 0;
       @extend %k-pages-skeleton;
     }
   }
@@ -417,7 +417,7 @@
     &__hero {
       grid-template-columns: minmax(0, 1fr);
       padding: 28px 24px;
-      border-radius: 26px;
+      border-radius: 0;
 
       p {
         font-size: 16px;
@@ -455,7 +455,7 @@
 
   &__date {
     padding: 10px 0 12px;
-    border-radius: 18px;
+    border-radius: 0;
     background: var(--k-wash);
     text-align: center;
 
@@ -516,7 +516,7 @@
     display: grid;
     place-items: center;
     aspect-ratio: 1;
-    border-radius: 20px;
+    border-radius: 0;
     background: var(--k-well);
     overflow: hidden;
 
@@ -557,7 +557,7 @@
 /* The side column's boxes. */
 .k-jbox {
   padding: 22px;
-  border-radius: 24px;
+  border-radius: 0;
   background: var(--k-wash);
 
   h2 {
@@ -646,7 +646,7 @@
     display: grid;
     place-items: center;
     aspect-ratio: 1;
-    border-radius: 18px;
+    border-radius: 0;
     background: var(--k-well);
 
     > a {
@@ -665,7 +665,7 @@
   }
 
   .k-jbox &__well {
-    background: #fff;
+    background: var(--k-card);
   }
 
   &__add {
@@ -677,7 +677,7 @@
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background: #fff;
+    background: var(--k-card);
     color: var(--k-green-deep) !important;
     box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.45);
     cursor: pointer;
@@ -688,7 +688,7 @@
 
     &:hover {
       background: var(--k-green-deep);
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
   }
 
@@ -807,7 +807,7 @@
     width: min(1080px, 100% - 2 * var(--k-gutter));
     margin: 28px auto 0;
     aspect-ratio: 21 / 9;
-    border-radius: 28px;
+    border-radius: 0;
     background: var(--k-well);
     overflow: hidden;
 
@@ -836,7 +836,7 @@
   &__shop {
     margin: 36px 0 0;
     padding: 22px;
-    border-radius: 26px;
+    border-radius: 0;
     background: var(--k-wash);
 
     > header {
@@ -857,7 +857,7 @@
     }
 
     .k-mini__well {
-      background: #fff;
+      background: var(--k-card);
     }
   }
 
@@ -970,7 +970,7 @@
     display: grid;
     place-items: center;
     aspect-ratio: 4 / 3;
-    border-radius: 22px;
+    border-radius: 0;
     background: var(--k-well);
     overflow: hidden;
 
@@ -1012,7 +1012,7 @@
 
     &__hero {
       aspect-ratio: 4 / 3;
-      border-radius: 22px;
+      border-radius: 0;
     }
 
     &__shop {
@@ -1067,7 +1067,7 @@
   &__short {
     margin-top: 24px;
     padding: 26px 28px;
-    border-radius: 26px;
+    border-radius: 0;
     background: var(--k-green-soft);
 
     h2 {
@@ -1119,7 +1119,7 @@
     top: 24px;
     display: grid;
     padding: 18px;
-    border-radius: 22px;
+    border-radius: 0;
     background: var(--k-wash);
 
     p {
@@ -1135,7 +1135,7 @@
       display: grid;
       grid-template-columns: 26px minmax(0, 1fr);
       padding: 8px 10px;
-      border-radius: 12px;
+      border-radius: 0;
       font-size: 14.5px;
       font-weight: 600;
       line-height: 1.35;
@@ -1152,7 +1152,7 @@
       }
 
       &.-on {
-        background: #fff;
+        background: var(--k-card);
         color: var(--k-green-deep) !important;
         box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.4);
       }
@@ -1252,8 +1252,8 @@
     gap: 16px;
     padding: 14px 18px;
     border: 1px solid var(--k-line);
-    border-radius: 18px;
-    background: #fff;
+    border-radius: 0;
+    background: var(--k-card);
 
     b {
       display: block;
@@ -1297,7 +1297,7 @@
     }
 
     &.-off {
-      background: #fff;
+      background: var(--k-card);
       color: var(--k-muted);
       box-shadow: inset 0 0 0 1px var(--k-line);
     }
@@ -1345,8 +1345,8 @@
     justify-content: center;
     aspect-ratio: 1;
     padding: 6% 8% 10%;
-    border-radius: 28px;
-    background: #f8ecdc;
+    border-radius: 0;
+    background: var(--k-raise);
 
     /* Packshots are square with room around the pack: three overlap a
        little, the middle one in front, so the packs read at this size. */

@@ -1,0 +1,404 @@
+/* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Valero — shared rows, sections and the card (kept from Tario, darkened) ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+   The generic pieces of Tario’s design A that Valero’s pages still use: the
+   section head, the sideways row, the card and the sticky offsets. Valero’s
+   own look is drawn over them in valero-d.scss. */
+
+$t-phone: 760px;
+$t-tablet: 1100px;
+
+/* ▆▆▆▆▆▆▆▆ Sections ▆▆▆▆▆▆▆▆ */
+
+/* The shop card's own 64px under the home. */
+.s--shop-card:has(> div > .t-home),
+.s--shop-card:has(.t-home) {
+  padding-bottom: 0 !important;
+}
+
+.t-home {
+  padding-bottom: 8px;
+  font-family: var(--k-body);
+  text-align: start;
+
+  &__end {
+    display: flex;
+    justify-content: center;
+    margin-top: 48px;
+  }
+}
+
+.t-sec {
+  margin-top: 44px;
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: var(--k-display);
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--k-ink);
+  }
+
+  &__tools {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: none;
+  }
+
+  &__more {
+    display: inline-flex;
+    align-items: center;
+    color: var(--k-green) !important;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  }
+
+  @media (max-width: $t-phone) {
+    margin-top: 34px;
+
+    &__title {
+      font-size: 21px;
+    }
+  }
+}
+
+.t-arrow {
+  display: inline-grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--k-card);
+  color: var(--k-ink) !important;
+  cursor: pointer;
+
+  &.-small {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--k-line);
+
+    &:hover:not(:disabled) {
+      border-color: var(--k-ink);
+    }
+
+    &:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+  }
+
+  &.-hero {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    transform: translateY(-50%);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+
+    &.-back {
+      inset-inline-start: 14px;
+    }
+
+    &.-next {
+      inset-inline-end: 14px;
+    }
+  }
+
+  @media (hover: none), (max-width: $t-phone) {
+    &.-small,
+    &.-hero {
+      display: none;
+    }
+  }
+
+  /* A tablet's hero turns by swipe and dots; the arrows sat over the text. */
+  @media (max-width: $t-tablet) {
+    &.-hero {
+      display: none;
+    }
+  }
+}
+
+.t-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 0;
+  font-family: var(--k-body);
+  font-size: 15.5px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease;
+
+  &.-outline {
+    border: 1.5px solid var(--k-line-strong);
+    background: var(--k-card);
+    color: var(--k-ink) !important;
+
+    &:hover {
+      border-color: var(--k-ink);
+    }
+  }
+}
+
+/* ▆▆▆▆▆▆▆▆ Rows of cards ▆▆▆▆▆▆▆▆ */
+
+.t-row__track {
+  display: grid;
+  grid-auto-columns: calc((100% - 5 * 16px) / 6);
+  grid-auto-flow: column;
+  gap: 16px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 4px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (max-width: $t-tablet) {
+    grid-auto-columns: calc((100% - 3 * 16px) / 4);
+  }
+
+  @media (max-width: $t-phone) {
+    grid-auto-columns: 44%;
+    gap: 12px;
+  }
+}
+
+.t-row__cell {
+  display: flex;
+  min-width: 0;
+  scroll-snap-align: start;
+
+  &.-skeleton {
+    flex-direction: column;
+    gap: 10px;
+
+    i,
+    b {
+      display: block;
+      border-radius: 0;
+      background: linear-gradient(100deg, var(--k-raise) 30%, var(--k-raise) 50%, var(--k-raise) 70%) 0 0 / 300% 100%;
+      animation: t-shimmer 1.4s linear infinite;
+    }
+
+    i {
+      aspect-ratio: 1;
+    }
+
+    b {
+      height: 14px;
+      width: 80%;
+      border-radius: 0;
+
+      &.-short {
+        width: 50%;
+      }
+    }
+  }
+}
+
+/* ▆▆▆▆▆▆▆▆ The card ▆▆▆▆▆▆▆▆ */
+
+.t-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  font-family: var(--k-body);
+
+  &__pic {
+    position: relative;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 0;
+    background: var(--k-well);
+
+    /* Every product photo is a square with the pack's longest side at 70%,
+       centred (all 160 measured, 7 November 2026). Drawn at 120% of the
+       well, the pack fills about 84% of it, as on the big grocers' cards;
+       at 78% it filled only 55%. */
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      mix-blend-mode: multiply;
+      transform: scale(1.2);
+      transition: transform 220ms ease;
+    }
+
+    &:hover img {
+      transform: scale(1.25);
+    }
+  }
+
+  &__tag {
+    position: absolute;
+    top: 8px;
+    inset-inline-start: 8px;
+    padding: 3px 7px;
+    border-radius: 0;
+    background: var(--k-green);
+    color: var(--k-on-green);
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  &__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 7px;
+    margin-top: 10px;
+  }
+
+  &__now {
+    color: var(--k-ink) !important;
+    font-size: 18px !important;
+    font-weight: 800 !important;
+  }
+
+  &.-sale &__now {
+    color: var(--k-green) !important;
+  }
+
+  &__was {
+    color: var(--k-muted);
+    font-size: 13px;
+    text-decoration: none;
+
+    .u--price {
+      color: var(--k-muted) !important;
+      font-size: 13px !important;
+      font-weight: 400 !important;
+    }
+  }
+
+  &__sale {
+    color: var(--k-green);
+    font-size: 12.5px;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  &__name {
+    display: -webkit-box;
+    min-height: 2.7em;
+    margin-top: 4px;
+    overflow: hidden;
+    color: var(--k-ink) !important;
+    font-size: 14.5px;
+    line-height: 1.35;
+    text-decoration: none;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  }
+
+  &__rate {
+    margin-top: 4px;
+  }
+
+  &__unit {
+    margin: 2px 0 0;
+    color: var(--k-muted);
+    font-size: 12.5px;
+  }
+
+  &__by {
+    margin-top: 3px;
+  }
+
+  &__foot {
+    margin-top: auto;
+    padding-top: 10px;
+  }
+
+  .k-card-add,
+  .k-card-step.-card {
+    height: 40px;
+  }
+
+  .k-card-add {
+    font-size: 14.5px;
+  }
+}
+
+/* The big-box foot on every card in Valero (the home's, the catalogue's,
+   an aisle's): a red, square-cornered "Add to cart" with no "+", "Choose
+   options" in grey outline, and "− n in cart +" on white. */
+.k-card-add,
+.k-card-step.-card {
+  border-radius: 0 !important;
+}
+
+.k-card-add {
+  .v-icon {
+    display: none;
+  }
+
+  &.-options {
+    border-color: var(--k-line-strong) !important;
+    color: var(--k-ink) !important;
+
+    &:hover {
+      border-color: var(--k-ink) !important;
+      background: var(--k-card) !important;
+    }
+  }
+}
+
+.k-card-step.-card {
+  background: var(--k-card) !important;
+
+  button {
+    color: var(--k-green) !important;
+
+    &:hover:not(:disabled) {
+      background: var(--k-green-soft) !important;
+    }
+  }
+
+  .k-card-step__count {
+    color: var(--k-ink);
+  }
+}
+
+/* ▆▆▆▆▆▆▆▆ Sticky offsets ▆▆▆▆▆▆▆▆
+   Molino's sticky receipt, order summary and product pictures sat 136px
+   down, under its bar and aisle strip (118px). Valero's visible header is
+   the 72px bar alone (the promo strip scrolls away), so they sit higher. */
+.k-cart__side,
+.k-order__side,
+.k-pdp__media {
+  top: 92px !important;
+}

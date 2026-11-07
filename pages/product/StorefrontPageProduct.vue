@@ -53,7 +53,7 @@
           </span>
         </nav>
 
-        <tario-product-overview v-if="product" can-buy show-cover />
+        <valero-product-overview v-if="product" can-buy show-cover />
         <s-product-overview-loading v-else />
         <u-loading-progress v-if="busy"></u-loading-progress>
       </div>
@@ -69,7 +69,7 @@
         <s-product-offers class="s--product-section k-pdp-block"></s-product-offers>
       </div>
 
-      <!-- ▁▁▁▁▁▁ 🞇 Tario (product page B): one stack of folding sections 🞇 ▁▁▁▁▁▁ -->
+      <!-- ▁▁▁▁▁▁ 🞇 Valero (product page B): one stack of folding sections 🞇 ▁▁▁▁▁▁ -->
       <div :style="{ order: getOrder('spec') }">
         <section aria-label="About this item" class="t-folds k-wrap">
           <details v-if="highlight_rows.length" class="t-fold -phone" open>
@@ -135,9 +135,9 @@
         <s-product-landing></s-product-landing>
       </div>
 
-      <!-- ⬬⬬⬬⬬ More from this aisle, as Tario cards ⬬⬬⬬⬬ -->
+      <!-- ⬬⬬⬬⬬ More from this aisle, as Valero cards ⬬⬬⬬⬬ -->
       <div :style="{ order: getOrder('related-products') }">
-        <tario-row
+        <valero-row
           v-if="product.category"
           :key="'aisle-' + product.category.id"
           :dir="product.category.name"
@@ -158,9 +158,9 @@
 <script lang="ts">
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
-import TarioProductOverview from "../../components/tario/product/TarioProductOverview.vue";
-import TarioRow from "../../components/tario/TarioRow.vue";
-import { waysOf } from "../../components/tario/tario-home";
+import ValeroProductOverview from "../../components/valero/product/ValeroProductOverview.vue";
+import ValeroRow from "../../components/valero/ValeroRow.vue";
+import { waysOf } from "../../components/valero/valero-home";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
 import SProductOverviewLoading from "@selldone/components-vue/storefront/product/overview/loading/SProductOverviewLoading.vue";
 
@@ -210,8 +210,8 @@ export default {
     SProductIncludes,
 
     SProductOverviewLoading,
-    TarioProductOverview,
-    TarioRow,
+    ValeroProductOverview,
+    ValeroRow,
 
   },
 

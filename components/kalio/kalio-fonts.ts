@@ -11,7 +11,8 @@
 
 const FONTS_HREF =
   "https://fonts.googleapis.com/css2" +
-  "?family=Inter:wght@400..800" +
+  "?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500" +
+  "&family=Jost:wght@300..600" +
   "&display=swap";
 
 function addLink(attrs: Record<string, string>) {

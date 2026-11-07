@@ -1,5 +1,5 @@
 <!--
-  Tario — a row of product cards (design A): "Top deals", "New arrivals",
+  Valero — a row of product cards (design A): "Top deals", "New arrivals",
   "Trending in Produce".
 
   One products.list call, as Kalio's rail makes it: the caller passes the
@@ -41,7 +41,7 @@
         </div>
       </template>
       <div v-for="product in products" v-else :key="product.id" class="t-row__cell">
-        <tario-card :product="product" :sellers="sellersOf.get(product.id) || []" @quick-buy="quickBuy" />
+        <valero-card :product="product" :sellers="sellersOf.get(product.id) || []" @quick-buy="quickBuy" />
       </div>
     </div>
 
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import TarioCard from "./TarioCard.vue";
+import ValeroCard from "./ValeroCard.vue";
 import KalioQuickBuy from "../kalio/KalioQuickBuy.vue";
 import { offers } from "../kalio/kalio-catalog";
 import { quickAdd } from "../kalio/kalio-basket";
@@ -72,8 +72,8 @@ function spreadByAisle(products) {
 }
 
 export default {
-  name: "TarioRow",
-  components: { TarioCard, KalioQuickBuy },
+  name: "ValeroRow",
+  components: { ValeroCard, KalioQuickBuy },
 
   props: {
     title: { type: String, required: true },

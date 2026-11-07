@@ -34,15 +34,15 @@
     <section :style="hero ? { backgroundImage: `url(${hero})` } : null" class="t-about__hero">
       <div class="t-about__card">
         <p class="t-about__eyebrow">About {{ shopTitle }}</p>
-        <h1>{{ missing || busy ? sample.title.replace("basket", "cart") : `About ${shopTitle}` }}</h1>
+        <h1>{{ missing || busy ? sample.title.replace("basket", "bag") : `About ${shopTitle}` }}</h1>
         <p v-if="missing || busy">{{ sample.lead }}</p>
       </div>
     </section>
 
     <div class="t-about__nums">
       <div v-if="aisleList.length"><b>{{ aisleList.length }}</b><span>aisles</span></div>
-      <div v-if="sellers.length"><b>{{ sellers.length }}</b><span>{{ sellers.length === 1 ? "seller" : "independent sellers" }}</span></div>
-      <div><b>1</b><span>cart, one checkout</span></div>
+      <div v-if="sellers.length"><b>{{ sellers.length }}</b><span>{{ sellers.length === 1 ? "maker" : "independent makers" }}</span></div>
+      <div><b>1</b><span>bag, one checkout</span></div>
       <div v-if="ways"><b>{{ ways }}</b><span>{{ ways === 1 ? "way to get it" : "ways to get it" }}</span></div>
     </div>
 
@@ -52,7 +52,7 @@
         <kalio-sample-note>
           This text is general copy written to show the page. It is not {{ shopTitle }}'s real story.
         </kalio-sample-note>
-        <p class="t-about__text">{{ sample.text[0].replace("the basket", "the cart") }}</p>
+        <p class="t-about__text">{{ sample.text[0].replace("the basket", "the bag") }}</p>
         <div class="t-about__vals">
           <div v-for="(value, i) in sample.values" :key="value.title">
             <v-icon size="26">{{ ICONS[i] || "check_circle" }}</v-icon>
@@ -65,7 +65,7 @@
     </section>
 
     <section v-if="sellers.length" class="t-sec">
-      <header class="t-sec__head"><h2 class="t-sec__title">Meet the {{ sellers.length === 1 ? "seller" : "sellers" }}</h2></header>
+      <header class="t-sec__head"><h2 class="t-sec__title">Meet the {{ sellers.length === 1 ? "maker" : "makers" }}</h2></header>
       <div class="t-about__meet">
         <router-link v-for="v in sellers" :key="v.id" :to="sellerRoute(v)" class="t-about__seller">
           <img v-if="vendorImage(v)" :src="vendorImage(v)" alt="" />
@@ -103,7 +103,7 @@
 import KalioSampleNote from "@app-storefront/components/kalio/pages/KalioSampleNote.vue";
 import { aboutSample, plainText } from "@app-storefront/components/kalio/pages/kalio-sample-pages";
 import { aisles, catalogueRoute, countProducts, offers, productImage, sellerRoute, vendorImage, vendors } from "@app-storefront/components/kalio/kalio-catalog";
-import { photo, waysOf } from "@app-storefront/components/tario/tario-home";
+import { photo, waysOf } from "@app-storefront/components/valero/valero-home";
 
 export default {
   name: "StorefrontPageOfficialAboutUs",
@@ -127,7 +127,7 @@ export default {
       return this.$shop?.title || "This shop";
     },
     hero() {
-      return photo("tario-hero-1-weekly");
+      return photo("valero-hero-1-weekly");
     },
     ways() {
       return waysOf(this.$shop).length;

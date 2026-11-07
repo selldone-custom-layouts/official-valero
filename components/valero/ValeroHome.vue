@@ -1,0 +1,336 @@
+<!--
+  Valero — Home (design D, 7 November 2026): an after-dark food hall.
+  The owner asked for designs C and D "completely different" from each other
+  and from Molino, Tario and Walio, D in black (kalio-design/cd-options/
+  home-d.html). Top to bottom:
+    the hero: a full-bleed photo, dimmed, with one large serif line
+    01 The aisles: every aisle as a numbered index (the hovered one's
+       picture beside it on a computer)
+    02 This week's edit: the biggest savings in a hairline grid of cards
+       (the best sellers when nothing is on offer)
+    03 Of the season: the fresh aisle beside a photo, as a short list
+    04 The makers: each seller with four of their products
+    05 From the journal: the shop's own articles as a magazine block
+    the ways to get it: the shop's own delivery methods
+  Everything is read live; a section with nothing to show is not drawn. It
+  shows on the bare shop page only (StorefrontPageProducts decides).
+-->
+<template>
+  <div class="vh">
+    <!-- ▆▆▆▆ Hero ▆▆▆▆ -->
+    <section class="vh-hero">
+      <img v-if="heroPhoto" :src="heroPhoto" alt="" class="vh-hero__img" />
+      <div v-else aria-hidden="true" class="vh-hero__still">
+        <img v-for="p in edit.slice(0, 3)" :key="p.id" :src="image(p)" alt="" />
+      </div>
+      <div class="vh-hero__in k-wrap">
+        <p class="v-caps vh-gold">
+          {{ shopTitle }}<template v-if="aisleList.length"> · {{ aisleList.length }} aisles</template
+          ><template v-if="sellerList.length"> · {{ sellerList.length }} {{ sellerList.length === 1 ? "maker" : "makers" }}</template>
+        </p>
+        <h1 class="vh-hero__title">The market, <em>after hours.</em></h1>
+        <p class="vh-hero__lede">
+          Good groceries from independent makers, chosen slowly and brought to your door tonight, or kept for you to collect.
+        </p>
+        <div class="vh-hero__ctas">
+          <router-link :to="catalogueRoute" class="v-btn-solid">Enter the market</router-link>
+          <router-link :to="dealsRoute" class="v-btn-line">This week’s offers</router-link>
+        </div>
+      </div>
+    </section>
+
+    <div class="k-wrap">
+      <!-- ▆▆▆▆ 01 The aisles ▆▆▆▆ -->
+      <section v-if="aisleList.length" class="vh-sec">
+        <header class="vh-head">
+          <span class="vh-head__n">01</span>
+          <h2>The aisles</h2>
+          <router-link :to="catalogueRoute" class="v-more">Every product</router-link>
+        </header>
+        <div class="vh-index">
+          <nav aria-label="Aisles" class="vh-index__list">
+            <router-link
+              v-for="(aisle, i) in aisleList"
+              :key="aisle.id"
+              :class="{ '-on': hovered === aisle }"
+              :to="aisleRoute(aisle)"
+              class="vh-index__item"
+              @focus="hovered = aisle"
+              @mouseenter="hovered = aisle"
+            >
+              <span class="vh-index__n">{{ String(i + 1).padStart(2, "0") }}</span>
+              <b>{{ aisle.title || aisle.name }}</b>
+              <span class="vh-index__arrow" aria-hidden="true">→</span>
+            </router-link>
+          </nav>
+          <router-link v-if="hovered" :to="aisleRoute(hovered)" aria-hidden="true" class="vh-index__pic" tabindex="-1">
+            <img v-if="hovered.icon" :src="aisleImage(hovered, 512)" alt="" />
+            <span class="v-caps">{{ hovered.title || hovered.name }}</span>
+          </router-link>
+        </div>
+      </section>
+
+      <!-- ▆▆▆▆ 02 This week's edit ▆▆▆▆ -->
+      <section v-if="edit.length" class="vh-sec">
+        <header class="vh-head">
+          <span class="vh-head__n">02</span>
+          <h2>{{ has_deals ? "This week’s edit" : "Most chosen" }}</h2>
+          <router-link :to="has_deals ? dealsRoute : bestRoute" class="v-more">{{ has_deals ? "Every offer" : "See more" }}</router-link>
+        </header>
+        <div class="v-grid">
+          <div v-for="p in edit" :key="p.id" class="v-grid__cell">
+            <valero-card :product="p" :sellers="sellersOf.get(p.id) || []" @quick-buy="quickBuy" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ▆▆▆▆ 03 Of the season ▆▆▆▆ -->
+      <section v-if="fresh && freshList.length" class="vh-sec">
+        <header class="vh-head">
+          <span class="vh-head__n">03</span>
+          <h2>Of the season</h2>
+        </header>
+        <div class="vh-season">
+          <img v-if="seasonPhoto" :src="seasonPhoto" alt="" class="vh-season__img" />
+          <div v-else aria-hidden="true" class="vh-season__still"><img v-for="p in freshList.slice(0, 2)" :key="p.id" :src="image(p)" alt="" /></div>
+          <div class="vh-season__tx">
+            <p class="v-caps vh-gold">{{ fresh.title || fresh.name }}</p>
+            <h3>Crisp, bright and only just picked.</h3>
+            <p class="vh-muted">The best of {{ (fresh.title || fresh.name).toLowerCase() }} this week, from the makers who grow and choose it.</p>
+            <router-link v-for="p in freshList" :key="p.id" :to="productRoute(p)" class="vh-line">
+              <span class="vh-line__pic"><img :src="thumb(p)" alt="" /></span>
+              <span class="vh-line__name">
+                <small v-if="sellerName(p)" class="v-caps">{{ sellerName(p) }}</small>
+                {{ p.title }}
+              </span>
+              <u-price :amount="priceNow(p)" :currency="currency" class="vh-line__price" />
+            </router-link>
+            <router-link :to="aisleRoute(fresh)" class="v-more vh-season__more">Shop {{ (fresh.title || fresh.name).toLowerCase() }}</router-link>
+          </div>
+        </div>
+      </section>
+
+      <!-- ▆▆▆▆ 04 The makers ▆▆▆▆ -->
+      <section v-if="sellerList.length" class="vh-sec">
+        <header class="vh-head">
+          <span class="vh-head__n">04</span>
+          <h2>The makers</h2>
+        </header>
+        <div class="vh-makers">
+          <router-link v-for="v in sellerList" :key="v.id" :to="sellerRoute(v)" class="vh-maker">
+            <img v-if="v.icon" :src="vendorImage(v)" alt="" class="vh-maker__mark" />
+            <span v-else class="vh-maker__mark -initial">{{ (v.name || "?").charAt(0) }}</span>
+            <span class="vh-maker__tx">
+              <small class="v-caps vh-gold">Independent maker</small>
+              <b>{{ v.name }}</b>
+              <span v-if="makerLine(v)" class="vh-muted">{{ makerLine(v) }}</span>
+              <span class="vh-maker__strip">
+                <span v-for="p in shelf(v)" :key="p.id"><img :src="thumb(p)" alt="" loading="lazy" /></span>
+              </span>
+            </span>
+          </router-link>
+        </div>
+      </section>
+
+      <!-- ▆▆▆▆ 05 From the journal ▆▆▆▆ -->
+      <section v-if="posts.length" class="vh-sec">
+        <header class="vh-head">
+          <span class="vh-head__n">05</span>
+          <h2>From the journal</h2>
+          <router-link :to="journalRoute" class="v-more">The journal</router-link>
+        </header>
+        <div class="vh-mag">
+          <router-link :to="postRoute(posts[0])" class="vh-mag__lead">
+            <img v-if="posts[0].image" :src="postImage(posts[0])" alt="" loading="lazy" />
+            <small class="v-caps vh-gold">{{ readMinutes(posts[0].body) }} min read</small>
+            <h3>{{ posts[0].title }}</h3>
+            <p v-if="posts[0].description" class="vh-muted">{{ posts[0].description }}</p>
+          </router-link>
+          <div class="vh-mag__list">
+            <router-link v-for="a in posts.slice(1, 4)" :key="a.id" :to="postRoute(a)" class="vh-mag__item">
+              <img v-if="a.image" :src="postImage(a)" alt="" loading="lazy" />
+              <span>
+                <small class="v-caps vh-gold">{{ readMinutes(a.body) }} min read</small>
+                <b>{{ a.title }}</b>
+              </span>
+            </router-link>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ▆▆▆▆ How it reaches you ▆▆▆▆ -->
+    <section v-if="ways.length" class="vh-ways k-wrap">
+      <div v-for="w in ways" :key="w.key" class="vh-way">
+        <small class="v-caps vh-gold">{{ w.word }}</small>
+        <b>{{ w.line }}</b>
+        <span class="vh-muted">
+          <template v-if="w.free">Free</template>
+          <template v-else-if="w.freeOver">Free over <u-price :amount="w.freeOver" :currency="w.currency || currency" /></template>
+          <template v-else>Priced with your address</template>
+        </span>
+      </div>
+    </section>
+
+    <kalio-quick-buy v-model="sheet" :product="picked" />
+  </div>
+</template>
+
+<script>
+import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
+import ValeroCard from "./ValeroCard.vue";
+import KalioQuickBuy from "../kalio/KalioQuickBuy.vue";
+import {
+  aisleImage,
+  aisleRoute,
+  aisles,
+  catalogueRoute,
+  dealsRoute,
+  featured,
+  offers,
+  percentOff,
+  priceOf,
+  productImage,
+  sellerRoute,
+  vendorImage,
+  vendors,
+} from "../kalio/kalio-catalog";
+import { quickAdd } from "../kalio/kalio-basket";
+import { DEALS_FILTER, findAisle, listProducts, photo, waysOf } from "./valero-home";
+import { journalPage, journalRoute, postRoute, readMinutes } from "../kalio/pages/kalio-journal";
+
+export default {
+  name: "ValeroHome",
+  components: { ValeroCard, KalioQuickBuy },
+  mixins: [CurrencyMixin],
+  inject: ["$shop"],
+
+  data() {
+    return {
+      aisleList: [],
+      sellerList: [],
+      edit: [],
+      has_deals: true,
+      freshList: [],
+      posts: [],
+      hovered: null,
+      sellersOf: new Map(),
+      shelfOf: new Map(),
+      sheet: false,
+      picked: null,
+    };
+  },
+
+  computed: {
+    shopTitle() {
+      return this.$shop?.title || "Valero";
+    },
+    currency() {
+      return this.GetUserSelectedCurrency()?.code;
+    },
+    heroPhoto() {
+      return photo("valero-hero-dinners");
+    },
+    seasonPhoto() {
+      return photo("valero-season-produce");
+    },
+    catalogueRoute() {
+      return catalogueRoute();
+    },
+    dealsRoute() {
+      return dealsRoute();
+    },
+    bestRoute() {
+      return catalogueRoute({ sort: "bestselling" });
+    },
+    journalRoute() {
+      return journalRoute();
+    },
+    fresh() {
+      return findAisle(this.aisleList, /produce|fruit|veg|fresh/i) || this.aisleList[0] || null;
+    },
+    ways() {
+      return waysOf(this.$shop).slice(0, 3);
+    },
+  },
+
+  watch: {
+    fresh(aisle) {
+      if (!aisle) return;
+      listProducts(aisle.name, 8, { sort: "bestselling" }).then((list) => (this.freshList = list.filter((p) => p.icon).slice(0, 4)));
+    },
+  },
+
+  mounted() {
+    aisles().then((list) => {
+      this.aisleList = featured(list);
+      this.hovered = this.aisleList[0] || null;
+    });
+    vendors().then((list) => (this.sellerList = list.filter((v) => v && v.name)));
+    offers().then(({ sellersOf, shelfOf }) => {
+      this.sellersOf = sellersOf;
+      this.shelfOf = shelfOf;
+    });
+    /* The biggest savings first; the best sellers when nothing is on offer. */
+    listProducts(null, 40, { filter: DEALS_FILTER, sort: "bestselling" }).then((list) => {
+      const deals = list.filter((p) => this.percent(p) > 0).sort((a, b) => this.percent(b) - this.percent(a));
+      if (deals.length >= 4) {
+        this.edit = deals.slice(0, 8);
+        return;
+      }
+      this.has_deals = false;
+      listProducts(null, 8, { sort: "bestselling" }).then((best) => (this.edit = best));
+    });
+    journalPage({ limit: 4 })
+      .then(({ articles }) => (this.posts = articles || []))
+      .catch(() => (this.posts = []));
+  },
+
+  methods: {
+    aisleRoute,
+    aisleImage,
+    sellerRoute,
+    readMinutes,
+    postRoute,
+    vendorImage(v) {
+      return vendorImage(v);
+    },
+    image(p) {
+      return productImage(p);
+    },
+    /** Selldone’s 128px thumbnail, for the small squares. */
+    thumb(p) {
+      return productImage(p, true);
+    },
+    percent(p) {
+      return percentOff(this.$shop, p) || 0;
+    },
+    priceNow(p) {
+      return priceOf(this.$shop, p, this.currency).now || 0;
+    },
+    productRoute(p) {
+      return { name: window.$storefront.routes.PRODUCT_PAGE, params: { product_id: p.id } };
+    },
+    sellerName(p) {
+      const sellers = this.sellersOf.get(p.id) || [];
+      return sellers.length > 1 ? `${sellers.length} makers` : sellers[0]?.name || "";
+    },
+    shelf(v) {
+      return (this.shelfOf.get(v.id) || []).filter((p) => p.icon).slice(0, 4);
+    },
+    makerLine(v) {
+      const text = (v.description || "").trim();
+      return text && text.length < 140 ? text : "";
+    },
+    postImage(a) {
+      return /^https?:/.test(a.image) ? a.image : window.CDN.GET_SHOP_IMAGE_PATH(a.image);
+    },
+    quickBuy(product) {
+      quickAdd(this, product, (picked) => {
+        this.picked = picked;
+        this.sheet = true;
+      });
+    },
+  },
+};
+</script>

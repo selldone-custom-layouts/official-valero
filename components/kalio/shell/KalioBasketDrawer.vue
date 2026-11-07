@@ -49,7 +49,7 @@
                   class="k-bdrawer__qty"
                   role="group"
                 >
-                  <button :aria-label="shown(item) > 1 ? 'One fewer' : 'Remove from cart'" type="button" @click="step(item, -1)">
+                  <button :aria-label="shown(item) > 1 ? 'One fewer' : 'Remove from bag'" type="button" @click="step(item, -1)">
                     <v-icon size="16">{{ shown(item) > 1 ? "remove" : "delete_outline" }}</v-icon>
                   </button>
                   <output aria-live="polite">{{ shown(item) }}</output>
@@ -80,7 +80,7 @@
         <span>Subtotal</span><u-price :amount="group.total" :currency="group.currency" />
       </p>
       <div class="t-bdrawer__btns">
-        <router-link :to="checkoutRoute(group.type)" class="t-btn -line" @click="$emit('close')">View cart</router-link>
+        <router-link :to="checkoutRoute(group.type)" class="t-btn -line" @click="$emit('close')">View bag</router-link>
         <router-link :to="checkoutRoute(group.type)" class="t-btn -red" @click="$emit('close')">Check out</router-link>
       </div>
     </footer>
@@ -91,7 +91,7 @@
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import { settling, shownCount, stepTo } from "../kalio-basket";
 import { productImage, vendorImage, vendors } from "../kalio-catalog";
-import { freeShippingFrom } from "../../tario/tario-home";
+import { freeShippingFrom } from "../../valero/valero-home";
 import KalioOftenAdded from "../KalioOftenAdded.vue";
 
 /* The size of a variant in words: its volume, weight, pack, colour or style. */

@@ -1,12 +1,12 @@
 <!--
-  Tario — the filter chip bar (shop page design A, 7 November 2026).
+  Valero — the filter chip bar (shop page design A, 7 November 2026).
 
   One row under the aisle title instead of a filter column: "Filter & sort"
   opens every filter in one panel (a side panel on a computer, a sheet from
   the bottom on a phone), Deals switches the offers on and off, Price and
   each of the aisle's own filter groups open a small menu of their own, and
   the sort sits at the end of the row. The groups are the aisle's live
-  Selldone filters (tario-filters.ts), never a fixed list.
+  Selldone filters (valero-filters.ts), never a fixed list.
 
   The bar only says what the shopper picked: the page hands every change to
   the listing (SProductsListing.setFilter / sort), which fetches and writes
@@ -134,7 +134,7 @@
     </div>
 
     <!-- ▆▆▆▆ Every filter in one panel ▆▆▆▆ -->
-    <!-- A panel of Tario's own (Vuetify's dialog sits inside a blurred
+    <!-- A panel of Valero's own (Vuetify's dialog sits inside a blurred
          overlay that pushed a fixed sheet off a phone's screen). -->
     <teleport to="body">
       <transition name="t-fade">
@@ -211,13 +211,13 @@
 import UPrice from "@selldone/components-vue/ui/price/UPrice.vue";
 import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 import { PriceHelper } from "@selldone/core-js/helper";
-import { SORTS, clone, countOn, groupsOf, picked, sortName, valueLabel, withGroup } from "./tario-filters";
+import { SORTS, clone, countOn, groupsOf, picked, sortName, valueLabel, withGroup } from "./valero-filters";
 
 /* How many groups get a chip of their own before "More". */
 const CHIPS = 4;
 
 export default {
-  name: "TarioFilterBar",
+  name: "ValeroFilterBar",
   components: { UPrice },
   mixins: [CurrencyMixin],
   inject: ["$shop"],

@@ -1,8 +1,8 @@
-# Tario Market
+# Valero Market
 
-![Tario Market on desktop and phone](https://raw.githubusercontent.com/selldone-custom-layouts/official-tario/main/docs/screenshots/cover.jpg)
+![Valero Market on desktop and phone](https://raw.githubusercontent.com/selldone-custom-layouts/official-valero/main/docs/screenshots/cover.jpg)
 
-**Tario Market** is a custom storefront **Layout** for Selldone shops: a multi-vendor grocery marketplace built like a bright red big-box store: a hero that turns, round categories, rows of cards with a red Add to cart, promo tiles with lifestyle photos, aisle pages with a chip bar of filters, a product page with a framed buy box and sellers side by side, and a cart page with a free-shipping meter. It runs on **[tario.selldone.shop](https://tario.selldone.shop)**, a second address of the shop molino, whose main address carries [Molino Market Hall](https://github.com/selldone-custom-layouts/official-molino): one shop, one Layout per domain (see [Go Live](Go-Live)). It is built on the official [selldone/storefront](https://github.com/selldone/storefront), so Selldone's basket, checkout, payments, vendor offers and orders keep working underneath a completely new design.
+**Valero Market** is a custom storefront **Layout** for Selldone shops: a multi-vendor grocery marketplace as an after-dark food hall: a black page with ivory type and champagne hairlines, an editorial hero, the aisles as a numbered index, hairline grids of cards on ivory squares, a split product page with the sellers as a table, a full-height bag panel, a numbered checkout and makers' pages, in Cormorant Garamond and Jost. It runs on **[valero.selldone.shop](https://valero.selldone.shop)**, a second address of the shop molino, whose main address carries [Molino Market Hall](https://github.com/selldone-custom-layouts/official-molino): one shop, one Layout per domain (see [Go Live](Go-Live)). It is built on the official [selldone/storefront](https://github.com/selldone/storefront), so Selldone's basket, checkout, payments, vendor offers and orders keep working underneath a completely new design.
 
 ## Start here
 
@@ -37,8 +37,8 @@
 
 ## Links
 
-- Live shop: <https://tario.selldone.shop>
-- Repository: <https://github.com/selldone-custom-layouts/official-tario>
-- Design notes and release log: [`KALIO.md`](https://github.com/selldone-custom-layouts/official-tario/blob/main/KALIO.md)
+- Live shop: <https://valero.selldone.shop>
+- Repository: <https://github.com/selldone-custom-layouts/official-valero>
+- Design notes and release log: [`KALIO.md`](https://github.com/selldone-custom-layouts/official-valero/blob/main/KALIO.md)
 - All official custom Layouts: <https://github.com/selldone-custom-layouts>
 - Selldone: <https://selldone.com>

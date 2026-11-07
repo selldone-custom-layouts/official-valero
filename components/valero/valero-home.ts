@@ -1,14 +1,14 @@
 /*
- * Tario — the home page's shared pieces (design A, 7 November 2026).
+ * Valero — the home page's shared pieces (design A, 7 November 2026).
  *
- * The owner rejected the first Tario ("Molino with the colour turned red")
+ * The owner rejected the first Valero ("Molino with the colour turned red")
  * and approved design A: a big-box store's home — a red promo strip, a split
  * hero carousel, round categories, deal rows with a red "Add to cart",
  * promo tiles per aisle, "Ways to get it", editorial tiles, more rows and
  * the sellers. This module holds what several of those sections share:
  *
- *  - the lifestyle photos, bundled from assets/tario/ (the owner has them
- *    made from kalio-design/tario-options/image-prompts-A.md). A photo that
+ *  - the lifestyle photos, bundled from assets/valero/ (the owner has them
+ *    made from kalio-design/valero-options/image-prompts-A.md). A photo that
  *    is not there yet is simply absent, and the section draws a collage of
  *    the aisle's own packshots instead, so the page is finished either way;
  *  - which aisle each tile or slide belongs to, matched on the aisle's
@@ -24,7 +24,7 @@ declare const window: any;
 /* ━━━━━━━━━━━━ Photos ━━━━━━━━━━━━
    import.meta.glob lists only the files that exist when the Layout is
    built, so a missing photo costs nothing and breaks nothing. */
-const FILES = import.meta.glob("../../assets/tario/*.{jpg,jpeg,png,webp}", {
+const FILES = import.meta.glob("../../assets/valero/*.{jpg,jpeg,png,webp}", {
   eager: true,
   query: "?url",
   import: "default",
@@ -52,18 +52,18 @@ export function findAisle(list: any[], pattern: RegExp, used: Set<number> = new 
    `deal` is the caption when the aisle has products on offer, `plain` when
    it has none. "{off}" is the best saving, "{from}" the lowest price. */
 export const TILES = [
-  { pattern: /breakfast|cereal/i, photo: "tario-tile-breakfast", deal: "Up to {off}% off breakfast favourites", plain: "Breakfast, sorted" },
-  { pattern: /snack|sweet|candy/i, photo: "tario-tile-snacks", deal: "Snack-time savings", plain: "The snack drawer" },
-  { pattern: /bread|bakery/i, photo: "tario-tile-bakery", deal: "Fresh-baked, up to {off}% off", plain: "Fresh-baked, from {from}" },
-  { pattern: /household|clean|laundry/i, photo: "tario-tile-household", deal: "Stock up the home for less", plain: "Stock up the home" },
-  { pattern: /meat|seafood|fish|poultry/i, photo: "tario-tile-meat", deal: "Dinner, sorted — up to {off}% off", plain: "Dinner, sorted" },
+  { pattern: /breakfast|cereal/i, photo: "valero-tile-breakfast", deal: "Up to {off}% off breakfast favourites", plain: "Breakfast, sorted" },
+  { pattern: /snack|sweet|candy/i, photo: "valero-tile-snacks", deal: "Snack-time savings", plain: "The snack drawer" },
+  { pattern: /bread|bakery/i, photo: "valero-tile-bakery", deal: "Fresh-baked, up to {off}% off", plain: "Fresh-baked, from {from}" },
+  { pattern: /household|clean|laundry/i, photo: "valero-tile-household", deal: "Stock up the home for less", plain: "Stock up the home" },
+  { pattern: /meat|seafood|fish|poultry/i, photo: "valero-tile-meat", deal: "Dinner, sorted — up to {off}% off", plain: "Dinner, sorted" },
 ];
 
 /* "Fresh finds": three tall editorial tiles. */
 export const FINDS = [
-  { pattern: /produce|fruit|veg/i, photo: "tario-finds-produce", title: "Picked this week" },
-  { pattern: /beverage|drink|coffee|tea/i, photo: "tario-finds-coffee", title: "Your morning, brewed" },
-  { pattern: /meat|seafood|fish|poultry|deli|prepared/i, photo: "tario-finds-dinner", title: "Weeknight dinners" },
+  { pattern: /produce|fruit|veg/i, photo: "valero-finds-produce", title: "Picked this week" },
+  { pattern: /beverage|drink|coffee|tea/i, photo: "valero-finds-coffee", title: "Your morning, brewed" },
+  { pattern: /meat|seafood|fish|poultry|deli|prepared/i, photo: "valero-finds-dinner", title: "Weeknight dinners" },
 ];
 
 /* A headline for an aisle that has no tile of its own. */

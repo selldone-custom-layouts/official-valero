@@ -1,5 +1,5 @@
 <!--
-  Tario — the top of a product page (design B, chosen 7 November 2026).
+  Valero — the top of a product page (design B, chosen 7 November 2026).
 
   The picture with its thumbnails underneath and, under them on a computer,
   the product's highlights. Beside it the brand, the name, the rating, then
@@ -227,9 +227,9 @@
           <u-price :amount="fbt_total" :currency="currency" class="t-fbt__sum" />
           <button :disabled="!ticked.length || adding_all" class="t-btn -red -wide" type="button" @click="addAll">
             <v-progress-circular v-if="adding_all" indeterminate size="18" width="2" />
-            <template v-else>{{ ticked.length > 1 ? `Add all ${ticked.length} to cart` : "Add to cart" }}</template>
+            <template v-else>{{ ticked.length > 1 ? `Add all ${ticked.length} to bag` : "Add to cart" }}</template>
           </button>
-          <span class="t-fbt__small">Each joins your cart as its own line, with its own seller.</span>
+          <span class="t-fbt__small">Each joins your bag as its own line, with its own seller.</span>
         </div>
       </div>
     </section>
@@ -249,7 +249,7 @@
 <script>
 import KalioProductOverview from "../../kalio/product/KalioProductOverview.vue";
 import KalioQuickBuy from "../../kalio/KalioQuickBuy.vue";
-import { waysOf } from "../tario-home";
+import { waysOf } from "../valero-home";
 import { aisles, dropSrcset, priceOf, productImage, productSrcset } from "../../kalio/kalio-catalog";
 import { basketLine, hasSizes, quickAdd } from "../../kalio/kalio-basket";
 
@@ -278,7 +278,7 @@ const NOTES = {
 };
 
 export default {
-  name: "TarioProductOverview",
+  name: "ValeroProductOverview",
   extends: KalioProductOverview,
   components: { KalioQuickBuy },
 

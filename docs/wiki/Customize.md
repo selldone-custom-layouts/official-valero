@@ -14,11 +14,11 @@ Change the tokens and the whole site follows: buttons, badges, the compare badge
 
 | Part | Files |
 | --- | --- |
-| Home sections (design A) | `components/tario/TarioHome.vue`, `TarioHero.vue`, `TarioCircles.vue`, `TarioRow.vue`, `TarioCard.vue`, `TarioTiles.vue`, `TarioWays.vue`, `TarioFinds.vue`, `TarioSellers.vue`, `tario-home.ts`; styles in `style/tario-home.scss` |
-| Home photos | `assets/tario/` (eleven files; a missing one becomes a still life of the aisle's packshots) |
-| Aisle, search, Deals, All products (chip bar of filters) | `pages/products/StorefrontPageProducts.vue`, `components/tario/shop/TarioShelfTop.vue`, `TarioFilterBar.vue`, `tario-filters.ts`; styles in `style/tario-pages.scss` |
-| Seller page | `components/tario/shop/TarioSellerTop.vue` |
-| Product page (buy box, Compare sellers, Goes well with, folding sections) | `components/tario/product/TarioProductOverview.vue`, `pages/product/StorefrontPageProduct.vue`, `components/kalio/product/KalioSellerOffers.vue` |
+| Home (design D) | `components/valero/ValeroHome.vue`, `ValeroCard.vue`, `ValeroRow.vue`, `valero-home.ts`; styles in `style/valero-d.scss` |
+| Photos | `assets/valero/` (hero, “Of the season”, sign-in; a missing one becomes packshots on ivory) |
+| Aisle, search, Deals, All products (chip bar of filters) | `pages/products/StorefrontPageProducts.vue`, `components/valero/shop/ValeroShelfTop.vue`, `ValeroFilterBar.vue`, `valero-filters.ts`; styles in `style/valero-d-pages.scss` |
+| Seller page | `components/valero/shop/ValeroSellerTop.vue` |
+| Product page (buy box, Compare sellers, Goes well with, folding sections) | `components/valero/product/ValeroProductOverview.vue`, `pages/product/StorefrontPageProduct.vue`, `components/kalio/product/KalioSellerOffers.vue` |
 | About, journal, 404 | `pages/official/about-us/`, `pages/blog/list/`, `pages/errors/404/` |
 | Card foot ("Add to cart" ↔ "− n +") | `components/kalio/KalioCardStep.vue`, `kalio-card-basket.ts`, `kalio-basket.ts` |
 | Header, footer, drawers, sign-in | `components/kalio/shell/`, `style/kalio-shell.scss` |
@@ -30,7 +30,7 @@ Change the tokens and the whole site follows: buttons, badges, the compare badge
 | Content pages | `components/kalio/pages/`, `style/kalio-pages.scss` |
 | Skin for Selldone's own components | `style/kalio-platform.scss` |
 
-[`KALIO.md`](https://github.com/selldone-custom-layouts/official-tario/blob/main/KALIO.md) explains every part, the reason behind each decision, and each workaround.
+[`KALIO.md`](https://github.com/selldone-custom-layouts/official-valero/blob/main/KALIO.md) explains every part, the reason behind each decision, and each workaround.
 
 ## Rules that keep it working
 

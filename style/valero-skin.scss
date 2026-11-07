@@ -1,6 +1,6 @@
-/* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Tario — the big-box red dress ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+/* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Valero — the big-box red dress ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
 
-   Tario (7 November 2026) is the same storefront as Molino Market Hall —
+   Valero (7 November 2026) is the same storefront as Molino Market Hall —
    every page, every behaviour the owner asked for (Add to cart that turns
    into − n +, the two-step map address sheet, no pop-ups, the receipt, the
    reviews) — dressed as a bright big-box store: heavy Inter headings, red
@@ -9,7 +9,7 @@
 
    Design A (7 November 2026) replaced the first header and footer (a red
    rule, a red aisle bar, a charcoal footer) and the home page itself: see
-   tario-home.scss, loaded after this file. */
+   valero-home.scss, loaded after this file. */
 
 /* ── Type: heavy sans headings instead of a serif ── */
 h1,
@@ -43,7 +43,7 @@ h3,
     color: var(--k-ink) !important;
 
     &:hover {
-      background: #ececec !important;
+      background: var(--k-raise) !important;
     }
 
     .v-icon {
@@ -84,7 +84,7 @@ h3,
     height: 28px;
     border-radius: 50%;
     background: var(--k-ink);
-    color: #fff;
+    color: var(--k-on-green);
     font-size: 14px;
     font-weight: 800;
     letter-spacing: 0;
@@ -107,18 +107,18 @@ h3,
 }
 
 .k-cart__receipt {
-  background: #fff !important;
+  background: var(--k-card) !important;
   border: 1px solid var(--k-line) !important;
   box-shadow: 0 10px 30px -22px rgba(0, 0, 0, 0.35) !important;
 }
 
 .k-cart__detail {
   border-color: var(--k-line) !important;
-  background: #fff !important;
+  background: var(--k-card) !important;
 }
 
 .k-cart__go {
-  border-radius: 10px !important;
+  border-radius: 0 !important;
   background: var(--k-green) !important;
 
   &:hover {
@@ -126,12 +126,12 @@ h3,
   }
 
   &.-off {
-    background: #d6d6d6 !important;
-    color: #4a4a4a !important;
+    background: var(--k-line-strong) !important;
+    color: var(--k-muted) !important;
 
     .v-icon,
     .u--price {
-      color: #4a4a4a !important;
+      color: var(--k-muted) !important;
     }
   }
 }

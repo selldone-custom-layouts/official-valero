@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>Valero</title>
+  <rect width="64" height="64" fill="#0b0b0c"/>
+  <rect x="6.5" y="6.5" width="51" height="51" fill="none" stroke="#c9a96e" stroke-width="1.6"/>
+  <path d="M17 18H27.5V19.6H24.6L33.2 41.6L40.6 22.4C41.1 21 40.4 19.6 38.6 19.6H37.2V18H47V19.6H45.6C44.1 19.6 43.2 20.4 42.6 22L33.3 46.4H31.2L21.2 21.6C20.6 20.2 20 19.6 18.6 19.6H17Z" fill="#c9a96e"/>
+</svg>

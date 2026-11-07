@@ -103,7 +103,7 @@
         </router-link>
       </nav>
     </div>
-    <tario-row :filter="{ only_has_discount: true }" :limit="12" :more-to="dealsRoute" lazy more-label="All deals" title="Shop the season" />
+    <valero-row :filter="{ only_has_discount: true }" :limit="12" :more-to="dealsRoute" lazy more-label="All deals" title="Shop the season" />
 
     <kalio-quick-buy v-model="sheet" :product="picked" />
   </div>
@@ -113,7 +113,7 @@
 import KalioSampleNote from "@app-storefront/components/kalio/pages/KalioSampleNote.vue";
 import KalioMiniProduct from "@app-storefront/components/kalio/pages/KalioMiniProduct.vue";
 import KalioQuickBuy from "@app-storefront/components/kalio/KalioQuickBuy.vue";
-import TarioRow from "@app-storefront/components/tario/TarioRow.vue";
+import ValeroRow from "@app-storefront/components/valero/ValeroRow.vue";
 import { dealsRoute } from "@app-storefront/components/kalio/kalio-catalog";
 import {
   dateParts,
@@ -130,7 +130,7 @@ const PER_PAGE = 8;
 
 export default {
   name: "StorefrontPageBlogsList",
-  components: { KalioSampleNote, KalioMiniProduct, KalioQuickBuy, TarioRow },
+  components: { KalioSampleNote, KalioMiniProduct, KalioQuickBuy, ValeroRow },
   inject: ["$shop"],
 
   data: () => ({

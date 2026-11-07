@@ -320,7 +320,7 @@ export default {
         return "-64px";
       }
     },
-    /* Tario (design A, 7 November 2026): Selldone's 20vh under every page
+    /* Valero, from Tario (design A, 7 November 2026): Selldone's 20vh under every page
        left a blank band over the footer, which has its own margin now. */
     bottom_padding_container() {
       if (this.is_fullscreen) {

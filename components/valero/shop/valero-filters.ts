@@ -1,4 +1,4 @@
-/* Tario — the filters of a listing, read from Selldone's own filter record.
+/* Valero — the filters of a listing, read from Selldone's own filter record.
 
    An aisle's record (`parent.filters`, or `shop.filters` on the whole
    catalogue) holds:
@@ -12,7 +12,7 @@
        brands: [], selected_spec: { Key: [v] }, selected_variants: { volumes: [v] } }
    Pills in one group are OR, groups are AND (Selldone's own rule). */
 
-export interface TarioGroup {
+export interface ValeroGroup {
   /** "spec" groups live in selected_spec, "variant" ones in selected_variants. */
   kind: "spec" | "variant" | "brand";
   key: string;
@@ -20,7 +20,7 @@ export interface TarioGroup {
   values: string[];
 }
 
-export interface TarioFilter {
+export interface ValeroFilter {
   only_is_original?: boolean;
   only_has_discount?: boolean;
   prices?: Record<string, number[]> | null;
@@ -45,12 +45,12 @@ function list(value: any): string[] {
   return out.filter(Boolean).map(String);
 }
 
-/** Every group a shopper can narrow by, in the order Tario shows them:
+/** Every group a shopper can narrow by, in the order Valero shows them:
  *  the sizes first (what a grocery shopper reaches for), then the
  *  merchant's spec keys in their own order, then the brands. */
-export function groupsOf(filters: any): TarioGroup[] {
+export function groupsOf(filters: any): ValeroGroup[] {
   if (!filters) return [];
-  const out: TarioGroup[] = [];
+  const out: ValeroGroup[] = [];
   for (const key of Object.keys(VARIANT_LABEL)) {
     const values = list(filters[key]);
     if (values.length) out.push({ kind: "variant", key, label: VARIANT_LABEL[key], values });
@@ -66,7 +66,7 @@ export function groupsOf(filters: any): TarioGroup[] {
 }
 
 /** The values picked in one group. */
-export function picked(filter: TarioFilter | null, group: TarioGroup): string[] {
+export function picked(filter: ValeroFilter | null, group: ValeroGroup): string[] {
   if (!filter) return [];
   if (group.kind === "brand") return filter.brands || [];
   if (group.kind === "variant") return filter.selected_variants?.[group.key] || [];
@@ -74,7 +74,7 @@ export function picked(filter: TarioFilter | null, group: TarioGroup): string[] 
 }
 
 /** A copy of the filter with one group's values replaced. */
-export function withGroup(filter: TarioFilter | null, group: TarioGroup, values: string[]): TarioFilter {
+export function withGroup(filter: ValeroFilter | null, group: ValeroGroup, values: string[]): ValeroFilter {
   const next = clone(filter);
   if (group.kind === "brand") next.brands = [...values];
   else if (group.kind === "variant") next.selected_variants = { ...(next.selected_variants || {}), [group.key]: [...values] };
@@ -82,7 +82,7 @@ export function withGroup(filter: TarioFilter | null, group: TarioGroup, values:
   return next;
 }
 
-export function clone(filter: TarioFilter | null): TarioFilter {
+export function clone(filter: ValeroFilter | null): ValeroFilter {
   const f = filter || {};
   return {
     only_is_original: !!f.only_is_original,
@@ -95,7 +95,7 @@ export function clone(filter: TarioFilter | null): TarioFilter {
 }
 
 /** How many narrowing choices are on (each picked value and each switch). */
-export function countOn(filter: TarioFilter | null): number {
+export function countOn(filter: ValeroFilter | null): number {
   if (!filter) return 0;
   let n = 0;
   if (filter.only_has_discount) n++;
@@ -107,7 +107,7 @@ export function countOn(filter: TarioFilter | null): number {
 }
 
 /** The filter the address carries (?filter=…), if any. */
-export function fromRoute(query: any): TarioFilter | null {
+export function fromRoute(query: any): ValeroFilter | null {
   try {
     return query?.filter ? JSON.parse(query.filter) : null;
   } catch {

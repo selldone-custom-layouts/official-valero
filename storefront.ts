@@ -45,6 +45,30 @@ import {Shop} from "@selldone/core-js/models";
 
 const vuetify = VuetifyInstance(i18n);
 
+/* Valero (design D) is black: Vuetify's own dark theme in Valero's colours,
+   so Selldone's fields, menus, dialogs, lists and sheets are dark too, not
+   white islands on a black page. */
+const VALERO_DARK = {
+  background: "#0b0b0c",
+  surface: "#151516",
+  "surface-bright": "#1d1d1f",
+  "surface-variant": "#2a2a2c",
+  "on-background": "#f4f1ea",
+  "on-surface": "#f4f1ea",
+  "on-surface-variant": "#d9d4ca",
+  primary: "#f4f1ea",
+  "on-primary": "#0b0b0c",
+  secondary: "#c9a96e",
+  "on-secondary": "#0b0b0c",
+  accent: "#c9a96e",
+  error: "#e07a6a",
+  info: "#c9a96e",
+  success: "#8fbf8a",
+  warning: "#e2b97a",
+};
+Object.assign(vuetify.theme.themes.value.dark.colors, VALERO_DARK);
+vuetify.theme.global.name.value = "dark";
+
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――
 //█████████████████████████████████████████████████████████████

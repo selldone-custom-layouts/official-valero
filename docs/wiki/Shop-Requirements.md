@@ -1,6 +1,6 @@
 # Shop Requirements
 
-The Layout reads everything from your shop. Nothing about molino is hard-coded. Here is what your shop's data needs so that each part looks as it does on [tario.selldone.shop](https://tario.selldone.shop).
+The Layout reads everything from your shop. Nothing about molino is hard-coded. Here is what your shop's data needs so that each part looks as it does on [valero.selldone.shop](https://valero.selldone.shop).
 
 ## Shop settings
 

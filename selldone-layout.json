@@ -1,9 +1,9 @@
 {
-  "name": "Tario Market",
+  "name": "Valero Market",
   "shop": "molino",
-  "kind": "Grocery marketplace · big-box red",
-  "summary": "The molino grocery marketplace built like a big-box store: a red promo strip, a hero that turns, round categories, rows of cards with a red Add to cart that turns into − n +, aisle pages with a chip bar of filters, a product page with a framed buy box and sellers side by side, and a cart page with a free-shipping meter.",
-  "live": "https://tario.selldone.shop",
+  "kind": "Grocery marketplace · black editorial food hall",
+  "summary": "The molino grocery marketplace as an after-dark food hall: a black page with ivory type and champagne hairlines, an editorial hero, the aisles as a numbered index, hairline grids of cards on ivory wells, a split product page with the sellers as a table, a full-height bag panel, a numbered checkout, makers' pages and a magazine-style journal.",
+  "live": "https://valero.selldone.shop",
   "cover": "docs/screenshots/cover.jpg",
   "screenshots": [
     "docs/screenshots/desktop-home.jpg",
@@ -19,10 +19,11 @@
     "grocery",
     "marketplace",
     "multi-vendor",
-    "big-box",
-    "red"
+    "editorial",
+    "dark",
+    "black"
   ],
-  "package": "tario-market",
+  "package": "valero-market",
   "base": "selldone/storefront",
   "status": "live"
 }

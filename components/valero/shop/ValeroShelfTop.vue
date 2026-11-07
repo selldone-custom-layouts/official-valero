@@ -1,5 +1,5 @@
 <!--
-  Tario — the top of a listing (shop page design A, 7 November 2026).
+  Valero — the top of a listing (shop page design A, 7 November 2026).
 
   An aisle: the crumbs, the aisle's title and description from its live
   record, then one round picture per value of the aisle's "Type" filter
@@ -54,13 +54,13 @@
 
 <script>
 import { aisleIndex, aisleImage, productImage } from "../../kalio/kalio-catalog";
-import { valueLabel } from "./tario-filters";
+import { valueLabel } from "./valero-filters";
 
 /* One picture per type, read once per aisle and kept for the visit. */
 const typePictures = new Map();
 
 export default {
-  name: "TarioShelfTop",
+  name: "ValeroShelfTop",
   inject: ["$shop"],
   emits: ["pick-type"],
 

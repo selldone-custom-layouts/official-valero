@@ -34,7 +34,7 @@
 }
 
 /* Selldone paints each route's floor from route metadata through an inline
-   --background (#f0f0f0 on the product page). Kalio has one floor. */
+   --background (var(--k-raise) on the product page). Kalio has one floor. */
 .v-application.s--shop {
   --background: var(--k-paper) !important;
   background-color: var(--k-paper) !important;
@@ -117,7 +117,7 @@
       width: 11px;
       height: 11px;
       margin-top: 1px;
-      border-radius: 11px 0 11px 0;
+      border-radius: 0 0 11px 0;
       background: var(--k-leaf);
     }
   }
@@ -168,7 +168,7 @@
 
     .v-badge__badge {
       background: var(--k-coral) !important;
-      color: #fff !important;
+      color: var(--k-on-green) !important;
       font-family: var(--k-body);
       font-weight: 700;
     }
@@ -184,7 +184,7 @@
     }
 
     .mini-name {
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
 
     img {
@@ -192,7 +192,7 @@
     }
 
     .v-badge__badge {
-      background: #fff !important;
+      background: var(--k-card) !important;
       color: var(--k-green) !important;
     }
   }
@@ -583,7 +583,7 @@
     padding: 5px 9px !important;
     border-radius: var(--k-pill) !important;
     background: var(--k-coral) !important;
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     font-family: var(--k-body) !important;
     font-size: 12.5px !important;
     font-weight: 700 !important;
@@ -607,7 +607,7 @@
     margin: 0 !important;
     padding: 0 !important;
     display: block !important;
-    border: 0 !important; /* Selldone's 1px #ddd drew a ring round the picture */
+    border: 0 !important; /* Selldone's 1px var(--k-line-strong) drew a ring round the picture */
     background: transparent !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -669,7 +669,7 @@
         top: 50%;
         width: 12px;
         height: 2px;
-        border-radius: 2px;
+        border-radius: 0;
         background: currentColor;
         transform: translate(-50%, -50%);
       }
@@ -680,7 +680,7 @@
 
       &:hover {
         background: var(--k-green) !important;
-        color: #fff !important;
+        color: var(--k-on-green) !important;
         transform: scale(1.06);
       }
     }
@@ -763,7 +763,7 @@
   background: var(--k-green);
   /* !important: Selldone's base reset [type=button] { color: inherit }
      loads after this sheet. */
-  color: #fff !important;
+  color: var(--k-on-green) !important;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0;
@@ -793,7 +793,7 @@
   /* A product with sizes: the sheet to pick one. */
   &.-options {
     border-color: var(--k-line);
-    background: #fff;
+    background: var(--k-card);
     color: var(--k-green-deep) !important;
 
     &:hover {
@@ -881,7 +881,7 @@
   height: 36px;
   border-radius: var(--k-pill);
   background: var(--k-green-deep);
-  color: #fff;
+  color: var(--k-on-green);
   box-shadow: 0 8px 18px -8px rgba(163, 0, 0, 0.6);
   font-family: var(--k-body);
   text-align: center;
@@ -892,7 +892,7 @@
     place-items: center;
     height: 36px;
     border-radius: var(--k-pill);
-    color: #fff !important; /* Selldone's [type=button] reset loads after */
+    color: var(--k-on-green) !important; /* Selldone's [type=button] reset loads after */
     cursor: pointer;
     transition: background-color 140ms ease;
 
@@ -1278,8 +1278,8 @@
 
   .discount-percent {
     padding: 3px 8px !important;
-    border-radius: 7px !important;
-    background: #fff !important;
+    border-radius: 0 !important;
+    background: var(--k-card) !important;
     color: var(--k-coral) !important;
     font-size: 12px !important;
   }
@@ -1376,7 +1376,7 @@
    cannot reach, so the button itself is re-stated. */
 .s--shop-buy-button {
   background-color: var(--k-green-deep) !important;
-  color: #fff !important;
+  color: var(--k-on-green) !important;
   border-radius: var(--k-pill) !important;
   box-shadow: none !important;
   text-transform: none !important;
@@ -1797,7 +1797,7 @@
   .v-btn--variant-flat {
     border-radius: var(--k-pill) !important;
     min-height: 52px !important;
-    background-color: #fff !important;
+    background-color: var(--k-card) !important;
     color: var(--k-green-deep) !important;
     box-shadow: none !important;
     text-transform: none !important;
@@ -1917,9 +1917,9 @@
   height: 48px;
   padding: 0 8px 0 16px;
   border: 0;
-  border-radius: 999px !important;
+  border-radius: 0 !important;
   background-color: var(--k-green-deep) !important;
-  color: #fff !important;
+  color: var(--k-on-green) !important;
   box-shadow: 0 14px 28px -12px rgba(14, 63, 46, 0.7);
   font-family: var(--k-body);
   font-size: 15px;
@@ -1937,7 +1937,7 @@
   }
 
   .v-icon {
-    color: #fff !important;
+    color: var(--k-on-green) !important;
   }
 
   &.-bump {
@@ -1951,8 +1951,8 @@
   min-width: 30px;
   height: 30px;
   padding: 0 8px;
-  border-radius: 999px;
-  background: #fff;
+  border-radius: 0;
+  background: var(--k-card);
   color: var(--k-green-deep);
   font-size: 14px;
   font-weight: 800;
@@ -2081,7 +2081,7 @@ button.k-compare-fab.s--storefront-products-comparison-circle-progress {
   flex: none;
   width: 34px;
   height: 34px;
-  border-radius: 9px;
+  border-radius: 0;
 }
 
 .k-drawer .k-brand-mark,
@@ -2122,7 +2122,7 @@ button.k-compare-fab.s--storefront-products-comparison-circle-progress {
     width: auto !important;
     height: 30px !important;
     padding: 0 8px 0 4px !important;
-    border-radius: 6px !important;
+    border-radius: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
     color: var(--k-muted) !important;

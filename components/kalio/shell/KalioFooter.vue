@@ -1,9 +1,9 @@
 <!--
-  Kalio — Footer. Tario (design A, 7 November 2026): a light big-box footer
+  Kalio — Footer. Valero (design D, 7 November 2026): black columns, champagne small-caps heads, hairlines; started from Tario’s light big-box footer
   under a red rule — the wordmark and the shop's description, the aisles,
   the sellers, the shop's own menu and the account — with no band above it.
 
-  Molino's footer, which Tario started from:
+  Molino's footer, which Valero started from:
 
   Two parts. A light green band that sends a shopper back into the aisles
   (every aisle as a round picture). Then the footer proper on deep green:
@@ -19,7 +19,7 @@
 -->
 <template>
   <footer class="k-footer">
-    <!-- Tario (design A): no band over the footer; the home page ends
+    <!-- Valero, from Tario (design A): no band over the footer; the home page ends
          on its own "Browse every product". -->
     <!-- ▆▆▆▆▆▆▆▆ Footer ▆▆▆▆▆▆▆▆ -->
     <div class="k-footer__main">
@@ -40,16 +40,16 @@
         </div>
 
         <nav aria-labelledby="k-footer-shop" class="k-footer__col">
-          <h3 id="k-footer-shop" class="k-footer__head">Categories</h3>
-          <router-link :to="dealsRoute">Deals</router-link>
+          <h3 id="k-footer-shop" class="k-footer__head">The market</h3>
+          <router-link :to="dealsRoute">This week’s offers</router-link>
           <router-link v-for="aisle in aisleList.slice(0, 8)" :key="aisle.id" :to="aisleRoute(aisle)">
             {{ aisle.title || aisle.name }}
           </router-link>
-          <router-link v-if="aisleList.length > 8" :to="catalogueRoute" class="-more">All categories</router-link>
+          <router-link v-if="aisleList.length > 8" :to="catalogueRoute" class="-more">All aisles</router-link>
         </nav>
 
         <nav v-if="sellerList.length" aria-labelledby="k-footer-sellers" class="k-footer__col">
-          <h3 id="k-footer-sellers" class="k-footer__head">Sellers</h3>
+          <h3 id="k-footer-sellers" class="k-footer__head">The makers</h3>
           <router-link v-for="seller in sellerList" :key="seller.id" :to="sellerRoute(seller)" class="k-footer__seller">
             <img v-if="seller.icon" :src="vendorImage(seller, true)" alt="" height="28" width="28" loading="lazy" />
             {{ seller.name }}
@@ -62,14 +62,14 @@
         </nav>
 
         <nav aria-labelledby="k-footer-account" class="k-footer__col">
-          <h3 id="k-footer-account" class="k-footer__head">Your account</h3>
+          <h3 id="k-footer-account" class="k-footer__head">You</h3>
           <template v-if="user">
-            <router-link :to="{ name: 'KalioAccountHome' }">My account</router-link>
+            <router-link :to="{ name: 'KalioAccountHome' }">Account</router-link>
             <router-link :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }">Orders</router-link>
             <router-link :to="{ name: window.$storefront.routes.USER_FAVORITES_PAGE }">Saved</router-link>
           </template>
           <button v-else class="k-footer__textbtn" type="button" @click="signIn">Sign in</button>
-          <router-link :to="{ name: window.$storefront.routes.BASKET_PAGE, params: { type: 'PHYSICAL' } }">Cart</router-link>
+          <router-link :to="{ name: window.$storefront.routes.BASKET_PAGE, params: { type: 'PHYSICAL' } }">Your bag</router-link>
         </nav>
       </div>
 
@@ -139,8 +139,8 @@ export default {
       if (!this.aisleList.length) return null;
       const sellers = this.sellerList.length;
       return sellers > 1
-        ? `${this.aisleList.length} aisles of groceries from ${sellers} independent sellers, in one cart.`
-        : `${this.aisleList.length} aisles of groceries, in one cart.`;
+        ? `${this.aisleList.length} aisles of good groceries from ${sellers} independent makers, delivered after hours or collected on your way home.`
+        : `${this.aisleList.length} aisles of good groceries, delivered after hours or collected on your way home.`;
     },
     /* The merchant's footer menu (Selldone menus, type FOOTER), flattened,
        or the standard pages when the shop has none. */

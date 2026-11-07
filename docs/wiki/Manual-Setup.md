@@ -4,7 +4,7 @@ Set the Layout up on your shop yourself. Follow these steps in order, or let an 
 
 ## 1. Get your own copy
 
-Fork **selldone-custom-layouts/official-tario** on GitHub, then clone your fork with its submodules:
+Fork **selldone-custom-layouts/official-valero** on GitHub, then clone your fork with its submodules:
 
 ```bash
 git clone --recurse-submodules https://github.com/<you>/<your-repo>.git

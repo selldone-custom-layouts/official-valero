@@ -239,7 +239,7 @@
       .discount-percent {
         padding: 5px 10px !important;
         background: var(--k-coral) !important;
-        color: #fff !important;
+        color: var(--k-on-green) !important;
         font-size: 13px !important;
       }
 
@@ -305,7 +305,7 @@
           right: -2px;
           left: -2px;
           height: 1.5px;
-          border-radius: 1px;
+          border-radius: 0;
           background: currentColor;
         }
 
@@ -451,7 +451,7 @@
     margin: 22px 0 0 !important;
     padding: 14px 18px !important;
     max-width: none !important;
-    border-radius: 18px;
+    border-radius: 0;
     background: var(--k-wash);
 
     .-badge {
@@ -524,7 +524,7 @@
         width: 40px !important;
         height: 40px !important;
         border: 1px solid var(--k-line);
-        background: #fff !important;
+        background: var(--k-card) !important;
         box-shadow: 0 4px 12px -6px rgba(20, 20, 20, 0.3);
         backdrop-filter: none !important;
         cursor: pointer;
@@ -574,8 +574,8 @@
         height: 64px !important;
         margin: 0 !important;
         border: 1px solid var(--k-line);
-        border-radius: 14px !important;
-        background: #fff !important;
+        border-radius: 0 !important;
+        background: var(--k-card) !important;
         overflow: hidden;
         cursor: pointer;
         transition: border-color 140ms ease;
@@ -662,7 +662,7 @@
   gap: 12px;
   padding: 12px 16px;
   border: 1.5px solid var(--k-line);
-  border-radius: 16px;
+  border-radius: 0;
   background: var(--k-card);
   cursor: pointer;
   transition: border-color 140ms ease, background-color 140ms ease;
@@ -686,13 +686,13 @@
     height: 20px;
     border-radius: 50%;
     border: 2px solid var(--k-line-strong);
-    background: #fff;
+    background: var(--k-card);
   }
 
   &.-on &__dot {
     border-color: var(--k-green);
     background: var(--k-green);
-    box-shadow: inset 0 0 0 3px #fff;
+    box-shadow: inset 0 0 0 3px var(--k-paper);
   }
 
   &__mark {
@@ -702,7 +702,7 @@
     height: 42px;
     border-radius: 50%;
     border: 1px solid var(--k-line);
-    background: #fff;
+    background: var(--k-card);
     overflow: hidden;
 
     img {
@@ -804,7 +804,7 @@
     height: 44px !important;
     margin-inline-end: 10px !important;
     background: var(--k-tint, var(--k-wash));
-    border-radius: 12px !important;
+    border-radius: 0 !important;
 
     img {
       mix-blend-mode: multiply;
@@ -887,7 +887,7 @@
     gap: 14px;
     margin: 0;
     padding: 22px 24px;
-    border-radius: 22px;
+    border-radius: 0;
     background: var(--k-green-soft);
     list-style: none;
 
@@ -1010,7 +1010,7 @@
     position: sticky;
     top: 20px;
     padding: 24px;
-    border-radius: 24px;
+    border-radius: 0;
     background: var(--k-wash);
 
     @media (max-width: 959px) {
@@ -1102,8 +1102,8 @@
 
   &__track {
     height: 8px;
-    border-radius: 99px;
-    background: #ebe6db;
+    border-radius: 0;
+    background: var(--k-raise);
     overflow: hidden;
 
     i {
@@ -1156,7 +1156,7 @@
 
     .v-btn--variant-elevated {
       background: var(--k-green) !important;
-      color: #fff !important;
+      color: var(--k-on-green) !important;
       box-shadow: none !important;
     }
 
@@ -1201,7 +1201,7 @@
     .comment-form {
       margin-bottom: 8px;
       border: 1px solid var(--k-line);
-      border-radius: 18px;
+      border-radius: 0;
       background: var(--k-paper);
     }
 
@@ -1238,7 +1238,7 @@
       .v-btn.bg-primary,
       .v-btn[class*="primary"] {
         background: var(--k-green) !important;
-        color: #fff !important;
+        color: var(--k-on-green) !important;
       }
     }
 
@@ -1365,7 +1365,7 @@
     .comment-body .v-sheet {
       margin-top: 12px !important;
       padding: 12px 14px !important;
-      border-radius: 14px !important;
+      border-radius: 0 !important;
       background: var(--k-green-soft) !important;
       font-size: 14px;
       color: var(--k-ink-2);
@@ -1399,7 +1399,7 @@
 .s--product-spec.u--product-spec-table {
   border: 1px solid var(--k-line);
   border-radius: var(--k-radius);
-  background: var(--k-well) !important;
+  background: transparent !important;
   overflow: hidden;
 }
 
@@ -1425,13 +1425,13 @@
     align-items: center;
     gap: 14px;
     padding: 10px 10px 10px 8px;
-    border-radius: 18px;
+    border-radius: 0;
     color: var(--k-ink) !important;
     text-decoration: none;
     transition: background-color 140ms ease;
 
     &:hover {
-      background: var(--k-well);
+      background: var(--k-raise);
 
       .k-aisle-index__go {
         opacity: 1;
@@ -1441,7 +1441,7 @@
 
     &.-skeleton .k-aisle-index__well,
     &.-skeleton .k-aisle-index__bar {
-      background: var(--k-well);
+      background: var(--k-raise);
     }
   }
 
@@ -1450,7 +1450,7 @@
     place-items: center;
     width: 60px;
     height: 60px;
-    border-radius: 16px;
+    border-radius: 0;
     background: var(--k-well);
 
     img {
@@ -1462,12 +1462,12 @@
   }
 
   &__item:hover &__well {
-    background: #fff;
+    background: var(--k-card);
   }
 
   &__bar {
     height: 14px;
-    border-radius: 7px;
+    border-radius: 0;
   }
 
   &__copy {
@@ -1520,7 +1520,7 @@
     &__well {
       width: 48px;
       height: 48px;
-      border-radius: 14px;
+      border-radius: 0;
 
       img {
         width: 36px;
@@ -1653,7 +1653,7 @@
     padding: 0 20px;
     border-radius: var(--k-pill);
     background: var(--k-green-deep);
-    color: #fff !important;
+    color: var(--k-on-green) !important;
     font-size: 16.5px;
     font-weight: 700;
     text-decoration: none;
@@ -1670,7 +1670,7 @@
     }
 
     .u--price {
-      color: #fff !important;
+      color: var(--k-on-green) !important;
     }
   }
 
