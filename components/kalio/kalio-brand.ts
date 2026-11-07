@@ -24,6 +24,19 @@ export function applyBrand(shop: any): void {
     shop.title = BRAND.name;
   }
   brandIcon();
+  bagWords();
+}
+
+/** Valero says "bag" everywhere; Selldone's own buy button on the product
+    page said "Add to cart". English only: other languages keep Selldone's. */
+function bagWords(): void {
+  const i18n = (window as any).$i18n_global;
+  const locale = i18n?.locale?.value ?? i18n?.locale;
+  if (!i18n?.mergeLocaleMessage || !String(locale).startsWith("en")) return;
+  i18n.mergeLocaleMessage(locale, {
+    buy_button: { add_to_basket: "Add to bag" },
+    global: { actions: { add_to_cart: "Add to bag" } },
+  });
 }
 
 /** The first page keeps the head the server wrote ("… | molino"); later pages

@@ -770,8 +770,9 @@ $v-tablet: 1100px;
   line-height: 1.15 !important;
 }
 
-/* Selldone's shop card rounds the page's corners (2.3rem): Valero is square. */
-.s--shop-card {
+/* Selldone's shop card rounds the page's corners (2.3rem): Valero is square.
+   storefront.scss loads later with the same weight, so this one is heavier. */
+.v-application .s--shop-card {
   border-radius: 0 !important;
 }
 
@@ -825,6 +826,15 @@ $v-tablet: 1100px;
   &__it {
     height: auto !important;
     min-height: 0 !important;
+    flex: none !important;
+
+    /* A long type ("Nuts & trail mix") stays one line; it was squeezed into a
+       column a letter wide on phones. */
+    &,
+    * {
+      max-width: none !important;
+      white-space: nowrap !important;
+    }
   }
 }
 

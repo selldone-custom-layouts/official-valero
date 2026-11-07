@@ -47,4 +47,5 @@ The hero, "Of the season" and sign-in pictures are the four journal photos the o
 
 ## Releases
 
+- **1.0.1 (8 November 2026):** the product page says "Add to bag" like the rest of Valero (Selldone's own buy button said "Add to cart"; English words merged in kalio-brand.ts); an aisle's long types ("Nuts & trail mix") stay on one line on phones instead of a column a letter wide; the pages' corners are square (Selldone's storefront.scss, loaded later, still rounded the page card).
 - **1.0.0 (7 November 2026):** first release: design D on every page. Selldone layout 28, pinned on valero.selldone.shop (domain 1236).
