@@ -109,7 +109,7 @@ export function privacySample(shop: string): { short: string[]; sections: Sectio
       },
       {
         title: "Cookies",
-        text: ["Essential cookies keep you signed in and your basket full. Anything optional is your choice, below."],
+        text: ["Essential cookies keep you signed in and your bag full. Anything optional is your choice, below."],
       },
     ],
   };

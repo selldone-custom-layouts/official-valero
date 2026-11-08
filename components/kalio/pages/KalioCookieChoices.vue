@@ -14,7 +14,7 @@
     <div class="k-cookies__row">
       <span>
         <b>Essential</b>
-        <small>Sign-in, basket and checkout. Always on.</small>
+        <small>Sign-in, bag and checkout. Always on.</small>
       </span>
       <span class="k-cookies__fixed"><v-icon size="16">lock</v-icon>Always on</span>
     </div>

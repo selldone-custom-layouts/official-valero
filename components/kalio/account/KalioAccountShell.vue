@@ -148,7 +148,7 @@ export default {
       if (moving) parts.push(moving === 1 ? "one order is on its way to you" : `${say(moving)} orders are on their way to you`);
       if (paying) parts.push(paying === 1 ? "one is waiting for payment" : `${say(paying)} are waiting for payment`);
       if (!parts.length) {
-        if (!account.total) return "No orders yet. Your first basket is a few taps away.";
+        if (!account.total) return "No orders yet. Your first order is a few taps away.";
         return tones[0] === "ok" ? "Everything you ordered has reached you." : "Your orders, money and addresses in one place.";
       }
       if (!moving && paying) parts[0] = paying === 1 ? "one order is waiting for payment" : `${say(paying)} orders are waiting for payment`;

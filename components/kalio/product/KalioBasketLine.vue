@@ -18,7 +18,7 @@
     <p class="k-basket-line__cap">
       <i aria-hidden="true"></i>
       <template v-if="shown > 0">
-        {{ shown }} in your basket<template v-if="seller">, from {{ seller }}</template>
+        {{ shown }} in your bag<template v-if="seller">, from {{ seller }}</template>
       </template>
       <template v-else>Taking it out of your basket…</template>
     </p>

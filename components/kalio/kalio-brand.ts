@@ -36,6 +36,7 @@ function bagWords(): void {
   i18n.mergeLocaleMessage(locale, {
     buy_button: { add_to_basket: "Add to bag" },
     global: { actions: { add_to_cart: "Add to bag" } },
+    product_section_incentivise: { have_in_their_bag: "<b>{in_carts}</b> others have this in their bags!" },
   });
 }
 

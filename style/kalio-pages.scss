@@ -1543,3 +1543,45 @@
     }
   }
 }
+
+/* The FAQ page with no questions yet: a quiet card, the icon in a soft disc
+   (it stood bare and black at the left edge). */
+.k-official__missing {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  max-width: 640px;
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: var(--k-radius-lg);
+  background: var(--k-card);
+  box-shadow: 0 0 0 1px var(--k-line);
+
+  > .v-icon {
+    width: 52px !important;
+    height: 52px !important;
+    margin-bottom: 4px;
+    border-radius: var(--k-radius-lg);
+    background: var(--k-wash);
+    color: var(--k-green) !important;
+  }
+
+  h2 {
+    margin: 0;
+    color: var(--k-ink);
+    font-family: var(--k-display);
+    font-size: 22px;
+  }
+
+  p {
+    margin: 0;
+    color: var(--k-muted);
+  }
+}
+
+.k-official__missingacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}

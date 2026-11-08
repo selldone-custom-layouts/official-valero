@@ -12,112 +12,123 @@
   - Tread carefully, for you're treading on dreams.
   -->
 
+<!--
+  Kalio: Contact us (8 November 2026). The owner's buyer test found
+  Selldone's own page here: a heading, a tall empty block, and far below it
+  a form on a fixed off-white card (white on white in a dark Layout), with a
+  red "Store profile not found" when the shop has written no contact page.
+
+  Now, in the Layout's own tokens (so it is Dino's lavender or Valero's
+  hairline black): the heading and three ways to the right answer (an
+  order's own messages, the questions page, About) beside the form in a
+  card. The shop's own contact page, when it has one, shows under the ways;
+  without one nothing complains. The form and its sending are Selldone's.
+-->
 <template>
-  <div>
-    <v-container>
-      <h1 class="text-start text-h2 font-weight-black text-capitalize">
-        {{ $t("official_pages.contact_us") }}
-      </h1>
-      <u-loading-progress v-if="busy"></u-loading-progress>
+  <!-- The official pages' frame (the crumbs, the page width) is drawn by
+       their parent route. -->
+  <div class="k-contact">
+      <div class="k-contact__grid">
+        <section class="k-contact__side">
+          <h1 class="k-official__title">Contact us</h1>
+          <p class="k-contact__lede">Write to the shop here and the answer comes to your email. These may answer you sooner:</p>
 
-      <div
-        class="text-start px-lg-5 px-md-4 px-3 master-article-container min-height-40vh"
-      >
-        <s-article-editor
-          v-if="profile"
-          :body="profile.body"
-          :edit="false"
-          :enable-title="false"
-          :only-view="true"
-          class="p-lg-5 p-md-4 p-3 article"
-        />
-      </div>
-    </v-container>
+          <ul class="k-contact__ways">
+            <li>
+              <v-icon>receipt_long</v-icon>
+              <div>
+                <b>About an order</b>
+                <span>Each order has its own messages with the seller who sent it.</span>
+                <router-link :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }">Your orders</router-link>
+              </div>
+            </li>
+            <li>
+              <v-icon>help_outline</v-icon>
+              <div>
+                <b>Before you buy</b>
+                <span>What shoppers ask most, answered.</span>
+                <router-link :to="{ name: 'ShopFAQ' }">Questions and answers</router-link>
+              </div>
+            </li>
+            <li>
+              <v-icon>storefront</v-icon>
+              <div>
+                <b>About the shop</b>
+                <span>Who runs it and how an order works.</span>
+                <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_ABOUT_US }">About us</router-link>
+              </div>
+            </li>
+          </ul>
 
-    <div class="contact-form">
-      <div v-if="submitted">
-        <div class="py-16 px-5">
-          <h2 class="font-weight-medium mb-5">
-            <v-icon class="me-2" color="green" size="large"
-              >check_circle</v-icon
-            >
-            {{ $t("contact_us_form.submitted_title") }}
-          </h2>
-          <p class="text-muted max-widget-width mx-auto">
-            {{ $t("contact_us_form.submitted_message") }}
-          </p>
-        </div>
-      </div>
-      <div v-else>
-        <u-widget-header
-          :title="$t('contact_us_form.title')"
-          icon="contact_mail"
-        ></u-widget-header>
+          <s-article-editor
+            v-if="profile?.body"
+            :body="profile.body"
+            :edit="false"
+            :enable-title="false"
+            :only-view="true"
+            class="k-contact__profile"
+          />
+        </section>
 
-        <div v-if="USER()" class="text-start d-flex mb-8 mt-5 align-items-center">
-          <v-avatar
-            v-if="USER().id"
-            class="flex-grow-0 me-4 avatar-gradient -thin -user"
-            size="4.2em"
-          >
-            <v-img :src="getUserAvatar(USER().id)"></v-img>
-          </v-avatar>
-          <div class="flex-grow-1">
-            <p class="font-weight-bold m-0">{{ USER().name }}</p>
-            <p class="small m-0">{{ USER().email }}</p>
-            <p class="small m-0">{{ USER().phone }}</p>
+        <section aria-labelledby="k-contact-form" class="k-contact__card">
+          <div v-if="submitted" class="k-contact__done">
+            <v-icon size="40">check_circle</v-icon>
+            <h2 id="k-contact-form">Thank you, it is on its way</h2>
+            <p>The shop answers by email, usually within a day.</p>
+            <router-link :to="{ name: window.$storefront.routes.SHOP_PAGE }" class="k-btn k-btn--solid">Back to the shop</router-link>
           </div>
-        </div>
-        <div v-else>
-          <v-text-field
-            v-model="name"
-            :label="$t('contact_us_form.name')"
-            :placeholder="$t('global.placeholders.name')"
-            class="max-width-field mt-5" variant="outlined" persistent-placeholder
 
-          />
+          <template v-else>
+            <h2 id="k-contact-form">Write to us</h2>
 
-          <v-text-field
-            v-model="email"
-            :label="$t('contact_us_form.email')"
-            :placeholder="$t('global.placeholders.email')"
-            :rules="[GlobalRules.required(), GlobalRules.email()]"
-            class="max-width-field english-field"
-            prepend-inner-icon="email" variant="outlined" persistent-placeholder
-          />
+            <div v-if="USER()" class="k-contact__who">
+              <v-avatar v-if="USER().id" size="44"><v-img :src="getUserAvatar(USER().id)" /></v-avatar>
+              <div>
+                <b>{{ USER().name }}</b>
+                <small>{{ USER().email || USER().phone }}</small>
+              </div>
+            </div>
+            <template v-else>
+              <v-text-field v-model="name" label="Your name" persistent-placeholder placeholder="Jane Doe" variant="outlined" />
+              <v-text-field
+                v-model="email"
+                :rules="[GlobalRules.required(), GlobalRules.email()]"
+                class="english-field"
+                label="Email, for the answer"
+                persistent-placeholder
+                placeholder="you@example.com"
+                prepend-inner-icon="mail_outline"
+                variant="outlined"
+              />
+              <v-text-field
+                v-model="phone"
+                class="english-field"
+                label="Phone (optional)"
+                persistent-placeholder
+                placeholder="+1 000 000 0000"
+                prepend-inner-icon="phone"
+                variant="outlined"
+              />
+            </template>
 
-          <v-text-field
-            v-model="phone"
-            :label="$t('contact_us_form.phone')"
-            :placeholder="$t('global.placeholders.phone')"
-            class="max-width-field english-field"
-            prepend-inner-icon="phone" variant="outlined" persistent-placeholder
-          />
-        </div>
+            <v-textarea
+              v-model="message"
+              :rules="[GlobalRules.required()]"
+              auto-grow
+              label="Your message"
+              persistent-placeholder
+              placeholder="An order number helps, if it is about an order."
+              rows="5"
+              variant="outlined"
+            />
 
-        <v-textarea
-          v-model="message"
-          :label="$t('contact_us_form.message')"
-          :rules="[GlobalRules.required()]"
-          auto-grow variant="outlined" persistent-placeholder
-        />
-
-        <div class="widget-buttons">
-          <v-btn
-            :class="{ disabled: !canSend }"
-            :loading="busy_send"
-            color="primary"
-            dark
-            size="x-large"
-            @click="sendForm"
-          >
-            {{ $t("global.actions.send") }}
-
-            <v-icon class="mx-1">send</v-icon>
-          </v-btn>
-        </div>
+            <button :disabled="!canSend || busy_send" class="k-btn k-btn--solid k-contact__send" type="button" @click="sendForm">
+              <v-progress-circular v-if="busy_send" indeterminate size="18" width="2" />
+              <template v-else>Send<v-icon size="18">send</v-icon></template>
+            </button>
+          </template>
+        </section>
       </div>
-    </div>
   </div>
 </template>
 
@@ -130,9 +141,6 @@ export default {
   name: "StorefrontPageOfficialContactUs",
   components: { SArticleEditor },
   inject: ["$shop"],
-  props: {
-
-  },
 
   data: () => ({
     profile: null,
@@ -150,13 +158,13 @@ export default {
 
   computed: {
     canSend() {
-      return this.message && this.message.length > 0;
+      const mail = this.USER() || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email || "");
+      return !!mail && !!this.message && this.message.trim().length > 0;
     },
   },
 
-  watch: {},
   created() {
-    this.setPageTitle("Contact us"); // Set Page Title!
+    this.setPageTitle("Contact us");
     this.fetchProfile();
 
     if (this.USER()) {
@@ -167,18 +175,16 @@ export default {
   },
 
   methods: {
+    /** The shop's own contact page, if it wrote one. A shop without one is
+     *  normal: no error for the shopper. */
     fetchProfile() {
       this.busy = true;
-
       axios
         .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "contact-us"))
         .then(({ data }) => {
-          if (data.error) return NotificationService.showErrorAlert(null, data.error_msg);
-          this.profile = data.profile;
+          this.profile = data?.error ? null : data.profile;
         })
-        .catch((error) => {
-          NotificationService.showLaravelError(error);
-        })
+        .catch(() => (this.profile = null))
         .finally(() => {
           this.busy = false;
         });
@@ -186,7 +192,7 @@ export default {
 
     sendForm() {
       this.message = this.message.replace(/<[^>]*>?/gm, "");
-      if (!this.message) return;
+      if (!this.canSend) return;
 
       this.busy_send = true;
 
@@ -206,13 +212,7 @@ export default {
             this.phone = null;
             this.message = "";
             this.category = null;
-
             this.submitted = true;
-
-            NotificationService.showSuccessAlert(
-              null,
-              this.$t("contact_us_form.notifications.success"),
-            );
           } else {
             NotificationService.showErrorAlert(null, data.error_msg);
           }
@@ -228,15 +228,161 @@ export default {
 };
 </script>
 
-<style scoped>
-.contact-form {
-  z-index: 1;
-  position: relative;
-  background-color: #fcfcfc;
-  border-radius: 38px !important;
-  max-width: 800px;
-  width: 90%;
-  margin: 48px auto;
-  padding: 18px 16px;
+<style lang="scss">
+/* In the Layout's tokens: Dino's are lavender and round, Valero's black
+   with square corners and hairlines. */
+.k-contact {
+  padding-bottom: 64px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 36px;
+    align-items: start;
+    margin-top: 6px;
+  }
+
+  &__lede {
+    max-width: 46ch;
+    margin: 10px 0 0;
+    color: var(--k-muted);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  &__ways {
+    display: grid;
+    gap: 12px;
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      display: grid;
+      grid-template-columns: 44px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 16px;
+      border-radius: var(--k-radius);
+      background: var(--k-card);
+      box-shadow: 0 0 0 1px var(--k-line);
+    }
+
+    > li > .v-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--k-radius-sm);
+      background: var(--k-wash);
+      color: var(--k-green) !important;
+    }
+
+    b {
+      display: block;
+      color: var(--k-ink);
+      font-family: var(--k-display);
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    span {
+      display: block;
+      margin-top: 2px;
+      color: var(--k-muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 6px;
+      color: var(--k-green) !important;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+
+  &__profile {
+    margin-top: 22px;
+  }
+
+  &__card {
+    display: grid;
+    gap: 6px;
+    padding: 24px;
+    border-radius: var(--k-radius-lg);
+    background: var(--k-card);
+    box-shadow: 0 0 0 1px var(--k-line);
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--k-ink);
+      font-family: var(--k-display);
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+
+  &__who {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 12px;
+    border-radius: var(--k-radius);
+    background: var(--k-wash);
+
+    b,
+    small {
+      display: block;
+    }
+
+    small {
+      color: var(--k-muted);
+    }
+  }
+
+  &__send {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 50px;
+    margin-top: 6px;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+
+  &__done {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 28px 8px;
+    text-align: center;
+
+    > .v-icon {
+      color: #16a34a !important;
+    }
+
+    p {
+      margin: 0 0 8px;
+      color: var(--k-muted);
+    }
+  }
+
+  @media (max-width: 860px) {
+    &__grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 24px;
+    }
+
+    &__card {
+      padding: 18px;
+    }
+  }
 }
+
 </style>

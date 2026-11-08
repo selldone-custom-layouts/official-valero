@@ -59,7 +59,7 @@
           class="k-lines__qty"
           role="group"
         >
-          <button :aria-label="shown(item) > 1 ? 'One fewer' : 'Remove from basket'" type="button" @click="step(item, -1)">
+          <button :aria-label="shown(item) > 1 ? 'One fewer' : 'Remove from bag'" type="button" @click="step(item, -1)">
             <v-icon size="18">{{ shown(item) > 1 ? "remove" : "delete_outline" }}</v-icon>
           </button>
           <output aria-live="polite">{{ shown(item) }}</output>

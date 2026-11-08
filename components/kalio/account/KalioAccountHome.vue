@@ -68,7 +68,7 @@
       <section v-else-if="account.loaded" class="k-ahome__latest -empty">
         <v-icon size="34">shopping_basket</v-icon>
         <h2>No orders yet</h2>
-        <p>Fill a basket from the aisles; your orders and where they are show up here.</p>
+        <p>Fill your bag from the aisles; your orders and where they are show up here.</p>
         <router-link :to="{ path: '/' }" class="k-btn -main">Start shopping</router-link>
       </section>
       <section v-else aria-busy="true" class="k-ahome__latest -wait"><span class="k-board__ghost"></span><span class="k-board__ghost"></span></section>
