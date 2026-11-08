@@ -1422,7 +1422,11 @@ $t-tablet: 1100px;
   display: none !important;
 }
 
-.k-cart__top {
+/* The cart page's summary ends with its total; the big total at its top is
+   not drawn. Only there: the order page's receipt uses the same class, and
+   its total and "On delivery" had vanished (the owner's buyer test,
+   8 November 2026). */
+.k-cart__receipt:not(.k-order__receipt) .k-cart__top {
   display: none !important;
 }
 
