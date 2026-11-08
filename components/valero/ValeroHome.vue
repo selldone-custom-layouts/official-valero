@@ -10,8 +10,9 @@
        (the best sellers when nothing is on offer)
     03 Of the season: the fresh aisle beside a photo, as a short list
     04 The makers: each seller with four of their products
-    05 From the journal: the shop's own articles as a magazine block
     the ways to get it: the shop's own delivery methods
+    05 From the journal, last: the shop's own articles as a magazine block
+       (each with its date: the blog list has no body to time)
   Everything is read live; a section with nothing to show is not drawn. It
   shows on the bare shop page only (StorefrontPageProducts decides).
 -->
@@ -131,32 +132,6 @@
           </router-link>
         </div>
       </section>
-
-      <!-- ▆▆▆▆ 05 From the journal ▆▆▆▆ -->
-      <section v-if="posts.length" class="vh-sec">
-        <header class="vh-head">
-          <span class="vh-head__n">05</span>
-          <h2>From the journal</h2>
-          <router-link :to="journalRoute" class="v-more">The journal</router-link>
-        </header>
-        <div class="vh-mag">
-          <router-link :to="postRoute(posts[0])" class="vh-mag__lead">
-            <img v-if="posts[0].image" :src="postImage(posts[0])" alt="" loading="lazy" />
-            <small class="v-caps vh-gold">{{ readMinutes(posts[0].body) }} min read</small>
-            <h3>{{ posts[0].title }}</h3>
-            <p v-if="posts[0].description" class="vh-muted">{{ posts[0].description }}</p>
-          </router-link>
-          <div class="vh-mag__list">
-            <router-link v-for="a in posts.slice(1, 4)" :key="a.id" :to="postRoute(a)" class="vh-mag__item">
-              <img v-if="a.image" :src="postImage(a)" alt="" loading="lazy" />
-              <span>
-                <small class="v-caps vh-gold">{{ readMinutes(a.body) }} min read</small>
-                <b>{{ a.title }}</b>
-              </span>
-            </router-link>
-          </div>
-        </div>
-      </section>
     </div>
 
     <!-- ▆▆▆▆ How it reaches you ▆▆▆▆ -->
@@ -169,6 +144,32 @@
           <template v-else-if="w.freeOver">Free over <u-price :amount="w.freeOver" :currency="w.currency || currency" /></template>
           <template v-else>Priced with your address</template>
         </span>
+      </div>
+    </section>
+
+    <!-- ▆▆▆▆ 05 From the journal: the page's last section (owner, 8 November 2026) ▆▆▆▆ -->
+    <section v-if="posts.length" class="vh-sec vh-journal k-wrap">
+      <header class="vh-head">
+        <span class="vh-head__n">05</span>
+        <h2>From the journal</h2>
+        <router-link :to="journalRoute" class="v-more">The journal</router-link>
+      </header>
+      <div class="vh-mag">
+        <router-link :to="postRoute(posts[0])" class="vh-mag__lead">
+          <img v-if="posts[0].image" :src="postImage(posts[0])" :srcset="postSrcset(posts[0], true)" alt="" loading="lazy" sizes="(max-width: 760px) 92vw, 760px" @error="dropSrcset" />
+          <small v-if="dateOf(posts[0])" class="v-caps vh-gold">{{ dateOf(posts[0]) }}</small>
+          <h3>{{ posts[0].title }}</h3>
+          <p v-if="posts[0].description" class="vh-muted">{{ posts[0].description }}</p>
+        </router-link>
+        <div class="vh-mag__list">
+          <router-link v-for="a in posts.slice(1, 4)" :key="a.id" :to="postRoute(a)" class="vh-mag__item">
+            <img v-if="a.image" :src="postImage(a)" :srcset="postSrcset(a)" alt="" loading="lazy" sizes="(max-width: 760px) 96px, 140px" @error="dropSrcset" />
+            <span>
+              <small v-if="dateOf(a)" class="v-caps vh-gold">{{ dateOf(a) }}</small>
+              <b>{{ a.title }}</b>
+            </span>
+          </router-link>
+        </div>
       </div>
     </section>
 
@@ -187,8 +188,10 @@ import {
   catalogueRoute,
   dealsRoute,
   featured,
+  dropSrcset,
   offers,
   percentOff,
+  photoSrcset,
   priceOf,
   productImage,
   sellerRoute,
@@ -197,7 +200,7 @@ import {
 } from "../kalio/kalio-catalog";
 import { quickAdd } from "../kalio/kalio-basket";
 import { DEALS_FILTER, findAisle, listProducts, photo, waysOf } from "./valero-home";
-import { journalPage, journalRoute, postRoute, readMinutes } from "../kalio/pages/kalio-journal";
+import { dateParts, journalPage, journalRoute, postRoute } from "../kalio/pages/kalio-journal";
 
 export default {
   name: "ValeroHome",
@@ -290,8 +293,19 @@ export default {
     aisleRoute,
     aisleImage,
     sellerRoute,
-    readMinutes,
     postRoute,
+    dropSrcset,
+    /** The post's photo from the shop's resizer, at the size it is shown. */
+    postSrcset(a, big = false) {
+      const set = photoSrcset(this.postImage(a));
+      /* The resizer stops at 768; the lead photo is 673px wide on a computer,
+         so a sharp screen takes the original (1600px). */
+      return set && big ? `${set}, ${this.postImage(a)} 1600w` : set;
+    },
+    /** "Nov 7, 2026", or nothing. */
+    dateOf(a) {
+      return dateParts(a?.created_at).full;
+    },
     vendorImage(v) {
       return vendorImage(v);
     },

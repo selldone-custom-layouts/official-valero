@@ -1319,6 +1319,7 @@ body,
       width: 100%;
       aspect-ratio: 4 / 3;
       object-fit: cover;
+      background: #161616; /* a dark well while the photo loads */
     }
 
     small {
@@ -1350,6 +1351,7 @@ body,
       width: 140px;
       aspect-ratio: 1;
       object-fit: cover;
+      background: #161616;
     }
 
     b {

@@ -47,5 +47,6 @@ The hero, "Of the season" and sign-in pictures are the four journal photos the o
 
 ## Releases
 
+- **1.0.2 (8 November 2026):** "05 From the journal" is the home's last section, after the ways to get it (the owner: an article section as the home's last section). Each post shows its date: the blog list has no body to time, so every post had said "1 min read". The small photos come from the shop's resizer (256 or 384px instead of the 310KB original, which left them blank for seconds on a phone); the large one adds the 1600px original for sharp screens; a dark well holds the place while a photo loads.
 - **1.0.1 (8 November 2026):** the product page says "Add to bag" like the rest of Valero (Selldone's own buy button said "Add to cart"; English words merged in kalio-brand.ts); an aisle's long types ("Nuts & trail mix") stay on one line on phones instead of a column a letter wide; the pages' corners are square (Selldone's storefront.scss, loaded later, still rounded the page card).
 - **1.0.0 (7 November 2026):** first release: design D on every page. Selldone layout 28, pinned on valero.selldone.shop (domain 1236).
