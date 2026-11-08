@@ -857,6 +857,33 @@ body,
   }
 }
 
+/* "CHOOSE OPTIONS" in these tracked capitals is 133px of text, 161px with
+   the padding, and ran out of a narrower button (the owner, 8 November
+   2026). The card's foot is a size container (kalio-platform.scss): a
+   narrower foot tightens the tracking, and a very narrow one says
+   "OPTIONS". */
+@container (max-width: 179.98px) {
+  .k-card-add {
+    padding: 0 10px !important;
+    font-size: 10.5px !important;
+    letter-spacing: 0.1em !important;
+  }
+}
+
+@container (max-width: 129.98px) {
+  .k-card-add.-options {
+    justify-content: center !important;
+
+    .-long {
+      display: none !important;
+    }
+
+    .-short {
+      display: inline !important;
+    }
+  }
+}
+
 .k-card-step {
   border: 1px solid var(--k-ink) !important;
   background: transparent !important;
