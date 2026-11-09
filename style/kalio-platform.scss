@@ -54,7 +54,7 @@
   .v-breadcrumbs-item a,
   .link-dash,
   .v-icon {
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 
   .v-breadcrumbs-item--disabled,
@@ -109,7 +109,7 @@
     line-height: 1 !important;
     letter-spacing: -0.02em;
     text-transform: lowercase;
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
     text-decoration: none;
 
     &::after {
@@ -118,7 +118,7 @@
       height: 11px;
       margin-top: 1px;
       border-radius: 0 0 11px 0;
-      background: var(--k-leaf);
+      background: var(--v-gold-bg);
     }
   }
 
@@ -168,7 +168,7 @@
 
     .v-badge__badge {
       background: var(--k-coral) !important;
-      color: var(--k-on-green) !important;
+      color: var(--v-on-light) !important;
       font-family: var(--k-body);
       font-weight: 700;
     }
@@ -193,7 +193,7 @@
 
     .v-badge__badge {
       background: var(--k-card) !important;
-      color: var(--k-green) !important;
+      color: var(--v-link) !important;
     }
   }
 
@@ -253,7 +253,7 @@
   }
 
   .v-field--focused .v-field__outline {
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 
   @media only screen and (max-width: 1280px) {
@@ -287,7 +287,7 @@
 
   .v-tab--selected,
   .v-btn--active {
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 
   .v-tab__slider {
@@ -312,7 +312,7 @@
 
   a:hover,
   .v-list-item:hover .v-list-item-title {
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 }
 
@@ -583,7 +583,7 @@
     padding: 5px 9px !important;
     border-radius: var(--k-pill) !important;
     background: var(--k-coral) !important;
-    color: var(--k-on-green) !important;
+    color: var(--v-on-light) !important;
     font-family: var(--k-body) !important;
     font-size: 12.5px !important;
     font-weight: 700 !important;
@@ -623,7 +623,7 @@
       min-width: 0 !important;
       border-radius: 50% !important;
       background: var(--k-card) !important;
-      color: var(--k-green) !important;
+      color: var(--v-link) !important;
       box-shadow: 0 6px 16px -6px rgba(20, 20, 20, 0.38) !important;
       text-transform: none !important;
       letter-spacing: 0 !important;
@@ -1031,7 +1031,7 @@
 
     &:hover {
       border-color: var(--k-green) !important;
-      color: var(--k-green) !important;
+      color: var(--v-link) !important;
     }
   }
 }
@@ -1347,7 +1347,7 @@
 
   .v-breadcrumbs-item,
   a {
-    color: var(--k-green);
+    color: var(--v-link);
   }
 
   /* Compare, wishlist and share: quiet outlined pills. */
@@ -1465,7 +1465,7 @@
   .var-sel[class*="selected"] {
     border-color: var(--k-green) !important;
     background: var(--k-green-soft) !important;
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 }
 
@@ -1474,13 +1474,13 @@
   .v-btn--active {
     border-color: var(--k-green) !important;
     background: var(--k-green-soft) !important;
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 }
 
 .s--shop-product-section-box-badges .v-chip {
   background: var(--k-green-soft) !important;
-  color: var(--k-green) !important;
+  color: var(--v-link) !important;
 }
 
 /* Sections under the overview: hairline-ruled bands on white, headings in
@@ -1883,7 +1883,7 @@
 
   a:hover,
   .v-btn:hover {
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 
   .v-divider {
@@ -2142,7 +2142,7 @@ button.k-compare-fab.s--storefront-products-comparison-circle-progress {
     }
 
     &.-on {
-      color: var(--k-green) !important;
+      color: var(--v-link) !important;
       font-weight: 800 !important;
     }
   }
@@ -2167,4 +2167,13 @@ button.k-compare-fab.s--storefront-products-comparison-circle-progress {
 .k-prose a {
   text-decoration: underline !important;
   text-underline-offset: 3px;
+}
+
+/* Words inside a link or a button (an em, a span) carry no line either: the
+   owner's rule (8 November 2026) is no line under any word or icon, and
+   Walio's hero tiles still underlined "Shop deals" in an em (9 November
+   2026). Only links inside an article's own text keep theirs (.k-prose a:
+   a line drawn by the link itself still runs under its words). */
+:where(a, button, [role="button"], [role="link"]) :where(em, span, b, strong, small, i, p, h1, h2, h3, h4, div) {
+  text-decoration: none !important;
 }

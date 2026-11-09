@@ -52,8 +52,9 @@ $v-tablet: 1100px;
     font-weight: 400 !important;
   }
 
+  /* The chevrons are icons: 3:1 or more (at half opacity they read 2.5). */
   .v-icon {
-    opacity: 0.5;
+    opacity: 1;
   }
 }
 
@@ -146,8 +147,8 @@ $v-tablet: 1100px;
 
   &__n {
     border-radius: 0 !important;
-    background: var(--k-gold) !important;
-    color: var(--k-paper) !important;
+    background: var(--v-gold-bg) !important;
+    color: var(--v-on-light) !important;
   }
 }
 
@@ -180,8 +181,8 @@ $v-tablet: 1100px;
 
     .discount-percent {
       border-radius: 0 !important;
-      background: var(--k-gold) !important;
-      color: var(--k-paper) !important;
+      background: var(--v-gold-bg) !important;
+      color: var(--v-on-light) !important;
       letter-spacing: 0.12em;
     }
   }
@@ -360,7 +361,7 @@ $v-tablet: 1100px;
     border: 1px solid var(--k-gold) !important;
     border-radius: 50% !important;
     background: var(--k-well) !important;
-    color: var(--k-paper) !important;
+    color: var(--v-on-light) !important;
     box-shadow: none !important;
   }
 
@@ -583,11 +584,11 @@ $v-tablet: 1100px;
 .t-404 {
   &__big {
     display: block;
-    color: transparent;
+    /* Solid gold: an outlined numeral has no colour of its own to read. */
+    color: var(--k-gold);
     font-family: var(--k-display);
     font-size: clamp(150px, 22vw, 320px);
     line-height: 0.8;
-    -webkit-text-stroke: 1px var(--k-gold);
   }
 
   &__code {

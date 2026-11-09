@@ -102,3 +102,18 @@ bash scripts/release.sh 1.0.1 desk   # build, check, package, upload (see the wi
 ## Credits
 
 Built on [selldone/storefront](https://github.com/selldone/storefront) (MIT). Selldone's original README is kept as [`README.selldone.md`](README.selldone.md). Started from [Tario Market](https://github.com/selldone-custom-layouts/official-tario), which started from [Molino Market Hall](https://github.com/selldone-custom-layouts/official-molino).
+
+<!-- THEME:START -->
+### Theme and colours
+
+Choose Valero's colours in one file, `components/valero/valero-theme.settings.ts`:
+
+- `palette`: ivory, gold, emerald, sapphire, rose;
+- or `brandColor`: any `#RRGGBB`, made readable automatically (`textOnBrand: "auto"` keeps a light brand such as yellow, with dark words);
+- `mode`: light or dark (dark is the default);
+- `themeSwitcher`: showcase, on or off.
+
+You can also tell your AI agent "use the yellow theme" or "make it light": `AGENTS.md` (section "Theme") tells it what to change. Then build and upload. See the wiki page [Theme and colours](https://github.com/selldone-custom-layouts/official-valero/wiki/Theme-and-colours).
+
+The header's Theme button (palettes, Custom colour, Light / Dark) is a showcase feature. It shows only on Valero's own showcase shop (molino, Selldone shop 15645), so when you import Valero into your shop, your shoppers see Valero in its designed colours, with no Theme button. The Layout looks exactly as it does without the switcher, and any stored choice is ignored. To offer the switcher to your shoppers, set `themeSwitcher: "on"` in `components/valero/valero-theme.settings.ts`, then build and upload. `themeSwitcher: "off"` hides it everywhere.
+<!-- THEME:END -->

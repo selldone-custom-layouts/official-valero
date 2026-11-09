@@ -28,6 +28,9 @@
   --k-leaf: #c9a96e;
   --k-green-soft: rgba(201, 169, 110, 0.12);
   --k-on-green: #0b0b0c;
+  --v-link: #f4f1ea; /* the action colour as words (the switcher sets it per palette and mode) */
+  --v-on-light: #0b0b0c; /* words on gold, on the packshot wells and on ivory chips: dark in both modes */
+  --v-gold-bg: #c9a96e; /* gold as a ground (badges, tags): the same in both modes */
 
   /* A saving: champagne */
   --k-coral: #e2b97a;
@@ -41,7 +44,7 @@
 
   /* Ratings */
   --k-amber: #c9a96e;
-  --k-star-off: rgba(244, 241, 234, 0.2);
+  --k-star-off: rgba(244, 241, 234, 0.42); /* an empty star is an icon: 3:1 or more on the card (it was 1.5:1) */
 
   /* Type */
   --k-display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
@@ -66,8 +69,8 @@
 :root,
 .v-theme--light,
 .v-theme--dark {
-  --v-theme-primary: 244, 241, 234 !important;
-  --v-theme-on-primary: 11, 11, 12 !important;
+  --v-theme-primary: var(--v-primary-rgb, 244, 241, 234) !important;
+  --v-theme-on-primary: var(--v-on-brand-rgb, 11, 11, 12) !important;
   --v-theme-secondary: 201, 169, 110 !important;
   --v-theme-on-secondary: 11, 11, 12 !important;
 }
@@ -157,7 +160,7 @@ s:has(> .u--price) {
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--k-green);
+  color: var(--v-link);
   margin: 0 0 8px;
 }
 
@@ -207,7 +210,7 @@ s:has(> .u--price) {
 
   &:hover {
     border-color: var(--k-green);
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 }
 
@@ -241,7 +244,7 @@ s:has(> .u--price) {
   font-family: var(--k-body);
   font-size: 15px;
   font-weight: 600;
-  color: var(--k-green) !important;
+  color: var(--v-link) !important;
   text-decoration: none;
 
   &:hover {
@@ -265,7 +268,7 @@ s:has(> .u--price) {
 
   &:hover {
     border-color: var(--k-green);
-    color: var(--k-green);
+    color: var(--v-link);
   }
 
   &:disabled {

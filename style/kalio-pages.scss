@@ -116,7 +116,7 @@
 
   &:hover {
     border-color: var(--k-green);
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 
   .v-icon {
@@ -176,7 +176,7 @@
   }
 
   a:not(.k-btn) {
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
     text-decoration: underline;
     text-underline-offset: 3px;
   }
@@ -608,7 +608,7 @@
         font-family: var(--k-display);
         font-size: 22px;
         line-height: 1;
-        color: var(--k-green);
+        color: var(--v-link);
       }
     }
 
@@ -1097,7 +1097,7 @@
 
       .v-icon {
         margin-top: 2px;
-        color: var(--k-green) !important;
+        color: var(--v-link) !important;
       }
     }
   }
@@ -1187,7 +1187,7 @@
 
       span {
         font-size: 18px;
-        color: var(--k-green);
+        color: var(--v-link);
       }
     }
   }
@@ -1387,7 +1387,7 @@
       color: var(--k-ink);
 
       a {
-        color: var(--k-green) !important;
+        color: var(--v-link) !important;
       }
     }
   }
@@ -1451,7 +1451,7 @@
         font-family: var(--k-display);
         font-size: 22px;
         font-style: normal;
-        color: var(--k-green);
+        color: var(--v-link);
       }
     }
 
@@ -1483,7 +1483,7 @@
       font-family: var(--k-display);
       font-size: 20px;
       font-weight: 600;
-      color: var(--k-green);
+      color: var(--v-link);
     }
   }
 
@@ -1563,7 +1563,7 @@
     margin-bottom: 4px;
     border-radius: var(--k-radius-lg);
     background: var(--k-wash);
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 
   h2 {
@@ -1584,4 +1584,90 @@
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 8px;
+}
+
+/* ▆▆▆▆▆▆▆▆ Empty states: one vertical rhythm (9 November 2026) ▆▆▆▆▆▆▆▆
+   The owner on an empty FAQ: "these three lines are glued together". Every
+   stacked block (icon, heading, sentence, buttons) on every Layout keeps the
+   same gaps: the icon in a 56px tinted disc, 14px, the heading, 8px, the
+   sentence (1.55 line height, 520px at most), 20px, the buttons; 32–40px
+   inside the card. No piece of a stacked block touches the next. */
+.k-official__missing,
+.k-noresult,
+.k-order__missing,
+.k-board__empty {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 0 !important;
+  padding: 36px 28px !important;
+  text-align: center;
+
+  > .v-icon {
+    flex: none;
+    width: 56px !important;
+    height: 56px !important;
+    margin: 0 0 14px !important;
+    border-radius: 50% !important;
+    background: var(--k-green-soft);
+    font-size: 28px !important;
+  }
+
+  > h1,
+  > h2,
+  > h3 {
+    margin: 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  > p {
+    max-width: 520px;
+    margin: 8px auto 0 !important;
+    line-height: 1.55 !important;
+  }
+
+  > :is(h1, h2, h3) + p + p {
+    margin-top: 4px !important;
+  }
+}
+
+.k-official__missing {
+  max-width: 640px;
+  margin-inline: auto;
+}
+
+.k-official__missingacts,
+.k-noresult__acts,
+.k-order__missingacts,
+.k-board__empty .k-btn:first-of-type {
+  margin-top: 20px !important;
+}
+
+.k-official__missingacts,
+.k-order__missingacts {
+  justify-content: center;
+}
+
+/* The cart drawer when empty: the same rhythm. */
+.k-drawer__empty {
+  .k-drawer__empty-mark {
+    width: 56px !important;
+    height: 56px !important;
+    margin: 0 auto 14px !important;
+  }
+
+  .k-drawer__empty-title {
+    margin: 0 !important;
+    line-height: 1.3;
+  }
+
+  .k-drawer__empty-text {
+    max-width: 520px;
+    margin: 8px auto 0 !important;
+    line-height: 1.55;
+  }
+
+  .k-drawer__empty-ctas {
+    margin-top: 20px !important;
+  }
 }

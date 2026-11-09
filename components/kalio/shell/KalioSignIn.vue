@@ -57,7 +57,7 @@
         <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY }" @click="show = false">Privacy</router-link>.
       </p>
       <div v-if="busyUser" class="k-signin__busy">
-        <v-progress-circular color="#f4f1ea" indeterminate size="36" width="3" />
+        <v-progress-circular color="primary" indeterminate size="36" width="3" />
       </div>
     </div>
     </div>

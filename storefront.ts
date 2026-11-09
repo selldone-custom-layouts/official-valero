@@ -37,6 +37,8 @@ import {createComponents} from "@selldone/components-vue/components";
 import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is capable of handling css files
 import "@selldone/components-vue/style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
 import "@selldone/components-vue/style/fonts/lang/fa/lang-fa-iransans.css";
+import { bootThemeSwitcher } from "./components/theme-switcher/theme-switcher";
+import { VALERO_THEME } from "./components/valero/valero-theme";
 import "./components/kalio/kalio-fonts"; // Kalio typefaces, loaded by the app so they reach production
 import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
 import {SetupPageBuilder} from "@selldone/page-builder/page-builder.ts";
@@ -47,27 +49,11 @@ const vuetify = VuetifyInstance(i18n);
 
 /* Valero (design D) is black: Vuetify's own dark theme in Valero's colours,
    so Selldone's fields, menus, dialogs, lists and sheets are dark too, not
-   white islands on a black page. */
-const VALERO_DARK = {
-  background: "#0b0b0c",
-  surface: "#151516",
-  "surface-bright": "#1d1d1f",
-  "surface-variant": "#2a2a2c",
-  "on-background": "#f4f1ea",
-  "on-surface": "#f4f1ea",
-  "on-surface-variant": "#d9d4ca",
-  primary: "#f4f1ea",
-  "on-primary": "#0b0b0c",
-  secondary: "#c9a96e",
-  "on-secondary": "#0b0b0c",
-  accent: "#c9a96e",
-  error: "#e07a6a",
-  info: "#c9a96e",
-  success: "#8fbf8a",
-  warning: "#e2b97a",
-};
-Object.assign(vuetify.theme.themes.value.dark.colors, VALERO_DARK);
-vuetify.theme.global.name.value = "dark";
+   white islands on a black page. The theme switcher (components/valero/
+   valero-theme.ts) now holds those colours and sets Vuetify's theme: dark by
+   default (the settings' mode), light when a showcase visitor picks Light.
+   It paints before the first paint, on every shop. */
+bootThemeSwitcher(VALERO_THEME, vuetify);
 
 //█████████████████████████████████████████████████████████████
 //―――――――――――――― Global Types ―――――――――――――――

@@ -57,8 +57,8 @@ body,
 }
 
 ::selection {
-  background: var(--k-gold);
-  color: var(--k-paper);
+  background: var(--v-gold-bg);
+  color: var(--v-on-light);
 }
 
 .k-wrap {
@@ -460,7 +460,7 @@ body,
     .v-index__initial {
       display: grid;
       place-items: center;
-      color: var(--k-paper);
+      color: var(--v-on-light);
       font-size: 18px;
     }
 
@@ -749,8 +749,8 @@ body,
     inset-inline-start: 12px !important;
     padding: 4px 8px !important;
     border-radius: 0 !important;
-    background: var(--k-gold) !important;
-    color: var(--k-paper) !important;
+    background: var(--v-gold-bg) !important;
+    color: var(--v-on-light) !important;
     font-size: 11px !important;
     font-weight: 500 !important;
     letter-spacing: 0.14em;
@@ -1097,7 +1097,7 @@ body,
       position: absolute;
       left: 18px;
       bottom: 16px;
-      color: var(--k-paper);
+      color: var(--v-on-light);
     }
   }
 
@@ -1267,7 +1267,7 @@ body,
     &.-initial {
       display: grid;
       place-items: center;
-      color: var(--k-paper);
+      color: var(--v-on-light);
       font-family: var(--k-display);
       font-size: 48px;
     }

@@ -1,0 +1,51 @@
+/* ▆▆▆▆▆▆▆▆▆▆▆▆▆▆ Valero — the light mode, and the theme switcher's loose ends ▆▆▆▆▆▆▆▆▆▆▆▆▆▆
+
+   Valero is dark first: its :root holds the black theme, and the theme
+   switcher (components/valero/valero-theme.ts) writes the light tokens
+   (an ivory page) on <html> only when a showcase visitor, or the merchant's
+   settings, pick Light. html[data-ts-mode="light"] is set only then (never
+   on a shop where the switcher is off with Valero's own dark default), so
+   the rules below change nothing else. Loaded last (storefront.scss). */
+
+/* The footer's Selldone credit and GDPR link are "plain" buttons at 62%
+   opacity: full opacity, so they read on the black band. */
+.k-footer__base-links .v-btn {
+  opacity: 1 !important;
+}
+
+html[data-ts-mode="light"] {
+  color-scheme: light;
+
+  /* ── Dark islands ── the hero's words sit on a photo under a dark scrim,
+     and the footer stays Valero's black band: both keep the dark tokens in
+     light mode too (and the palette's dark action colour). */
+  .vh-hero,
+  .k-footer {
+    --k-ink: #f4f1ea;
+    --k-ink-2: #d9d4ca;
+    --k-muted: #b5b0a6;
+    --k-paper: #0b0b0c;
+    --k-wash: #151516;
+    --k-card: #151516;
+    --k-raise: #1d1d1f;
+    --k-line: rgba(244, 241, 234, 0.14);
+    --k-line-strong: rgba(244, 241, 234, 0.3);
+    --k-green: var(--v-primary-dark);
+    --k-green-deep: var(--v-primary-dark);
+    --k-on-green: var(--v-on-primary-dark);
+    --v-link: var(--v-link-dark);
+    --k-gold: var(--v-accent-dark);
+    --k-leaf: var(--v-accent-dark);
+    background-color: var(--k-paper);
+    color: #f4f1ea;
+  }
+
+  /* Selldone's small red notes on the ivory page. */
+  .text-red {
+    color: #c4122f !important;
+  }
+
+  .-shipping-box.text-green-darken-2 {
+    color: #2e7d32 !important;
+  }
+}

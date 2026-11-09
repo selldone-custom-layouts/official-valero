@@ -387,7 +387,7 @@
     font-family: var(--k-display);
     font-size: 26px;
     font-weight: 600;
-    color: var(--k-green);
+    color: var(--v-link);
   }
 
   &__label {
@@ -590,14 +590,14 @@
     padding: 2px 8px;
     border-radius: var(--k-pill);
     background: var(--k-green-soft);
-    color: var(--k-green);
+    color: var(--v-link);
     font-size: 11.5px;
     font-weight: 600;
   }
 }
 
 a.k-by:hover {
-  color: var(--k-green) !important;
+  color: var(--v-link) !important;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
@@ -731,7 +731,7 @@ a.k-by:hover {
     height: 96px;
     border-radius: 50%;
     background: var(--k-coral);
-    color: var(--k-on-green);
+    color: var(--v-on-light);
     line-height: 1;
     text-align: center;
     transform: rotate(-10deg);
@@ -1121,7 +1121,7 @@ $k-shelf-pic-phone: 150px;
     padding: 3px 8px;
     border-radius: var(--k-pill);
     background: var(--k-coral);
-    color: var(--k-on-green);
+    color: var(--v-on-light);
     font-size: 11.5px;
     font-weight: 700;
   }
@@ -1478,7 +1478,7 @@ $k-shelf-pic-phone: 150px;
     color: var(--k-muted);
 
     a {
-      color: var(--k-green) !important;
+      color: var(--v-link) !important;
       font-weight: 500;
       text-decoration: none;
 
@@ -1489,7 +1489,7 @@ $k-shelf-pic-phone: 150px;
     }
 
     .v-icon {
-      color: var(--k-line-strong);
+      color: var(--k-muted);
     }
   }
 
@@ -1871,7 +1871,7 @@ $k-shelf-pic-phone: 150px;
   text-align: center;
 
   > .v-icon {
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
   }
 
   h3 {
@@ -1929,7 +1929,7 @@ $k-shelf-pic-phone: 150px;
     color: var(--k-muted);
 
     a {
-      color: var(--k-green) !important;
+      color: var(--v-link) !important;
       text-decoration: none;
 
       &:hover {
@@ -2031,7 +2031,7 @@ $k-shelf-pic-phone: 150px;
     align-items: center;
     gap: 4px;
     margin-top: 8px;
-    color: var(--k-green) !important;
+    color: var(--v-link) !important;
     font-weight: 600;
     text-decoration: none;
   }
@@ -2062,7 +2062,7 @@ $k-shelf-pic-phone: 150px;
 
     &:hover {
       border-color: var(--k-green);
-      color: var(--k-green) !important;
+      color: var(--v-link) !important;
     }
   }
 }
