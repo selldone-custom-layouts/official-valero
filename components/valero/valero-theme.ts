@@ -108,6 +108,7 @@ export const VALERO_THEME: ThemeSwitcherConfig = {
     "--k-coral-soft": "rgba(138, 75, 0, 0.1)",
     "--k-amber": "#8a5800",
     "--k-star-off": "#8f8a80",
+    "--v-ok": "#2e7d32",
   },
 
   vuetify: {

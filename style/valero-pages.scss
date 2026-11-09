@@ -831,7 +831,7 @@ $t-tablet: 1100px;
     line-height: 1.4;
 
     .v-icon {
-      color: #2e7d32;
+      color: var(--v-ok);
     }
   }
 
@@ -1320,7 +1320,7 @@ $t-tablet: 1100px;
     font-size: 15px;
 
     .v-icon {
-      color: #2e7d32;
+      color: var(--v-ok);
     }
   }
 }
@@ -1398,11 +1398,11 @@ $t-tablet: 1100px;
 
     > .v-icon,
     b {
-      color: #2e7d32 !important;
+      color: var(--v-ok) !important;
     }
 
     .t-meter__bar i {
-      background: #2e7d32;
+      background: var(--v-ok-bg);
     }
   }
 
@@ -1576,7 +1576,7 @@ $t-tablet: 1100px;
 
   .k-ship__free {
     grid-column: 2;
-    color: #2e7d32 !important;
+    color: var(--v-ok) !important;
     white-space: normal !important;
   }
 
@@ -1654,7 +1654,7 @@ $t-tablet: 1100px;
   }
 
   em {
-    color: #2e7d32;
+    color: var(--v-ok);
     font-size: 13.5px;
     font-style: normal;
     font-weight: 700;

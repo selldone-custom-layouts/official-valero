@@ -228,7 +228,7 @@
       place-items: center;
       height: 32px;
       border-radius: var(--k-pill);
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
 
       &:hover:not(:disabled) {
         background: var(--k-wash);
@@ -351,7 +351,7 @@
       &.-on {
         border-color: var(--k-green);
         background: var(--k-green-soft);
-        color: var(--k-green-deep) !important;
+        color: var(--v-link) !important;
       }
     }
   }
@@ -478,7 +478,7 @@
       border-color: var(--k-green);
       background: var(--k-green-soft);
       box-shadow: inset 0 0 0 1px var(--k-green);
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
     }
   }
 
@@ -492,7 +492,7 @@
     border: 1px dashed var(--k-line);
     border-radius: 0;
     background: var(--k-raise);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-size: 14px;
     font-weight: 600;
 
@@ -670,7 +670,7 @@
         &.bg-primary {
           background: var(--k-card) !important;
           box-shadow: 0 1px 4px rgba(20, 20, 20, 0.15) !important;
-          color: var(--k-green-deep) !important;
+          color: var(--v-link) !important;
         }
       }
     }
@@ -1188,7 +1188,7 @@
     height: 54px;
     padding: 0 20px;
     border-radius: var(--k-pill);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-weight: 700;
   }
 
@@ -1407,7 +1407,7 @@
     border-radius: var(--k-pill);
     background: var(--k-card);
     box-shadow: 0 10px 24px -14px rgba(20, 20, 20, 0.45);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-size: 14px;
     font-weight: 700;
   }
@@ -1494,7 +1494,7 @@
     &.-on {
       border-color: var(--k-green);
       background: var(--k-green-soft);
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
     }
   }
 
@@ -1700,7 +1700,7 @@
   border: 1px solid var(--k-line);
   border-radius: var(--k-pill);
   background: var(--k-card);
-  color: var(--k-green-deep) !important;
+  color: var(--v-link) !important;
   font-size: 13.5px;
   font-weight: 700;
 }
@@ -1896,7 +1896,7 @@
       border-color: var(--k-green);
       background: var(--k-green-soft);
       box-shadow: inset 0 0 0 1px var(--k-green);
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
     }
 
     &:disabled {
@@ -2314,7 +2314,7 @@ $k-ico-gift: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewB
     border-radius: var(--k-pill) !important;
     background: var(--k-card) !important;
     box-shadow: none !important;
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-size: 14.5px !important;
     font-weight: 700 !important;
     letter-spacing: 0 !important;
@@ -2477,7 +2477,7 @@ $k-ico-gift: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewB
       border-radius: var(--k-pill) !important;
       background: var(--k-card) !important;
       box-shadow: none !important;
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
       font-weight: 700 !important;
       letter-spacing: 0 !important;
       text-transform: none !important;
@@ -2530,7 +2530,7 @@ $k-ico-gift: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewB
     height: 50px;
     border: 1px solid var(--k-line);
     border-radius: var(--k-pill);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-weight: 700;
     text-decoration: none;
 
@@ -2948,7 +2948,7 @@ $k-ico-gift: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewB
       &.-on {
         background: var(--k-card);
         box-shadow: 0 1px 4px rgba(20, 20, 20, 0.15);
-        color: var(--k-green-deep) !important;
+        color: var(--v-link) !important;
       }
     }
   }
@@ -3368,7 +3368,7 @@ $k-ico-gift: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewB
     border: 1px solid var(--k-line-strong);
     border-radius: var(--k-pill);
     background: var(--k-card);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font: inherit;
     font-size: 14px;
     font-weight: 600;

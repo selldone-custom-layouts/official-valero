@@ -674,7 +674,7 @@ a.k-by:hover {
     font-weight: 600;
     line-height: 1.05;
     letter-spacing: -0.02em;
-    color: var(--k-green-deep);
+    color: var(--v-link);
   }
 
   &__from {
@@ -694,7 +694,7 @@ a.k-by:hover {
     margin-top: auto;
     font-size: 14.5px;
     font-weight: 600;
-    color: var(--k-green-deep);
+    color: var(--v-link);
   }
 
   &__pics {
@@ -936,7 +936,7 @@ $k-shelf-pic-phone: 150px;
     font-weight: 600;
     line-height: 1.04;
     letter-spacing: -0.03em;
-    color: var(--k-green-deep);
+    color: var(--v-link);
   }
 
   &__tabs {
@@ -1054,7 +1054,7 @@ $k-shelf-pic-phone: 150px;
         display: grid;
         place-items: center;
         gap: 8px;
-        color: var(--k-green-deep) !important;
+        color: var(--v-link) !important;
         font-size: 14.5px;
         font-weight: 600;
         text-align: center;
@@ -1197,7 +1197,7 @@ $k-shelf-pic-phone: 150px;
     gap: 4px;
     background: rgba(163, 0, 0, 0.08);
     /* !important: Selldone's [type=button] { color: inherit } loads later. */
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-family: var(--k-body);
     font-size: 14px;
     font-weight: 700;
@@ -1232,7 +1232,7 @@ $k-shelf-pic-phone: 150px;
     color: var(--k-ink-2);
 
     .k-more {
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
     }
   }
 

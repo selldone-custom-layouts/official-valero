@@ -794,7 +794,7 @@
   &.-options {
     border-color: var(--k-line);
     background: var(--k-card);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
 
     &:hover {
       border-color: var(--k-green);
@@ -816,13 +816,13 @@
   grid-template-columns: 32px minmax(0, 1fr) 32px;
   border: 1.5px solid var(--k-green);
   background: var(--k-green-soft);
-  color: var(--k-green-deep);
+  color: var(--v-link);
   box-shadow: none;
 
   button {
     width: 32px;
     height: 35px;
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
 
     &:hover:not(:disabled) {
       background: rgba(59, 170, 92, 0.16);
@@ -1798,7 +1798,7 @@
     border-radius: var(--k-pill) !important;
     min-height: 52px !important;
     background-color: var(--k-card) !important;
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     box-shadow: none !important;
     text-transform: none !important;
     letter-spacing: 0 !important;
@@ -1958,7 +1958,7 @@
   padding: 0 8px;
   border-radius: 0;
   background: var(--k-card);
-  color: var(--k-green-deep);
+  color: var(--v-link);
   font-size: 14px;
   font-weight: 800;
 }

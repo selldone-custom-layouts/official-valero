@@ -107,7 +107,7 @@
 
   &.-ok {
     background: var(--k-green-soft);
-    color: var(--k-green-deep);
+    color: var(--v-link);
   }
 
   &.-go {
@@ -317,7 +317,7 @@
 
     &.-on {
       border-color: var(--k-green);
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
 
       .v-icon {
         color: var(--v-link) !important;
@@ -417,7 +417,7 @@
   &.-on {
     background: var(--k-card);
     box-shadow: 0 1px 3px rgba(20, 20, 20, 0.08), inset 3px 0 0 var(--k-green);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
 
     em {
       color: var(--v-link);
@@ -573,7 +573,7 @@
       &.-on {
         background: var(--k-card);
         box-shadow: 0 1px 4px rgba(20, 20, 20, 0.14);
-        color: var(--k-green-deep) !important;
+        color: var(--v-link) !important;
       }
     }
   }
@@ -1039,7 +1039,7 @@
 
       &.-on {
         background: var(--k-green-soft);
-        color: var(--k-green-deep) !important;
+        color: var(--v-link) !important;
       }
     }
   }
@@ -1478,7 +1478,7 @@
     border-style: dashed;
     border-color: var(--k-line-strong);
     background: var(--k-raise);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-weight: 700;
 
     .v-icon {

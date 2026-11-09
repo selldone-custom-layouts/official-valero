@@ -49,3 +49,9 @@ html[data-ts-mode="light"] {
     color: #2e7d32 !important;
   }
 }
+
+/* The empty cart's drawing is a dark line SVG (Selldone's baskets.svg): light
+   lines on Valero's black, unless the page is light. */
+html:not([data-ts-mode="light"]) .k-basket-empty__art {
+  filter: invert(1) hue-rotate(180deg);
+}

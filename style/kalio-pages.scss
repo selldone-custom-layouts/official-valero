@@ -70,7 +70,7 @@
   padding: 0 10px;
   border-radius: var(--k-pill);
   background: var(--k-green-soft);
-  color: var(--k-green-deep) !important;
+  color: var(--v-link) !important;
   font-size: 12.5px;
   font-weight: 700;
   text-decoration: none;
@@ -204,7 +204,7 @@
     border-inline-start: 4px solid var(--k-leaf);
     border-radius: 0 18px 18px 0;
     background: var(--k-green-soft);
-    color: var(--k-green-deep);
+    color: var(--v-link);
   }
 
   table {
@@ -678,7 +678,7 @@
     height: 36px;
     border-radius: 50%;
     background: var(--k-card);
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     box-shadow: 0 6px 14px -8px rgba(0, 0, 0, 0.45);
     cursor: pointer;
 
@@ -1075,7 +1075,7 @@
       font-family: var(--k-display);
       font-size: 24px;
       font-weight: 600;
-      color: var(--k-green-deep);
+      color: var(--v-link);
     }
 
     ul {
@@ -1093,7 +1093,7 @@
       gap: 8px;
       font-size: 15.5px;
       line-height: 1.5;
-      color: var(--k-green-deep);
+      color: var(--v-link);
 
       .v-icon {
         margin-top: 2px;
@@ -1153,7 +1153,7 @@
 
       &.-on {
         background: var(--k-card);
-        color: var(--k-green-deep) !important;
+        color: var(--v-link) !important;
         box-shadow: 0 6px 16px -12px rgba(0, 0, 0, 0.4);
       }
     }
@@ -1287,7 +1287,7 @@
     padding: 0 12px;
     border-radius: var(--k-pill);
     background: var(--k-green-soft);
-    color: var(--k-green-deep);
+    color: var(--v-link);
     font-size: 13px;
     font-weight: 700;
     white-space: nowrap;
@@ -1492,7 +1492,7 @@
     font-family: var(--k-display);
     font-size: 30px;
     font-style: italic;
-    color: var(--k-green-deep);
+    color: var(--v-link);
   }
 
   &__acts {

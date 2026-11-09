@@ -789,7 +789,7 @@ $k-header-strip: 46px;
       place-items: center;
       height: 28px;
       border-radius: var(--k-pill);
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
 
       &:hover:not(:disabled) {
         background: var(--k-wash);
@@ -887,7 +887,7 @@ $k-header-strip: 46px;
       font-weight: 600;
       line-height: 1;
       letter-spacing: -0.02em;
-      color: var(--k-green-deep);
+      color: var(--v-link);
       font-variant-numeric: lining-nums;
     }
 
@@ -1610,7 +1610,7 @@ $k-filter-gap: 36px;
     font-size: 12px;
 
     &::before {
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
     }
   }
 
@@ -2301,7 +2301,7 @@ $k-filter-gap: 36px;
     padding: 0 18px !important;
     border-radius: var(--k-pill) !important;
     background: var(--k-card) !important;
-    color: var(--k-green-deep) !important;
+    color: var(--v-link) !important;
     font-weight: 700;
     letter-spacing: 0 !important;
     text-transform: none !important;

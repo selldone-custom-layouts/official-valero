@@ -30,6 +30,8 @@
   --k-on-green: #0b0b0c;
   --v-link: #f4f1ea; /* the action colour as words (the switcher sets it per palette and mode) */
   --v-on-light: #0b0b0c; /* words on gold, on the packshot wells and on ivory chips: dark in both modes */
+  --v-ok: #8fbf8a; /* "Free" and other good news as words: light green on black (dark green on the ivory page) */
+  --v-ok-bg: #2e7d32; /* a green ground with white words: the same in both modes */
   --v-gold-bg: #c9a96e; /* gold as a ground (badges, tags): the same in both modes */
 
   /* A saving: champagne */
@@ -217,7 +219,7 @@ s:has(> .u--price) {
 /* On the deep-green board: a white button and an outlined one. */
 .k-btn--light {
   background: #fff;
-  color: var(--k-green-deep) !important;
+  color: var(--v-link) !important;
 
   &:hover {
     background: #fdf1f1;

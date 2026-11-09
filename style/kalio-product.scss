@@ -1035,7 +1035,7 @@
       font-weight: 600;
       line-height: 1;
       letter-spacing: -0.03em;
-      color: var(--k-green-deep);
+      color: var(--v-link);
     }
 
     span {
@@ -1212,7 +1212,7 @@
       gap: 8px;
       padding: 14px 18px !important;
       font-weight: 600;
-      color: var(--k-green-deep);
+      color: var(--v-link);
       cursor: pointer;
 
       .v-icon {
@@ -1373,7 +1373,7 @@
 
       > b {
         font-size: 13px;
-        color: var(--k-green-deep);
+        color: var(--v-link);
       }
 
       .v-avatar {
@@ -1619,7 +1619,7 @@
       place-items: center;
       height: 100%;
       border-radius: var(--k-pill);
-      color: var(--k-green-deep) !important;
+      color: var(--v-link) !important;
       cursor: pointer;
       transition: background-color 140ms ease;
 
