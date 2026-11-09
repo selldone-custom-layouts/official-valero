@@ -117,3 +117,7 @@ You can also tell your AI agent "use the yellow theme" or "make it light": `AGEN
 
 The header's Theme button (palettes, Custom colour, Light / Dark) is a showcase feature. It shows only on Valero's own showcase shop (molino, Selldone shop 15645), so when you import Valero into your shop, your shoppers see Valero in its designed colours, with no Theme button. The Layout looks exactly as it does without the switcher, and any stored choice is ignored. To offer the switcher to your shoppers, set `themeSwitcher: "on"` in `components/valero/valero-theme.settings.ts`, then build and upload. `themeSwitcher: "off"` hides it everywhere.
 <!-- THEME:END -->
+
+<p><img src="docs/screenshots/desktop-theme-panel.jpg" alt="The Theme panel in the header over Valero's dark page: palettes, Custom colour, Light and Dark" width="62%"> <img src="docs/screenshots/phone-home-light.jpg" alt="Valero in light mode on a phone" width="18%"></p>
+
+<img src="docs/screenshots/desktop-home-light.jpg" alt="Valero in light mode on a computer: the same tokens on an ivory page" width="62%">
