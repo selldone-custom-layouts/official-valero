@@ -319,7 +319,7 @@ $k-header-strip: 46px;
       font-weight: 600;
 
       &::after {
-        background: var(--k-coral);
+        background: var(--v-gold-bg);
       }
     }
   }
@@ -1681,10 +1681,10 @@ $k-filter-gap: 36px;
   .v-chip--selected {
     border-color: var(--k-ink) !important;
     background: var(--k-ink) !important;
-    color: var(--v-on-light) !important;
+    color: var(--k-paper) !important;
 
     .v-chip__filter {
-      color: var(--v-on-light) !important;
+      color: var(--k-paper) !important;
     }
   }
 }
