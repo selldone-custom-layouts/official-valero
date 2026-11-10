@@ -194,8 +194,11 @@
         <router-link :to="journalRoute" class="v-menu-link" @click="menu = false">Journal</router-link>
 
         <p class="v-caps k-drawer__label">The aisles</p>
+        <!-- The first six aisles in the merchant's order; the rest open in
+             place under "Show N more" (the owner's option A, 10 November
+             2026). Eight or fewer: all of them, no button. -->
         <router-link
-          v-for="(aisle, i) in aisleList"
+          v-for="(aisle, i) in aisleList.slice(0, menuCut)"
           :key="aisle.id"
           :to="aisleRoute(aisle)"
           class="v-menu-link -aisle"
@@ -203,6 +206,32 @@
         >
           <span class="v-index__n">{{ String(i + 1).padStart(2, "0") }}</span>{{ aisle.title || aisle.name }}
         </router-link>
+        <template v-if="menuCut < aisleList.length">
+          <div id="v-menu-more" :class="{ '-open': menuMore }" class="v-menu-more">
+            <div>
+              <router-link
+                v-for="(aisle, i) in aisleList.slice(menuCut)"
+                :key="aisle.id"
+                :style="{ '--i': i }"
+                :to="aisleRoute(aisle)"
+                class="v-menu-link -aisle"
+                @click="menu = false"
+              >
+                <span class="v-index__n">{{ String(menuCut + i + 1).padStart(2, "0") }}</span>{{ aisle.title || aisle.name }}
+              </router-link>
+            </div>
+          </div>
+          <button
+            :aria-expanded="String(menuMore)"
+            aria-controls="v-menu-more"
+            class="v-menu-link -aisle -more"
+            type="button"
+            @click="menuMore = !menuMore"
+          >
+            <span aria-hidden="true" class="v-menu-more__chip"><v-icon size="18">{{ menuMore ? "expand_less" : "expand_more" }}</v-icon></span>
+            {{ menuMore ? "Show fewer" : `Show ${aisleList.length - menuCut} more` }}
+          </button>
+        </template>
 
         <template v-if="sellerList.length">
           <p class="v-caps k-drawer__label">The makers</p>
@@ -265,6 +294,7 @@ export default {
       aisles_open: false,
       basket: false,
       menu: false,
+      menuMore: false,
       search_open: false,
       windowWidth: window.innerWidth,
       sellerList: [],
@@ -275,6 +305,11 @@ export default {
   computed: {
     shopTitle() {
       return this.$shop?.title || "Valero";
+    },
+    /* The phone menu's aisles shown before "Show N more": six, or all of
+       them when there are eight or fewer. */
+    menuCut() {
+      return this.aisleList.length > 8 ? 6 : this.aisleList.length;
     },
     user() {
       return this.$store.getters.getUser;
@@ -343,6 +378,10 @@ export default {
     },
     basket(open) {
       basketView.drawerOpen = open;
+    },
+    /* The phone menu opens with its aisle list folded each time. */
+    menu(open) {
+      if (open) this.menuMore = false;
     },
     $route() {
       this.menu = false;
