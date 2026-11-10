@@ -17,11 +17,17 @@
   <header v-if="!$store.getters.getIsNative" class="k-header -valero">
     <!-- ▆▆▆▆▆▆▆▆ Announcement ▆▆▆▆▆▆▆▆ -->
     <div class="v-ann">
-      <div class="v-ann__row k-wrap">
-        <span v-if="promo">Complimentary shipping over <u-price :amount="promo.amount" :currency="promo.currency" /></span>
+      <div :class="{ '-region': !compact }" class="v-ann__row k-wrap">
+        <span v-if="promo">Complimentary shipping over {{ money(promo.amount, promo.currency, true) }}</span>
         <router-link v-else :to="dealsRoute">This week’s offers</router-link>
         <span v-if="hasPickup" class="-wide">Pickup is always free</span>
         <span v-if="sellerList.length > 1" class="-wide">{{ sellerList.length }} independent makers, one bag</span>
+        <!-- The visitor's language and currency, at the strip's end (the
+             owner's choice B, 10 November 2026: in the header, as Walmart
+             and Amazon have it). The phone gets the menu's row instead. -->
+        <div v-if="!compact" class="v-ann__region">
+          <region-switcher-button button-class="v-ann__pill" />
+        </div>
       </div>
     </div>
 
@@ -240,15 +246,8 @@
           </router-link>
         </template>
 
-        <div class="k-drawer__pickers">
-          <s-language-selector hide-details variant="outlined"></s-language-selector>
-          <u-currency-selector
-            v-if="$shop.currencies && $shop.currencies.length > 1"
-            :shop="$shop"
-            hide-details
-            @change="onChangeUserSelectedCurrency"
-          />
-        </div>
+        <!-- Language and currency: a row that opens a bottom sheet over the menu. -->
+        <region-sheet row-class="v-menu-link -region" />
       </v-navigation-drawer>
     </teleport>
   </header>
@@ -258,8 +257,9 @@
 import { BRAND } from "../kalio-brand";
 import { defineAsyncComponent } from "vue";
 import SStorefrontSearchBox from "@selldone/components-vue/storefront/search/SStorefrontSearchBox.vue";
-import SLanguageSelector from "@selldone/components-vue/storefront/language/selector/SLanguageSelector.vue";
-import UCurrencySelector from "@selldone/components-vue/ui/currency/selector/UCurrencySelector.vue";
+import RegionSwitcherButton from "../../region-switcher/RegionSwitcherButton.vue";
+import RegionSheet from "../../region-switcher/RegionSheet.vue";
+import { money } from "../../valero/valero-home";
 import KalioBasketDrawer from "./KalioBasketDrawer.vue";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
 import { aisleImage, aisleRoute, aisles, catalogueRoute, dealsRoute, sellerRoute, tintFor, vendorImage, vendors } from "../kalio-catalog";
@@ -271,8 +271,8 @@ export default {
   name: "KalioHeader",
   components: {
     SStorefrontSearchBox,
-    SLanguageSelector,
-    UCurrencySelector,
+    RegionSwitcherButton,
+    RegionSheet,
     KalioBasketDrawer,
     SHeaderSectionUser: defineAsyncComponent(
       () => import("@selldone/components-vue/storefront/header/section/user/SHeaderSectionUser.vue"),
@@ -404,6 +404,7 @@ export default {
   },
 
   methods: {
+    money,
     aisleRoute,
     aisleImage,
     sellerRoute,

@@ -21,8 +21,8 @@
     <router-link :to="to" class="t-card__name">{{ product.title }}</router-link>
 
     <div class="t-card__price">
-      <u-price :amount="now" :currency="currency" class="t-card__now" />
-      <s v-if="was" class="t-card__was"><u-price :amount="was" :currency="currency" /></s>
+      <u-price :amount="now" :currency="price.currency" class="t-card__now" />
+      <s v-if="was" class="t-card__was"><u-price :amount="was" :currency="price.currency" /></s>
       <span v-if="product.unit" class="t-card__unit">per {{ product.unit }}</span>
     </div>
 
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import { currentCurrency } from "../region-switcher/region";
 import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 import KalioCardStep from "../kalio/KalioCardStep.vue";
 import { percentOff, priceOf, productImage, productSrcset, dropSrcset } from "../kalio/kalio-catalog";
@@ -60,7 +61,7 @@ export default {
       return this.$store.getters.getShop;
     },
     currency() {
-      return this.GetUserSelectedCurrency().code;
+      return currentCurrency();
     },
     price() {
       return priceOf(this.shop, this.product, this.currency);

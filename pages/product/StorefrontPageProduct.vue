@@ -105,7 +105,7 @@
                 <span
                   ><b>{{ w.word }}</b> — {{ w.line }}.
                   <template v-if="w.free">Free.</template>
-                  <template v-else-if="w.freeOver">Free on orders over <u-price :amount="w.freeOver" :currency="w.currency" />.</template>
+                  <template v-else-if="w.freeOver">Free on orders over {{ money(w.freeOver, w.currency, "auto") }}.</template>
                 </span>
               </li>
             </ul>
@@ -160,7 +160,7 @@ import NotificationService from "@selldone/components-vue/plugins/notification/N
 
 import ValeroProductOverview from "../../components/valero/product/ValeroProductOverview.vue";
 import ValeroRow from "../../components/valero/ValeroRow.vue";
-import { waysOf } from "../../components/valero/valero-home";
+import { money, waysOf } from "../../components/valero/valero-home";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
 import SProductOverviewLoading from "@selldone/components-vue/storefront/product/overview/loading/SProductOverviewLoading.vue";
 
@@ -324,6 +324,7 @@ export default {
   },
 
   methods: {
+    money,
     askToSignIn() {
       EventBus.$emit("need-login", true);
     },

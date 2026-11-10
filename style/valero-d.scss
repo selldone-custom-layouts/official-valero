@@ -1612,3 +1612,84 @@ body,
 .k-footer {
   text-align: start;
 }
+
+/* ▆▆▆▆▆▆▆▆ Language and currency (the region switcher, 10 November 2026) ▆▆▆▆▆▆▆▆
+   The owner's choice B: a small pill at the end of the announcement strip
+   (the header's utility row), and a row in the phone menu that opens a
+   bottom sheet. Its colours are Valero's tokens, which the theme switcher
+   sets per palette and mode. */
+:root {
+  --rs-ink: var(--k-ink);
+  --rs-muted: var(--k-muted);
+  --rs-line: var(--k-line-strong);
+  --rs-surface: var(--k-card);
+  --rs-accent: var(--v-link);
+  --rs-accent-soft: var(--k-green-soft);
+  --rs-btn: var(--k-green);
+  --rs-on-btn: var(--k-on-green);
+  --rs-pill-ink: var(--k-gold);
+  --rs-pill-bg: color-mix(in oklab, var(--k-gold) 10%, transparent);
+  --rs-pill-bg-hover: color-mix(in oklab, var(--k-gold) 14%, transparent);
+  --rs-font: var(--k-body);
+}
+
+/* The strip sits over the bar under it, so the open panel is not hidden
+   behind the bar. */
+.v-ann:has(.v-ann__row.-region) {
+  position: relative;
+  z-index: 2;
+}
+
+.v-ann__row.-region {
+  position: relative;
+  /* The messages stay centred, clear of the pill at the end. */
+  padding-inline: calc(var(--k-gutter) + 112px) !important;
+
+  @media (max-width: 1239px) {
+    .-wide + .-wide {
+      display: none;
+    }
+  }
+}
+
+.v-ann__region {
+  position: absolute;
+  top: 50%;
+  inset-inline-end: var(--k-gutter);
+  display: flex;
+  transform: translateY(-50%);
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: normal;
+}
+
+.v-ann .rs-pick__btn.v-ann__pill {
+  height: 26px;
+  padding: 0 10px 0 8px;
+  font: 600 11px/1 var(--k-body);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  &:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--k-gold) !important;
+  }
+}
+
+/* The phone menu's row: a row of the menu, the globe in the numbers' column. */
+.v-menu-link.-region {
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  margin-top: 18px;
+  border-top: 1px solid var(--k-line);
+  border-inline: 0;
+  border-radius: 0;
+  background: none !important;
+  font-family: var(--k-body);
+  font-size: 15px;
+  cursor: pointer;
+
+  .rs-row__ic {
+    width: 22px;
+  }
+}

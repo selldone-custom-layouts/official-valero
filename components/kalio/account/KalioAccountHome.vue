@@ -138,6 +138,7 @@
 </template>
 
 <script>
+import { currentCurrency } from "../../region-switcher/region";
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 import { reorder } from "../kalio-basket";
@@ -181,7 +182,7 @@ export default {
 
   computed: {
     currency() {
-      return this.latest?.currency || this.GetUserSelectedCurrency()?.code || this.$shop.currency;
+      return this.latest?.currency || currentCurrency();
     },
     latest() {
       return account.orders[0] || null;

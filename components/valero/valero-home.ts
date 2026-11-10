@@ -19,6 +19,8 @@
  * Nothing here names a product, a price or a seller.
  */
 
+import { baseCurrency, money as regionMoney } from "../region-switcher/region";
+
 declare const window: any;
 
 /* ━━━━━━━━━━━━ Photos ━━━━━━━━━━━━
@@ -142,7 +144,7 @@ export function waysOf(shop: any): Way[] {
       line: kind ? kind.line : "Brought to your address",
       free,
       freeOver,
-      currency: t.currency || shop?.currency || null,
+      currency: t.currency || null, // null: the shop's base currency (shop.currency does not exist)
     });
   }
   /* In the order shoppers expect: pickup, delivery, shipping, post. */
@@ -161,5 +163,13 @@ export function freeShippingFrom(shop: any): { amount: number; currency: string 
   );
   if (!paid.length) return null;
   const best = paid.reduce((a: any, b: any) => (Number(b.free_shipping_limit) < Number(a.free_shipping_limit) ? b : a));
-  return { amount: Number(best.free_shipping_limit), currency: best.currency || shop?.currency };
+  return { amount: Number(best.free_shipping_limit), currency: best.currency || baseCurrency() };
+}
+
+/* ━━━━━━━━━━━━ Money ━━━━━━━━━━━━
+   An amount in `currency` (null: the shop's base currency) shown in the
+   visitor's currency, converted with the shop's rates (the region
+   switcher). `short`: true drops the cents, "auto" drops them when whole. */
+export function money(amount: number, currency?: string | null, short: boolean | "auto" = false): string {
+  return regionMoney(amount, currency || baseCurrency(), { short });
 }

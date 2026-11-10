@@ -38,6 +38,8 @@ import "@fortawesome/fontawesome-free/css/all.css"; // Ensure your project is ca
 import "@selldone/components-vue/style/fonts/material-design-fonts/material-design-icons.scss"; // Ensure your project is capable of handling css files
 import "@selldone/components-vue/style/fonts/lang/fa/lang-fa-iransans.css";
 import { bootThemeSwitcher } from "./components/theme-switcher/theme-switcher";
+import { bootRegion, defineMessages } from "./components/region-switcher/region";
+import { VALERO_MESSAGES } from "./components/valero/i18n";
 import { VALERO_THEME } from "./components/valero/valero-theme";
 import "./components/kalio/kalio-fonts"; // Kalio typefaces, loaded by the app so they reach production
 import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
@@ -92,6 +94,10 @@ app.use(components);
 
 // ━━━ Storefront SDK (xapi) ━━━
 StorefrontSDK.Setup(); // Set up the Shop SDK.
+// The visitor's language and currency (the header strip's pill, the phone
+// menu's row): Selldone's own state, mirrored so every amount follows a pick.
+defineMessages(VALERO_MESSAGES);
+bootRegion(store);
 
 // ━━━ Community SDK (capi) ━━━
 CapiCommunity.Setup(); // Setup community.

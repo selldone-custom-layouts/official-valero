@@ -1,5 +1,7 @@
 <!--
-  Kalio — the basket drawer (the header's Basket).
+  Kalio — the basket drawer (the header's Basket). Every amount goes
+  through money(): shown in the visitor's currency at once after a pick,
+  before the server has repriced the basket.
 
   A receipt first: the subtotal large, what the shopper saves, and
   Checkout right there. Then the basket in compact rows (picture, name,
@@ -23,7 +25,7 @@
         <p v-if="groups.length > 1" class="t-bdrawer__type">{{ typeName(group.type) }}</p>
         <div v-if="free_from && group.type === 'PHYSICAL'" class="t-meter2">
           <template v-if="freeLeft(group) > 0">
-            Add <b><u-price :amount="freeLeft(group)" :currency="group.currency" /></b> more for free shipping
+            Add <b><span class="u--price">{{ money(freeLeft(group), group.currency) }}</span></b> more for free shipping
           </template>
           <template v-else><b>Free shipping</b> on this order</template>
           <div class="t-meter__bar"><i :style="{ width: freePct(group) + '%' }"></i></div>
@@ -59,8 +61,8 @@
                 </div>
               </div>
               <span class="t-bdrawer__prices">
-                <u-price :amount="item.price * shown(item)" :class="{ '-sale': item.dis > 0 }" :currency="item.currency" class="k-bdrawer__price" />
-                <s v-if="item.dis > 0"><u-price :amount="(item.price + item.dis) * shown(item)" :currency="item.currency" /></s>
+                <span :class="{ '-sale': item.dis > 0 }" class="u--price k-bdrawer__price">{{ money(item.price * shown(item), item.currency) }}</span>
+                <s v-if="item.dis > 0"><span class="u--price">{{ money((item.price + item.dis) * shown(item), item.currency) }}</span></s>
               </span>
             </li>
           </ul>
@@ -71,13 +73,13 @@
 
     <footer v-for="group in groups.slice(0, 1)" :key="'f' + group.type" :class="{ '-settling': group.settling }" class="t-bdrawer__foot">
       <p class="t-bdrawer__row">
-        <span>Items ({{ group.units }})</span><u-price :amount="group.total + group.saved" :currency="group.currency" />
+        <span>Items ({{ group.units }})</span><span class="u--price">{{ money(group.total + group.saved, group.currency) }}</span>
       </p>
       <p v-if="group.saved >= 0.01" class="t-bdrawer__row -save">
-        <span>You save</span><span>−<u-price :amount="group.saved" :currency="group.currency" /></span>
+        <span>You save</span><span>−<span class="u--price">{{ money(group.saved, group.currency) }}</span></span>
       </p>
       <p class="t-bdrawer__row -tot">
-        <span>Subtotal</span><u-price :amount="group.total" :currency="group.currency" />
+        <span>Subtotal</span><span class="u--price">{{ money(group.total, group.currency) }}</span>
       </p>
       <div class="t-bdrawer__btns">
         <router-link :to="checkoutRoute(group.type)" class="t-btn -line" @click="$emit('close')">View bag</router-link>
@@ -91,7 +93,8 @@
 import { ProductType } from "@selldone/core-js/enums/product/ProductType";
 import { settling, shownCount, stepTo } from "../kalio-basket";
 import { productImage, vendorImage, vendors } from "../kalio-catalog";
-import { freeShippingFrom } from "../../valero/valero-home";
+import { freeShippingFrom, money } from "../../valero/valero-home";
+import { convert } from "../../region-switcher/region";
 import KalioOftenAdded from "../KalioOftenAdded.vue";
 
 /* The size of a variant in words: its volume, weight, pack, colour or style. */
@@ -181,12 +184,23 @@ export default {
       return [...out.values()];
     },
 
+    money,
+
+    /* The threshold is in its delivery way's currency: converted into the
+       basket's before it is compared with the basket's total. */
+    freeLimit(group) {
+      if (!this.free_from) return 0;
+      const v = convert(this.free_from.amount, this.free_from.currency, group.currency);
+      return v == null ? this.free_from.amount : v;
+    },
+
     freeLeft(group) {
-      return this.free_from ? Math.max(0, this.free_from.amount - group.total) : 0;
+      return this.free_from ? Math.max(0, this.freeLimit(group) - group.total) : 0;
     },
 
     freePct(group) {
-      return this.free_from ? Math.min(100, Math.round((group.total / this.free_from.amount) * 100)) : 0;
+      const limit = this.freeLimit(group);
+      return limit > 0 ? Math.min(100, Math.round((group.total / limit) * 100)) : 0;
     },
 
     meta(item) {

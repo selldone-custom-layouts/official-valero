@@ -141,7 +141,7 @@
         <b>{{ w.line }}</b>
         <span class="vh-muted">
           <template v-if="w.free">Free</template>
-          <template v-else-if="w.freeOver">Free over <u-price :amount="w.freeOver" :currency="w.currency || currency" /></template>
+          <template v-else-if="w.freeOver">Free over {{ money(w.freeOver, w.currency, "auto") }}</template>
           <template v-else>Priced with your address</template>
         </span>
       </div>
@@ -199,7 +199,8 @@ import {
   vendors,
 } from "../kalio/kalio-catalog";
 import { quickAdd } from "../kalio/kalio-basket";
-import { DEALS_FILTER, findAisle, listProducts, photo, waysOf } from "./valero-home";
+import { DEALS_FILTER, findAisle, listProducts, money, photo, waysOf } from "./valero-home";
+import { currentCurrency } from "../region-switcher/region";
 import { dateParts, journalPage, journalRoute, postRoute } from "../kalio/pages/kalio-journal";
 
 export default {
@@ -229,7 +230,7 @@ export default {
       return this.$shop?.title || "Valero";
     },
     currency() {
-      return this.GetUserSelectedCurrency()?.code;
+      return currentCurrency();
     },
     heroPhoto() {
       return photo("valero-hero-dinners");
@@ -290,6 +291,7 @@ export default {
   },
 
   methods: {
+    money,
     aisleRoute,
     aisleImage,
     sellerRoute,
