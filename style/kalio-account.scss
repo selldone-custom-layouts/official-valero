@@ -411,7 +411,7 @@
   }
 
   &:hover {
-    background: rgba(255, 255, 255, 0.6);
+    background: var(--k-raise); /* not white: light words on it in dark mode */
   }
 
   &.-on {

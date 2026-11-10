@@ -91,14 +91,6 @@
             <router-link v-if="user" :to="profileRoute" class="v-hdr__link">Account</router-link>
             <button v-else-if="!busyUser" class="v-hdr__link" type="button" @click="signIn">Sign in</button>
           </template>
-          <!-- The visitor's theme: palettes, a free Custom colour and Light /
-               Dark, after the account and just before the cart (the owner's
-               rule, 9 November 2026, on every molino Layout). Only on molino,
-               the showcase shop (an imported copy never shows it). -->
-          <theme-switcher-button button-class="v-hdr__link -theme">
-            <v-icon v-if="compact" size="22">palette</v-icon><template v-else>Theme</template>
-          </theme-switcher-button>
-
           <button :aria-label="`Bag, ${itemsCount} items`" class="v-hdr__link -bag" type="button" @click="basket = true">
             Bag <b>({{ itemsCount }})</b>
           </button>
@@ -240,7 +232,6 @@ import SStorefrontSearchBox from "@selldone/components-vue/storefront/search/SSt
 import SLanguageSelector from "@selldone/components-vue/storefront/language/selector/SLanguageSelector.vue";
 import UCurrencySelector from "@selldone/components-vue/ui/currency/selector/UCurrencySelector.vue";
 import KalioBasketDrawer from "./KalioBasketDrawer.vue";
-import ThemeSwitcherButton from "../../theme-switcher/ThemeSwitcherButton.vue";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
 import { aisleImage, aisleRoute, aisles, catalogueRoute, dealsRoute, sellerRoute, tintFor, vendorImage, vendors } from "../kalio-catalog";
 import { freeShippingFrom, waysOf } from "../../valero/valero-home";
@@ -254,7 +245,6 @@ export default {
     SLanguageSelector,
     UCurrencySelector,
     KalioBasketDrawer,
-    ThemeSwitcherButton,
     SHeaderSectionUser: defineAsyncComponent(
       () => import("@selldone/components-vue/storefront/header/section/user/SHeaderSectionUser.vue"),
     ),

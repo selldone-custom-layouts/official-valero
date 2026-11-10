@@ -1,7 +1,8 @@
 /*
- * Valero — the theme switcher's config (the header's "Theme" link: the
- * owner's rule of 9 November 2026, the same on every molino Layout as on
- * Digito and Besti).
+ * Valero — the theme switcher's config (the footer's "Theme" row, just
+ * above the copyright line: the owner's rule of 10 November 2026, the same
+ * on every molino Layout as on Digito and Besti; it was a header link
+ * from 9 November).
  *
  * Valero is dark first: black floor, ivory type, the action colour is ivory
  * with black words, gold for the small accents. Its stylesheets were turned

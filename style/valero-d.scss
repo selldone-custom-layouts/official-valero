@@ -664,6 +664,29 @@ body,
     a {
       color: var(--k-muted) !important;
     }
+
+    &.-after-theme {
+      margin-top: 0 !important;
+    }
+  }
+
+  /* The visitor's theme row (showcase shops only), a strip of its own just
+     above the legal row, on the footer's black in light mode too. Its
+     colours are the footer's own tokens (valero-light.scss keeps them dark
+     there), not the page's: words 4.5:1 or more, the switch's outline and
+     the swatches' edges 3:1 or more on #0b0b0c. */
+  &__theme {
+    margin-top: 44px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-top: 1px solid var(--k-line);
+    --ts-ink: var(--k-ink);
+    --ts-muted: var(--k-muted);
+    --ts-line: rgba(244, 241, 234, 0.42);
+    --ts-ring: var(--v-link);
+    --ts-accent: var(--k-green);
+    --ts-on-accent: var(--k-on-green);
+    --ts-swatch-edge: rgba(244, 241, 234, 0.42);
   }
 }
 

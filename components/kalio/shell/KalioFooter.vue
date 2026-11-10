@@ -73,7 +73,16 @@
         </nav>
       </div>
 
-      <div class="k-wrap k-footer__base">
+      <!-- The visitor's theme: palettes, a free Custom colour and Light /
+           Dark, in a strip of its own just above the legal row (the owner,
+           10 November 2026: the header button took room; the theme belongs
+           in the footer, on every Layout). Only on molino, the showcase shop
+           (an imported copy never shows it). -->
+      <div v-if="themeRow.enabled" class="k-wrap k-footer__theme">
+        <theme-switcher-row />
+      </div>
+
+      <div :class="{ '-after-theme': themeRow.enabled }" class="k-wrap k-footer__base">
         <span>© {{ year }} {{ shopTitle }}</span>
         <span class="k-footer__base-links">
           <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY }">Privacy</router-link>
@@ -95,10 +104,13 @@ import SFooterSectionGdpr from "@selldone/components-vue/storefront/footer/secti
 import SFooterSectionSelldone from "@selldone/components-vue/storefront/footer/section/selldone/SFooterSectionSelldone.vue";
 import { EventBus } from "@selldone/components-vue/utils/events/EventBus.ts";
 import { aisleRoute, aisles, catalogueRoute, dealsRoute, sellerRoute, vendorImage, vendors } from "../kalio-catalog";
+import ThemeSwitcherRow from "../../theme-switcher/ThemeSwitcherRow.vue";
+import { themeState } from "../../theme-switcher/theme-switcher";
 
 export default {
   name: "KalioFooter",
   components: {
+    ThemeSwitcherRow,
     SStorefrontSocialButtons,
     SLanguageSelector,
     UCurrencySelector,
@@ -111,6 +123,7 @@ export default {
     return {
       BRAND,
       window: window,
+      themeRow: themeState,
       aisleList: [],
       sellerList: [],
       year: new Date().getFullYear(),
