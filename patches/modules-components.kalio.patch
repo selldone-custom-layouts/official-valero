@@ -344,6 +344,52 @@ index 579e8c9..1f5d878 100644
          <v-icon class="ms-1" color="white" size="small">insert_emoticon</v-icon>
        </span>
      </div>
+diff --git a/storefront/product/section/tax/SProductSectionTax.vue b/storefront/product/section/tax/SProductSectionTax.vue
+index 2a63e8d..c5b766a 100644
+--- a/storefront/product/section/tax/SProductSectionTax.vue
++++ b/storefront/product/section/tax/SProductSectionTax.vue
+@@ -25,10 +25,8 @@
+         >(<v-icon size="small">shopping_bag</v-icon>
+         {{ $t("global.commons.over") }}
+         <u-price
+-          :amount="
+-            transportation_with_min_free_shipping_limit?.free_shipping_limit
+-          "
+-          :currency="transportation_with_min_free_shipping_limit?.currency"
++          :amount="free_over.amount"
++          :currency="free_over.currency"
+         ></u-price
+         >)</span
+       >
+@@ -122,6 +120,8 @@ import { ShopTransportations } from "@selldone/core-js/enums/logistic/ShopTransp
+ import { MapHelper } from "@selldone/core-js/helper/map/MapHelper";
+ import { ProductType } from "@selldone/core-js/enums/product/ProductType";
+ import { BusinessModel } from "@selldone/core-js/enums/shop/BusinessModel";
++import { PriceHelper } from "@selldone/core-js/helper/price/PriceHelper";
++import { CurrencyHelper } from "@selldone/core-js/helper/currency/CurrencyHelper";
+ 
+ export default {
+   name: "SProductSectionTax",
+@@ -204,6 +204,19 @@ export default {
+         .map((t) => t.logo)
+         .unique();
+     },
++    /* Kalio: "Free shipping over X" in the visitor's currency, converted
++       with the shop's rates (the way's own currency when there is no rate). */
++    free_over() {
++      const t = this.transportation_with_min_free_shipping_limit;
++      const amount = t?.free_shipping_limit || 0;
++      const from = t?.currency;
++      const to = CurrencyHelper.GetUserSelectedCurrency(
++        (this as any).$localstorage_base_path?.(),
++      )?.code;
++      if (!from || !to || from === to) return { amount, currency: from };
++      const rate = PriceHelper.getBuyRateValue(this.$shop, from, to);
++      return rate ? { amount: amount * rate, currency: to } : { amount, currency: from };
++    },
+     transportation_with_min_free_shipping_limit() {
+       return this.transportations_free_shipping?.minByKey(
+         "free_shipping_limit",
 diff --git a/storefront/products/listing/SProductsListing.vue b/storefront/products/listing/SProductsListing.vue
 index 942cd61..89f30b7 100644
 --- a/storefront/products/listing/SProductsListing.vue

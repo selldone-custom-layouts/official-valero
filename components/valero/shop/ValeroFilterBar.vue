@@ -58,7 +58,7 @@
             hide-details
           ></v-range-slider>
           <div class="t-dd__prices">
-            <span><u-price :amount="price_draft[0]" /></span>–<span><u-price :amount="price_draft[1]" /></span>
+            <span class="u--price">{{ formatMoney(price_draft[0], currentCurrency()) }}</span>–<span class="u--price">{{ formatMoney(price_draft[1], currentCurrency()) }}</span>
           </div>
           <div class="t-dd__ft">
             <button class="t-btn -line" type="button" @click="clearPrice">{{ t("compare.clear", "Clear") }}</button>
@@ -176,7 +176,7 @@
                   hide-details
                 ></v-range-slider>
                 <div class="t-dd__prices">
-                  <span><u-price :amount="panel_price[0]" /></span>–<span><u-price :amount="panel_price[1]" /></span>
+                  <span class="u--price">{{ formatMoney(panel_price[0], currentCurrency()) }}</span>–<span class="u--price">{{ formatMoney(panel_price[1], currentCurrency()) }}</span>
                 </div>
               </section>
               <section v-for="group in groups" :key="'p' + group.kind + group.key" class="t-fgrp">
@@ -208,7 +208,7 @@
 </template>
 
 <script>
-import { currentCurrency } from "../../region-switcher/region";
+import { currentCurrency, formatMoney } from "../../region-switcher/region";
 import UPrice from "@selldone/components-vue/ui/price/UPrice.vue";
 import CurrencyMixin from "@selldone/components-vue/mixin/currency/CurrencyMixin.ts";
 import { PriceHelper } from "@selldone/core-js/helper";
@@ -306,6 +306,9 @@ export default {
   },
 
   methods: {
+    /* The price boxes: the visitor's currency, written as the region pill writes it. */
+    formatMoney,
+    currentCurrency,
     sortName,
     valueLabel,
     picked(group) {
