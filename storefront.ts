@@ -42,6 +42,7 @@ import { VALERO_THEME } from "./components/valero/valero-theme";
 import { bootRegion } from "./components/region-switcher/region";
 import { EN as KALIO_EN, LOADERS as KALIO_LANGUAGES } from "./components/kalio/i18n";
 import { bootI18n, i18nGlobals } from "./components/kalio/i18n/kalio-i18n";
+import { installShopData } from "./components/kalio/i18n/shop-data";
 import "./components/kalio/kalio-fonts"; // Kalio typefaces, loaded by the app so they reach production
 import { PageHyper } from "@selldone/page-builder/PageHyperService.ts";
 import {SetupPageBuilder} from "@selldone/page-builder/page-builder.ts";
@@ -98,6 +99,9 @@ app.use(components);
 StorefrontSDK.Setup(); // Set up the Shop SDK.
 bootRegion(store); // language + currency: the header pill and the phone menu's sheet
 bootI18n(KALIO_EN, KALIO_LANGUAGES); // the Layout's own words in the visitor's language; <html lang dir>
+// The shop's data Selldone does not translate itself (spec tables, pros,
+// rating names, sale units) in the visitor's language (components/kalio/i18n/shop-data.ts).
+installShopData(window.axios);
 
 // ━━━ Community SDK (capi) ━━━
 CapiCommunity.Setup(); // Setup community.

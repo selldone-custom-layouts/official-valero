@@ -35,7 +35,7 @@
           <router-link :to="productRoute(item.product_id)" class="k-lines__title">{{ item.product?.title }}</router-link>
           <small class="k-lines__each">
             <template v-if="size(item)">Size: {{ size(item) }} · </template
-            ><template v-if="item.product?.unit && !/^(each|ea|piece|pc)$/i.test(item.product.unit)">per {{ item.product.unit }} · </template
+            ><template v-if="item.product?.unit && !/^(each|ea|piece|pc|unidad)$/i.test(item.product._unit_en || item.product.unit)">per {{ item.product.unit }} · </template
             ><u-price :amount="item.price" :currency="item.currency" /> each
           </small>
           <button class="k-lines__remove" type="button" @click="step(item, -shown(item))">
