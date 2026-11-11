@@ -18,7 +18,7 @@
     <header class="k-offers__head">
       <!-- Tario 1.2.0 (product page B): a table of the sellers. -->
       <h2 :id="headingId" class="k-offers__title">
-        {{ items_show.length > 1 ? "Compare sellers" : "Sold by" }}
+        {{ items_show.length > 1 ? t("valero.offers.compare", "Compare sellers") : t("offers.soldBy", "Sold by") }}
       </h2>
     </header>
     <div v-if="items_show.length > 1" aria-hidden="true" class="k-offers__cols">
@@ -50,7 +50,7 @@
             class="k-offer__link"
             @click.stop
           >
-            Visit shop
+            {{ t("offers.visitShop", "Visit shop") }}
           </a>
           <span
             v-if="pickup_transportation_for_vendors_exists && offer.vendor.warehouse"

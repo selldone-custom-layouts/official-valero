@@ -17,20 +17,20 @@
   <div class="t-404 k-wrap">
     <section class="t-404__top">
       <span aria-hidden="true" class="t-404__big">404</span>
-      <p class="t-404__code">Page not found</p>
-      <h1>Not on the shelf.</h1>
-      <p class="t-404__lede">This page has been moved, sold out or was never stocked.</p>
+      <p class="t-404__code">{{ t("valero.404.code", "Page not found") }}</p>
+      <h1>{{ t("valero.404.title", "Not on the shelf.") }}</h1>
+      <p class="t-404__lede">{{ t("valero.404.lede", "This page has been moved, sold out or was never stocked.") }}</p>
       <form class="t-404__search" role="search" @submit.prevent="search">
-        <input v-model.trim="q" aria-label="Search the shop" placeholder="Search milk, bread, berries…" type="search" />
-        <button aria-label="Search" type="submit"><v-icon size="20">search</v-icon></button>
+        <input v-model.trim="q" :aria-label="t('valero.404.searchShop', 'Search the shop')" :placeholder="t('valero.404.placeholder', 'Search milk, bread, berries…')" type="search" />
+        <button :aria-label="t('common.search', 'Search')" type="submit"><v-icon size="20">search</v-icon></button>
       </form>
       <div class="t-404__acts">
-        <router-link :to="{ path: '/' }" class="t-btn -red">Back to the market</router-link>
-        <router-link :to="deals" class="t-btn -line">This week’s offers</router-link>
+        <router-link :to="{ path: '/' }" class="t-btn -red">{{ t("valero.404.back", "Back to the market") }}</router-link>
+        <router-link :to="deals" class="t-btn -line">{{ t("valero.offers", "This week’s offers") }}</router-link>
       </div>
     </section>
     <section v-if="list.length" class="t-sec">
-      <header class="t-sec__head"><h2 class="t-sec__title">Or start with an aisle</h2></header>
+      <header class="t-sec__head"><h2 class="t-sec__title">{{ t("cart.empty.aisles", "Or start with an aisle") }}</h2></header>
       <div class="t-404__aisles">
         <router-link v-for="(a, i) in list.slice(0, 8)" :key="a.id" :to="aisleRoute(a)">
           <span class="t-404__n">{{ String(i + 1).padStart(2, "0") }}</span>{{ a.title || a.name }}

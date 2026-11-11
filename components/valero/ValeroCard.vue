@@ -23,7 +23,7 @@
     <div class="t-card__price">
       <u-price :amount="now" :currency="price.currency" class="t-card__now" />
       <s v-if="was" class="t-card__was"><u-price :amount="was" :currency="price.currency" /></s>
-      <span v-if="product.unit" class="t-card__unit">per {{ product.unit }}</span>
+      <span v-if="product.unit" class="t-card__unit">{{ t("rail.perUnit", "per {unit}", { unit: product.unit }) }}</span>
     </div>
 
     <kalio-card-step

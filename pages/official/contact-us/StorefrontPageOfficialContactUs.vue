@@ -30,32 +30,32 @@
   <div class="k-contact">
       <div class="k-contact__grid">
         <section class="k-contact__side">
-          <h1 class="k-official__title">Contact us</h1>
-          <p class="k-contact__lede">Write to the shop here and the answer comes to your email. These may answer you sooner:</p>
+          <h1 class="k-official__title">{{ t("contact.pageTitle", "Contact us") }}</h1>
+          <p class="k-contact__lede">{{ t("valero.contact.lede", "Write to the shop here and the answer comes to your email. These may answer you sooner:") }}</p>
 
           <ul class="k-contact__ways">
             <li>
               <v-icon>receipt_long</v-icon>
               <div>
-                <b>About an order</b>
-                <span>Each order has its own messages with the seller who sent it.</span>
-                <router-link :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }">Your orders</router-link>
+                <b>{{ t("valero.contact.order.title", "About an order") }}</b>
+                <span>{{ t("valero.contact.order.text", "Each order has its own messages with the seller who sent it.") }}</span>
+                <router-link :to="{ name: window.$storefront.routes.HISTORY_ORDERS_PHYSICAL }">{{ t("valero.contact.order.link", "Your orders") }}</router-link>
               </div>
             </li>
             <li>
               <v-icon>help_outline</v-icon>
               <div>
-                <b>Before you buy</b>
-                <span>What shoppers ask most, answered.</span>
-                <router-link :to="{ name: 'ShopFAQ' }">Questions and answers</router-link>
+                <b>{{ t("valero.contact.faq.title", "Before you buy") }}</b>
+                <span>{{ t("valero.contact.faq.text", "What shoppers ask most, answered.") }}</span>
+                <router-link :to="{ name: 'ShopFAQ' }">{{ t("faq.title", "Questions and answers") }}</router-link>
               </div>
             </li>
             <li>
               <v-icon>storefront</v-icon>
               <div>
-                <b>About the shop</b>
-                <span>Who runs it and how an order works.</span>
-                <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_ABOUT_US }">About us</router-link>
+                <b>{{ t("valero.contact.about.title", "About the shop") }}</b>
+                <span>{{ t("valero.contact.about.text", "Who runs it and how an order works.") }}</span>
+                <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_ABOUT_US }">{{ t("about.pageTitle", "About us") }}</router-link>
               </div>
             </li>
           </ul>
@@ -73,13 +73,13 @@
         <section aria-labelledby="k-contact-form" class="k-contact__card">
           <div v-if="submitted" class="k-contact__done">
             <v-icon size="40">check_circle</v-icon>
-            <h2 id="k-contact-form">Thank you, it is on its way</h2>
-            <p>The shop answers by email, usually within a day.</p>
-            <router-link :to="{ name: window.$storefront.routes.SHOP_PAGE }" class="k-btn k-btn--solid">Back to the shop</router-link>
+            <h2 id="k-contact-form">{{ t("valero.contact.sent.title", "Thank you, it is on its way") }}</h2>
+            <p>{{ t("valero.contact.sent.text", "The shop answers by email, usually within a day.") }}</p>
+            <router-link :to="{ name: window.$storefront.routes.SHOP_PAGE }" class="k-btn k-btn--solid">{{ t("valero.contact.sent.back", "Back to the shop") }}</router-link>
           </div>
 
           <template v-else>
-            <h2 id="k-contact-form">Write to us</h2>
+            <h2 id="k-contact-form">{{ t("valero.writeToUs", "Write to us") }}</h2>
 
             <div v-if="USER()" class="k-contact__who">
               <v-avatar v-if="USER().id" size="44"><v-img :src="getUserAvatar(USER().id)" /></v-avatar>
@@ -89,12 +89,12 @@
               </div>
             </div>
             <template v-else>
-              <v-text-field v-model="name" label="Your name" persistent-placeholder placeholder="Jane Doe" variant="outlined" />
+              <v-text-field v-model="name" :label="t('valero.contact.name', 'Your name')" :placeholder="t('valero.contact.namePlaceholder', 'Jane Doe')" persistent-placeholder variant="outlined" />
               <v-text-field
                 v-model="email"
                 :rules="[GlobalRules.required(), GlobalRules.email()]"
                 class="english-field"
-                label="Email, for the answer"
+                :label="t('valero.contact.email', 'Email, for the answer')"
                 persistent-placeholder
                 placeholder="you@example.com"
                 prepend-inner-icon="mail_outline"
@@ -103,7 +103,7 @@
               <v-text-field
                 v-model="phone"
                 class="english-field"
-                label="Phone (optional)"
+                :label="t('valero.contact.phone', 'Phone (optional)')"
                 persistent-placeholder
                 placeholder="+1 000 000 0000"
                 prepend-inner-icon="phone"
@@ -115,16 +115,16 @@
               v-model="message"
               :rules="[GlobalRules.required()]"
               auto-grow
-              label="Your message"
+              :label="t('order.chat.yourMessage', 'Your message')"
               persistent-placeholder
-              placeholder="An order number helps, if it is about an order."
+:placeholder="t('valero.contact.messagePlaceholder', 'An order number helps, if it is about an order.')"
               rows="5"
               variant="outlined"
             />
 
             <button :disabled="!canSend || busy_send" class="k-btn k-btn--solid k-contact__send" type="button" @click="sendForm">
               <v-progress-circular v-if="busy_send" indeterminate size="18" width="2" />
-              <template v-else>Send<v-icon size="18">send</v-icon></template>
+              <template v-else>{{ t("valero.contact.send", "Send") }}<v-icon class="k-flip" size="18">send</v-icon></template>
             </button>
           </template>
         </section>
@@ -136,6 +136,7 @@
 import NotificationService from "@selldone/components-vue/plugins/notification/NotificationService.ts";
 
 import SArticleEditor from "@selldone/components-vue/article/SArticleEditor.vue";
+import { t } from "@app-storefront/components/kalio/i18n/kalio-i18n";
 
 export default {
   name: "StorefrontPageOfficialContactUs",
@@ -164,7 +165,7 @@ export default {
   },
 
   created() {
-    this.setPageTitle("Contact us");
+    this.setPageTitle(t("contact.pageTitle", "Contact us")); // Set Page Title!
     this.fetchProfile();
 
     if (this.USER()) {

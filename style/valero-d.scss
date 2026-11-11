@@ -802,12 +802,12 @@ body,
 
 .t-row__track {
   gap: 0 !important;
-  border-left: 1px solid var(--k-line);
+  border-inline-start: 1px solid var(--k-line);
 }
 
 .t-row__cell {
   padding: 18px 18px 22px;
-  border-right: 1px solid var(--k-line);
+  border-inline-end: 1px solid var(--k-line);
   border-bottom: 1px solid var(--k-line);
 
   &.-skeleton i,
@@ -820,12 +820,12 @@ body,
 .v-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  border-left: 1px solid var(--k-line);
+  border-inline-start: 1px solid var(--k-line);
 
   &__cell {
     display: flex;
     padding: 18px 18px 22px;
-    border-right: 1px solid var(--k-line);
+    border-inline-end: 1px solid var(--k-line);
     border-bottom: 1px solid var(--k-line);
   }
 
@@ -1015,13 +1015,17 @@ body,
 
 .vh-hero {
   position: relative;
+  isolation: isolate;
   height: min(680px, 82vh);
   min-height: 520px;
   overflow: hidden;
   border-bottom: 1px solid var(--k-line);
 
+  /* The photo sits behind the words on purpose (z-index -1 inside the
+     hero's own stacking context). */
   &__img {
     position: absolute;
+    z-index: -1;
     inset: 0;
     width: 100%;
     height: 100%;
@@ -1036,7 +1040,7 @@ body,
     align-items: center;
     justify-content: flex-end;
     gap: 3%;
-    padding-right: 6%;
+    padding-inline-end: 6%;
     background: var(--k-well);
 
     img {
@@ -1175,6 +1179,7 @@ body,
   }
 
   &__arrow {
+    display: inline-block;
     color: var(--k-muted);
     opacity: 0;
     transition: opacity 160ms ease;
@@ -1203,7 +1208,7 @@ body,
 
     span {
       position: absolute;
-      left: 18px;
+      inset-inline-start: 18px;
       bottom: 16px;
       color: var(--v-on-light);
     }
@@ -1347,7 +1352,7 @@ body,
 .vh-makers {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-left: 1px solid var(--k-line);
+  border-inline-start: 1px solid var(--k-line);
 
   @media (max-width: $v-phone) {
     grid-template-columns: minmax(0, 1fr);
@@ -1359,7 +1364,7 @@ body,
   grid-template-columns: 110px minmax(0, 1fr);
   gap: 30px;
   padding: 40px;
-  border-right: 1px solid var(--k-line);
+  border-inline-end: 1px solid var(--k-line);
   border-bottom: 1px solid var(--k-line);
   color: var(--k-ink) !important;
   text-decoration: none !important;
@@ -1533,10 +1538,10 @@ body,
   flex-direction: column;
   gap: 8px;
   padding: 34px 30px;
-  border-right: 1px solid var(--k-line);
+  border-inline-end: 1px solid var(--k-line);
 
   &:last-child {
-    border-right: 0;
+    border-inline-end: 0;
   }
 
   b {
@@ -1554,7 +1559,7 @@ body,
 
   @media (max-width: $v-phone) {
     padding: 24px 0;
-    border-right: 0;
+    border-inline-end: 0;
     border-bottom: 1px solid var(--k-line);
   }
 }
@@ -1692,4 +1697,17 @@ body,
   .rs-row__ic {
     width: 22px;
   }
+}
+
+/* Arabic (and any right-to-left language): the Arabic face has no italic, so
+   the hero's second line keeps its colour but not a slant the browser would
+   fake. */
+html[dir="rtl"] .vh-hero__title em {
+  font-style: normal;
+}
+
+/* Without a photo, the still life darkens toward the words: from the right in
+   a right-to-left language. */
+html[dir="rtl"] .vh-hero__still::after {
+  background: linear-gradient(270deg, rgba(11, 11, 12, 0.94) 30%, rgba(11, 11, 12, 0.2));
 }

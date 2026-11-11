@@ -20,6 +20,7 @@
  */
 
 import { baseCurrency, money as regionMoney } from "../region-switcher/region";
+import { t } from "../kalio/i18n/kalio-i18n";
 
 declare const window: any;
 
@@ -54,37 +55,100 @@ export function findAisle(list: any[], pattern: RegExp, used: Set<number> = new 
    `deal` is the caption when the aisle has products on offer, `plain` when
    it has none. "{off}" is the best saving, "{from}" the lowest price. */
 export const TILES = [
-  { pattern: /breakfast|cereal/i, photo: "valero-tile-breakfast", deal: "Up to {off}% off breakfast favourites", plain: "Breakfast, sorted" },
-  { pattern: /snack|sweet|candy/i, photo: "valero-tile-snacks", deal: "Snack-time savings", plain: "The snack drawer" },
-  { pattern: /bread|bakery/i, photo: "valero-tile-bakery", deal: "Fresh-baked, up to {off}% off", plain: "Fresh-baked, from {from}" },
-  { pattern: /household|clean|laundry/i, photo: "valero-tile-household", deal: "Stock up the home for less", plain: "Stock up the home" },
-  { pattern: /meat|seafood|fish|poultry/i, photo: "valero-tile-meat", deal: "Dinner, sorted — up to {off}% off", plain: "Dinner, sorted" },
+  {
+    pattern: /breakfast|cereal/i,
+    photo: "valero-tile-breakfast",
+    get deal() {
+      return t("valero.tile.breakfast.deal", "Up to {off}% off breakfast favourites");
+    },
+    get plain() {
+      return t("valero.tile.breakfast.plain", "Breakfast, sorted");
+    },
+  },
+  {
+    pattern: /snack|sweet|candy/i,
+    photo: "valero-tile-snacks",
+    get deal() {
+      return t("valero.tile.snacks.deal", "Snack-time savings");
+    },
+    get plain() {
+      return t("valero.tile.snacks.plain", "The snack drawer");
+    },
+  },
+  {
+    pattern: /bread|bakery/i,
+    photo: "valero-tile-bakery",
+    get deal() {
+      return t("valero.tile.bakery.deal", "Fresh-baked, up to {off}% off");
+    },
+    get plain() {
+      return t("valero.tile.bakery.plain", "Fresh-baked, from {from}");
+    },
+  },
+  {
+    pattern: /household|clean|laundry/i,
+    photo: "valero-tile-household",
+    get deal() {
+      return t("valero.tile.household.deal", "Stock up the home for less");
+    },
+    get plain() {
+      return t("valero.tile.household.plain", "Stock up the home");
+    },
+  },
+  {
+    pattern: /meat|seafood|fish|poultry/i,
+    photo: "valero-tile-meat",
+    get deal() {
+      return t("valero.tile.meat.deal", "Dinner, sorted — up to {off}% off");
+    },
+    get plain() {
+      return t("valero.tile.meat.plain", "Dinner, sorted");
+    },
+  },
 ];
 
 /* "Fresh finds": three tall editorial tiles. */
 export const FINDS = [
-  { pattern: /produce|fruit|veg/i, photo: "valero-finds-produce", title: "Picked this week" },
-  { pattern: /beverage|drink|coffee|tea/i, photo: "valero-finds-coffee", title: "Your morning, brewed" },
-  { pattern: /meat|seafood|fish|poultry|deli|prepared/i, photo: "valero-finds-dinner", title: "Weeknight dinners" },
+  {
+    pattern: /produce|fruit|veg/i,
+    photo: "valero-finds-produce",
+    get title() {
+      return t("valero.finds.produce", "Picked this week");
+    },
+  },
+  {
+    pattern: /beverage|drink|coffee|tea/i,
+    photo: "valero-finds-coffee",
+    get title() {
+      return t("valero.finds.coffee", "Your morning, brewed");
+    },
+  },
+  {
+    pattern: /meat|seafood|fish|poultry|deli|prepared/i,
+    photo: "valero-finds-dinner",
+    get title() {
+      return t("valero.finds.dinner", "Weeknight dinners");
+    },
+  },
 ];
 
 /* A headline for an aisle that has no tile of its own. */
-const HEADLINES: [RegExp, string][] = [
-  [/produce|fruit|veg/i, "Picked for the week"],
-  [/dairy|egg|milk/i, "Fridge, restocked"],
-  [/bread|bakery/i, "Fresh from the oven"],
-  [/meat|seafood|fish/i, "From the butcher’s counter"],
-  [/breakfast|cereal/i, "Breakfast, sorted"],
-  [/snack/i, "The snack drawer"],
-  [/pantry/i, "Stock the cupboard"],
-  [/beverage|drink/i, "Something to sip"],
-  [/frozen/i, "Ready when you are"],
-  [/household|clean/i, "Stock up the home"],
+const HEADLINES: [RegExp, () => string][] = [
+  [/produce|fruit|veg/i, () => t("valero.headline.produce", "Picked for the week")],
+  [/dairy|egg|milk/i, () => t("valero.headline.dairy", "Fridge, restocked")],
+  [/bread|bakery/i, () => t("valero.headline.bakery", "Fresh from the oven")],
+  [/meat|seafood|fish/i, () => t("valero.headline.meat", "From the butcher’s counter")],
+  [/breakfast|cereal/i, () => t("valero.tile.breakfast.plain", "Breakfast, sorted")],
+  [/snack/i, () => t("valero.tile.snacks.plain", "The snack drawer")],
+  [/pantry/i, () => t("valero.headline.pantry", "Stock the cupboard")],
+  [/beverage|drink/i, () => t("valero.headline.drinks", "Something to sip")],
+  [/frozen/i, () => t("valero.headline.frozen", "Ready when you are")],
+  [/household|clean/i, () => t("valero.tile.household.plain", "Stock up the home")],
 ];
 
 export function headline(aisle: any): string {
   const hit = HEADLINES.find(([pattern]) => pattern.test(label(aisle)));
-  return hit ? hit[1] : aisle?.title || aisle?.name || "";
+  return hit ? hit[1]() : aisle?.title || aisle?.name || "";
 }
 
 /* ━━━━━━━━━━━━ Products ━━━━━━━━━━━━ */
@@ -102,12 +166,44 @@ export const DEALS_FILTER = JSON.stringify({ only_has_discount: true });
 /* ━━━━━━━━━━━━ Ways to get it ━━━━━━━━━━━━
    Selldone's transportation types, grouped as a shopper says them. A type
    not listed here is shown under its own title, as "Delivery". */
-const WAYS: { types: string[]; word: string; icon: string; line: string }[] = [
-  { types: ["Pickup"], word: "Pickup", icon: "storefront", line: "Order online, collect at the shop" },
-  { types: ["Motorbike", "Bicycle"], word: "Delivery", icon: "two_wheeler", line: "A courier brings it to your door" },
-  { types: ["CargoSmall", "Cargo", "Truck"], word: "Shipping", icon: "local_shipping", line: "Shipped to your address" },
-  { types: ["Post", "PostFast"], word: "By post", icon: "local_post_office", line: "Sent to your address by post" },
-  { types: ["Airplane", "Global"], word: "Worldwide", icon: "public", line: "Shipped wherever you are" },
+/* `id` is the stable key (the cards and "Pickup is always free" compare it);
+   `word` and `line` are read when drawn, in the visitor's language. */
+const WAYS: { id: string; types: string[]; word: () => string; icon: string; line: () => string }[] = [
+  {
+    id: "Pickup",
+    types: ["Pickup"],
+    word: () => t("valero.way.pickup", "Pickup"),
+    icon: "storefront",
+    line: () => t("valero.way.pickup.line", "Order online, collect at the shop"),
+  },
+  {
+    id: "Delivery",
+    types: ["Motorbike", "Bicycle"],
+    word: () => t("valero.way.delivery", "Delivery"),
+    icon: "two_wheeler",
+    line: () => t("valero.way.delivery.line", "A courier brings it to your door"),
+  },
+  {
+    id: "Shipping",
+    types: ["CargoSmall", "Cargo", "Truck"],
+    word: () => t("valero.way.shipping", "Shipping"),
+    icon: "local_shipping",
+    line: () => t("valero.way.shipping.line", "Shipped to your address"),
+  },
+  {
+    id: "By post",
+    types: ["Post", "PostFast"],
+    word: () => t("valero.way.post", "By post"),
+    icon: "local_post_office",
+    line: () => t("valero.way.post.line", "Sent to your address by post"),
+  },
+  {
+    id: "Worldwide",
+    types: ["Airplane", "Global"],
+    word: () => t("valero.way.worldwide", "Worldwide"),
+    icon: "public",
+    line: () => t("valero.way.worldwide.line", "Shipped wherever you are"),
+  },
 ];
 
 export interface Way {
@@ -125,11 +221,11 @@ export interface Way {
 /** The shop's enabled delivery methods, one card per kind. */
 export function waysOf(shop: any): Way[] {
   const out: Way[] = [];
-  for (const t of (shop?.transportations || []).filter((t: any) => t && t.enable)) {
-    const kind = WAYS.find((w) => w.types.includes(t.type));
-    const key = kind ? kind.word : t.type;
-    const free = !!t.free_shipping && !(Number(t.free_shipping_limit) > 0);
-    const freeOver = t.free_shipping && Number(t.free_shipping_limit) > 0 ? Number(t.free_shipping_limit) : null;
+  for (const tr of (shop?.transportations || []).filter((it: any) => it && it.enable)) {
+    const kind = WAYS.find((w) => w.types.includes(tr.type));
+    const key = kind ? kind.id : tr.type;
+    const free = !!tr.free_shipping && !(Number(tr.free_shipping_limit) > 0);
+    const freeOver = tr.free_shipping && Number(tr.free_shipping_limit) > 0 ? Number(tr.free_shipping_limit) : null;
     const known = out.find((w) => w.key === key);
     if (known) {
       /* Two methods of one kind: the more generous free rule wins. */
@@ -139,17 +235,17 @@ export function waysOf(shop: any): Way[] {
     }
     out.push({
       key,
-      word: t.title || (kind ? kind.word : "Delivery"),
+      word: tr.title || (kind ? kind.word() : t("valero.way.delivery", "Delivery")),
       icon: kind ? kind.icon : "local_shipping",
-      line: kind ? kind.line : "Brought to your address",
+      line: kind ? kind.line() : t("valero.way.other.line", "Brought to your address"),
       free,
       freeOver,
-      currency: t.currency || null, // null: the shop's base currency (shop.currency does not exist)
+      currency: tr.currency || null, // null: the shop's base currency (shop.currency does not exist)
     });
   }
   /* In the order shoppers expect: pickup, delivery, shipping, post. */
   const rank = (way: Way) => {
-    const at = WAYS.findIndex((w) => w.word === way.key);
+    const at = WAYS.findIndex((w) => w.id === way.key);
     return at === -1 ? WAYS.length : at;
   };
   return out.sort((a, b) => rank(a) - rank(b));
@@ -159,7 +255,7 @@ export function waysOf(shop: any): Way[] {
  *  method that is free at any size is pickup-like and not promoted. */
 export function freeShippingFrom(shop: any): { amount: number; currency: string } | null {
   const paid = (shop?.transportations || []).filter(
-    (t: any) => t && t.enable && t.type !== "Pickup" && t.free_shipping && Number(t.free_shipping_limit) > 0,
+    (it: any) => it && it.enable && it.type !== "Pickup" && it.free_shipping && Number(it.free_shipping_limit) > 0,
   );
   if (!paid.length) return null;
   const best = paid.reduce((a: any, b: any) => (Number(b.free_shipping_limit) < Number(a.free_shipping_limit) ? b : a));
@@ -171,5 +267,7 @@ export function freeShippingFrom(shop: any): { amount: number; currency: string 
    visitor's currency, converted with the shop's rates (the region
    switcher). `short`: true drops the cents, "auto" drops them when whole. */
 export function money(amount: number, currency?: string | null, short: boolean | "auto" = false): string {
-  return regionMoney(amount, currency || baseCurrency(), { short });
+  /* An isolate (LRI ... PDI): in a right-to-left sentence the amount keeps its
+     own order ("200 US$", not "$US 200"); invisible everywhere else. */
+  return "\u2066" + regionMoney(amount, currency || baseCurrency(), { short }) + "\u2069";
 }

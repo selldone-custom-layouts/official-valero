@@ -18,23 +18,24 @@
     <!-- ▆▆▆▆▆▆▆▆ Announcement ▆▆▆▆▆▆▆▆ -->
     <div class="v-ann">
       <div :class="{ '-region': !compact }" class="v-ann__row k-wrap">
-        <span v-if="promo">Complimentary shipping over {{ money(promo.amount, promo.currency, true) }}</span>
-        <router-link v-else :to="dealsRoute">This week’s offers</router-link>
-        <span v-if="hasPickup" class="-wide">Pickup is always free</span>
-        <span v-if="sellerList.length > 1" class="-wide">{{ sellerList.length }} independent makers, one bag</span>
+        <span v-if="promo">{{ t("valero.strip.freeOver", "Complimentary shipping over {price}", { price: money(promo.amount, promo.currency, true) }) }}</span>
+        <router-link v-else :to="dealsRoute">{{ t("valero.offers", "This week’s offers") }}</router-link>
+        <span v-if="hasPickup" class="-wide">{{ t("valero.strip.pickup", "Pickup is always free") }}</span>
+        <span v-if="sellerList.length > 1" class="-wide">{{ t("valero.strip.makers", { one: "{n} independent maker, one bag", other: "{n} independent makers, one bag" }, { n: sellerList.length }) }}</span>
         <!-- The visitor's language and currency, at the strip's end (the
              owner's choice B, 10 November 2026: in the header, as Walmart
              and Amazon have it). The phone gets the menu's row instead. -->
         <div v-if="!compact" class="v-ann__region">
-          <region-switcher-button button-class="v-ann__pill" />
+          <!-- Keyed on its title: it redraws when the visitor's language file arrives. -->
+          <region-switcher-button :key="'rs-' + t('region.title')" button-class="v-ann__pill" />
         </div>
       </div>
     </div>
 
     <div class="k-header__bar">
       <div class="k-header__row v-hdr k-wrap">
-        <nav aria-label="Shop" class="v-hdr__side">
-          <button v-if="compact" class="v-hdr__link" type="button" @click="menu = true">Menu</button>
+        <nav :aria-label="t('valero.nav.shop', 'Shop')" class="v-hdr__side">
+          <button v-if="compact" class="v-hdr__link" type="button" @click="menu = true">{{ t("header.menu", "Menu") }}</button>
           <template v-else>
             <v-menu
               v-if="aisleList.length"
@@ -44,29 +45,29 @@
               offset="22"
             >
               <template v-slot:activator="{ props }">
-                <button :class="{ '-on': aisles_open }" class="v-hdr__link" type="button" v-bind="props">Aisles</button>
+                <button :class="{ '-on': aisles_open }" class="v-hdr__link" type="button" v-bind="props">{{ t("header.aisles", "Aisles") }}</button>
               </template>
               <div class="v-index">
-                <p class="v-caps v-index__eyebrow">The aisles</p>
+                <p class="v-caps v-index__eyebrow">{{ t("valero.theAisles", "The aisles") }}</p>
                 <div class="v-index__grid">
                   <router-link v-for="(aisle, i) in aisleList" :key="aisle.id" :to="aisleRoute(aisle)" class="v-index__item">
                     <span class="v-index__n">{{ String(i + 1).padStart(2, "0") }}</span>{{ aisle.title || aisle.name }}
                   </router-link>
                 </div>
                 <div class="v-index__foot">
-                  <router-link :to="dealsRoute" class="v-more">This week’s offers</router-link>
-                  <router-link :to="catalogueRoute" class="v-more">Every product</router-link>
+                  <router-link :to="dealsRoute" class="v-more">{{ t("valero.offers", "This week’s offers") }}</router-link>
+                  <router-link :to="catalogueRoute" class="v-more">{{ t("header.everyProduct", "Every product") }}</router-link>
                 </div>
               </div>
             </v-menu>
-            <router-link :to="dealsRoute" class="v-hdr__link">Offers</router-link>
-            <router-link :to="journalRoute" class="v-hdr__link">Journal</router-link>
+            <router-link :to="dealsRoute" class="v-hdr__link">{{ t("valero.nav.offers", "Offers") }}</router-link>
+            <router-link :to="journalRoute" class="v-hdr__link">{{ t("blog.journal", "Journal") }}</router-link>
             <v-menu v-if="sellerList.length" location="bottom start" offset="22">
               <template v-slot:activator="{ props }">
-                <button class="v-hdr__link" type="button" v-bind="props">Makers</button>
+                <button class="v-hdr__link" type="button" v-bind="props">{{ t("valero.nav.makers", "Makers") }}</button>
               </template>
               <div class="v-index -makers">
-                <p class="v-caps v-index__eyebrow">The makers</p>
+                <p class="v-caps v-index__eyebrow">{{ t("valero.theMakers", "The makers") }}</p>
                 <router-link v-for="seller in sellerList" :key="seller.id" :to="sellerRoute(seller)" class="v-index__maker">
                   <img v-if="seller.icon" :src="vendorImage(seller, true)" alt="" height="40" loading="lazy" width="40" />
                   <span v-else class="v-index__initial">{{ (seller.name || "?").charAt(0) }}</span>
@@ -77,28 +78,28 @@
           </template>
         </nav>
 
-        <router-link :to="homeRoute" :aria-label="`${shopTitle} home`" class="k-header__brand v-hdr__brand">
+        <router-link :to="homeRoute" :aria-label="t('header.home', '{shop} home', { shop: shopTitle })" class="k-header__brand v-hdr__brand">
           <img :src="BRAND.mark" alt="" class="k-brand-mark" height="34" width="34" /><span>{{ shopTitle }}</span>
         </router-link>
 
-        <nav aria-label="Your account" class="v-hdr__side -end">
+        <nav :aria-label="t('header.yourAccount', 'Your account')" class="v-hdr__side -end">
           <button
             v-if="showSearch"
             :aria-expanded="String(search_open)"
             :class="{ '-on': search_open }"
-            aria-label="Search"
+            :aria-label="t('common.search', 'Search')"
             class="v-hdr__link"
             type="button"
             @click="search_open = !search_open"
           >
-            <v-icon v-if="compact" size="22">search</v-icon><template v-else>Search</template>
+            <v-icon v-if="compact" size="22">search</v-icon><template v-else>{{ t("common.search", "Search") }}</template>
           </button>
           <template v-if="!compact">
-            <router-link v-if="user" :to="profileRoute" class="v-hdr__link">Account</router-link>
-            <button v-else-if="!busyUser" class="v-hdr__link" type="button" @click="signIn">Sign in</button>
+            <router-link v-if="user" :to="profileRoute" class="v-hdr__link">{{ t("valero.account", "Account") }}</router-link>
+            <button v-else-if="!busyUser" class="v-hdr__link" type="button" @click="signIn">{{ t("common.signIn", "Sign in") }}</button>
           </template>
-          <button :aria-label="`Bag, ${itemsCount} items`" class="v-hdr__link -bag" type="button" @click="basket = true">
-            Bag <b>({{ itemsCount }})</b>
+          <button :aria-label="t('header.basketAria', { one: 'Bag, {n} item', other: 'Bag, {n} items' }, { n: itemsCount })" class="v-hdr__link -bag" type="button" @click="basket = true">
+            {{ t("header.basket", "Bag") }} <b>({{ itemsCount }})</b>
           </button>
         </nav>
       </div>
@@ -119,7 +120,7 @@
           @onClear="$emit('clear')"
           @onSearch="(event) => { search_open = false; $emit('search', event); }"
         />
-        <button aria-label="Close search" class="v-hdr__link" type="button" @click="search_open = false">Close</button>
+        <button :aria-label="t('valero.closeSearch', 'Close search')" class="v-hdr__link" type="button" @click="search_open = false">{{ t("common.close", "Close") }}</button>
       </div>
     </div>
 
@@ -134,9 +135,9 @@
       >
         <div class="k-drawer__head">
           <p class="k-drawer__title">
-            Your bag<small v-if="basketUnits">{{ basketUnits }} {{ basketUnits === 1 ? "item" : "items" }}</small>
+            {{ t("cart.title", "Your bag") }}<small v-if="basketUnits">{{ t("cart.units", { one: "{n} item", other: "{n} items" }, { n: basketUnits }) }}</small>
           </p>
-          <button aria-label="Close" class="k-header__icon" type="button" @click="basket = false">
+          <button :aria-label="t('common.close', 'Close')" class="k-header__icon" type="button" @click="basket = false">
             <v-icon>close</v-icon>
           </button>
         </div>
@@ -144,15 +145,15 @@
              nowhere to go; Kalio's offers the way back to the shelves. -->
         <div v-if="!itemsCount" class="k-drawer__empty">
           <span aria-hidden="true" class="k-drawer__empty-mark"><v-icon size="30">shopping_bag</v-icon></span>
-          <p class="k-drawer__empty-title">Your cart is empty</p>
-          <p class="k-drawer__empty-text">Choose something from the aisles and it will wait for you here.</p>
+          <p class="k-drawer__empty-title">{{ t("cart.empty.title", "Your bag is empty") }}</p>
+          <p class="k-drawer__empty-text">{{ t("cart.empty.text", "Choose something from the aisles and it will wait for you here.") }}</p>
           <div class="k-drawer__empty-ctas">
-            <router-link :to="dealsRoute" class="k-btn k-btn--solid" @click="basket = false">This week’s offers</router-link>
-            <router-link :to="catalogueRoute" class="k-btn k-btn--line" @click="basket = false">Browse every product</router-link>
+            <router-link :to="dealsRoute" class="k-btn k-btn--solid" @click="basket = false">{{ t("valero.offers", "This week’s offers") }}</router-link>
+            <router-link :to="catalogueRoute" class="k-btn k-btn--line" @click="basket = false">{{ t("cart.empty.browse", "Browse every product") }}</router-link>
           </div>
           <template v-if="aisleList.length">
-            <p class="k-eyebrow k-drawer__empty-label">Or start with an aisle</p>
-            <nav aria-label="Aisles" class="k-drawer__empty-aisles">
+            <p class="k-eyebrow k-drawer__empty-label">{{ t("cart.empty.aisles", "Or start with an aisle") }}</p>
+            <nav :aria-label="t('header.aisles', 'Aisles')" class="k-drawer__empty-aisles">
               <router-link
                 v-for="aisle in aisleList.slice(0, 8)"
                 :key="aisle.id"
@@ -180,26 +181,26 @@
       >
         <div class="k-drawer__head">
           <router-link :to="homeRoute" class="k-header__brand -logo" @click="menu = false"><img :src="BRAND.mark" alt="" class="k-brand-mark" height="30" width="30" />{{ shopTitle }}</router-link>
-          <button aria-label="Close" class="k-header__icon" type="button" @click="menu = false">
+          <button :aria-label="t('common.close', 'Close')" class="k-header__icon" type="button" @click="menu = false">
             <v-icon>close</v-icon>
           </button>
         </div>
 
         <div class="k-drawer__account v-menu-acc">
           <template v-if="user">
-            <router-link :to="profileRoute" class="v-menu-link" @click="menu = false">Account</router-link>
-            <router-link :to="ordersRoute" class="v-menu-link" @click="menu = false">Orders</router-link>
-            <router-link :to="savedRoute" class="v-menu-link" @click="menu = false">Saved</router-link>
+            <router-link :to="profileRoute" class="v-menu-link" @click="menu = false">{{ t("valero.account", "Account") }}</router-link>
+            <router-link :to="ordersRoute" class="v-menu-link" @click="menu = false">{{ t("header.orders", "Orders") }}</router-link>
+            <router-link :to="savedRoute" class="v-menu-link" @click="menu = false">{{ t("account.section.saved", "Saved") }}</router-link>
           </template>
-          <button v-else class="k-btn k-btn--solid" type="button" @click="menu = false; signIn()">Sign in</button>
+          <button v-else class="k-btn k-btn--solid" type="button" @click="menu = false; signIn()">{{ t("common.signIn", "Sign in") }}</button>
         </div>
 
-        <p class="v-caps k-drawer__label">The market</p>
-        <router-link :to="dealsRoute" class="v-menu-link" @click="menu = false">This week’s offers</router-link>
-        <router-link :to="newRoute" class="v-menu-link" @click="menu = false">New in</router-link>
-        <router-link :to="journalRoute" class="v-menu-link" @click="menu = false">Journal</router-link>
+        <p class="v-caps k-drawer__label">{{ t("valero.theMarket", "The market") }}</p>
+        <router-link :to="dealsRoute" class="v-menu-link" @click="menu = false">{{ t("valero.offers", "This week’s offers") }}</router-link>
+        <router-link :to="newRoute" class="v-menu-link" @click="menu = false">{{ t("valero.newIn", "New in") }}</router-link>
+        <router-link :to="journalRoute" class="v-menu-link" @click="menu = false">{{ t("blog.journal", "Journal") }}</router-link>
 
-        <p class="v-caps k-drawer__label">The aisles</p>
+        <p class="v-caps k-drawer__label">{{ t("valero.theAisles", "The aisles") }}</p>
         <!-- The first six aisles in the merchant's order; the rest open in
              place under "Show N more" (the owner's option A, 10 November
              2026). Eight or fewer: all of them, no button. -->
@@ -235,19 +236,19 @@
             @click="menuMore = !menuMore"
           >
             <span aria-hidden="true" class="v-menu-more__chip"><v-icon size="18">{{ menuMore ? "expand_less" : "expand_more" }}</v-icon></span>
-            {{ menuMore ? "Show fewer" : `Show ${aisleList.length - menuCut} more` }}
+            {{ menuMore ? t("menu.showFewer", "Show fewer") : t("menu.showMore", "Show {n} more", { n: aisleList.length - menuCut }) }}
           </button>
         </template>
 
         <template v-if="sellerList.length">
-          <p class="v-caps k-drawer__label">The makers</p>
+          <p class="v-caps k-drawer__label">{{ t("valero.theMakers", "The makers") }}</p>
           <router-link v-for="seller in sellerList" :key="seller.id" :to="sellerRoute(seller)" class="v-menu-link" @click="menu = false">
             {{ seller.name }}
           </router-link>
         </template>
 
         <!-- Language and currency: a row that opens a bottom sheet over the menu. -->
-        <region-sheet row-class="v-menu-link -region" />
+        <region-sheet :key="'rs-' + t('region.title')" row-class="v-menu-link -region" />
       </v-navigation-drawer>
     </teleport>
   </header>

@@ -26,16 +26,16 @@
       </div>
       <div class="vh-hero__in k-wrap">
         <p class="v-caps vh-gold">
-          {{ shopTitle }}<template v-if="aisleList.length"> · {{ aisleList.length }} aisles</template
-          ><template v-if="sellerList.length"> · {{ sellerList.length }} {{ sellerList.length === 1 ? "maker" : "makers" }}</template>
+          {{ shopTitle }}<template v-if="aisleList.length"> · {{ t("valero.home.aisleCount", { one: "{n} aisle", other: "{n} aisles" }, { n: aisleList.length }) }}</template
+          ><template v-if="sellerList.length"> · {{ t("valero.home.makerCount", { one: "{n} maker", other: "{n} makers" }, { n: sellerList.length }) }}</template>
         </p>
-        <h1 class="vh-hero__title">The market, <em>after hours.</em></h1>
+        <h1 class="vh-hero__title">{{ t("valero.home.title", "The market,") }} <em>{{ t("valero.home.titleEm", "after hours.") }}</em></h1>
         <p class="vh-hero__lede">
-          Good groceries from independent makers, chosen slowly and brought to your door tonight, or kept for you to collect.
+          {{ t("valero.home.lede", "Good groceries from independent makers, chosen slowly and brought to your door tonight, or kept for you to collect.") }}
         </p>
         <div class="vh-hero__ctas">
-          <router-link :to="catalogueRoute" class="v-btn-solid">Enter the market</router-link>
-          <router-link :to="dealsRoute" class="v-btn-line">This week’s offers</router-link>
+          <router-link :to="catalogueRoute" class="v-btn-solid">{{ t("valero.home.enter", "Enter the market") }}</router-link>
+          <router-link :to="dealsRoute" class="v-btn-line">{{ t("valero.offers", "This week’s offers") }}</router-link>
         </div>
       </div>
     </section>
@@ -45,11 +45,11 @@
       <section v-if="aisleList.length" class="vh-sec">
         <header class="vh-head">
           <span class="vh-head__n">01</span>
-          <h2>The aisles</h2>
-          <router-link :to="catalogueRoute" class="v-more">Every product</router-link>
+          <h2>{{ t("valero.theAisles", "The aisles") }}</h2>
+          <router-link :to="catalogueRoute" class="v-more">{{ t("header.everyProduct", "Every product") }}</router-link>
         </header>
         <div class="vh-index">
-          <nav aria-label="Aisles" class="vh-index__list">
+          <nav :aria-label="t('header.aisles', 'Aisles')" class="vh-index__list">
             <router-link
               v-for="(aisle, i) in aisleList"
               :key="aisle.id"
@@ -61,7 +61,7 @@
             >
               <span class="vh-index__n">{{ String(i + 1).padStart(2, "0") }}</span>
               <b>{{ aisle.title || aisle.name }}</b>
-              <span class="vh-index__arrow" aria-hidden="true">→</span>
+              <span class="vh-index__arrow k-flip" aria-hidden="true">→</span>
             </router-link>
           </nav>
           <router-link v-if="hovered" :to="aisleRoute(hovered)" aria-hidden="true" class="vh-index__pic" tabindex="-1">
@@ -75,8 +75,8 @@
       <section v-if="edit.length" class="vh-sec">
         <header class="vh-head">
           <span class="vh-head__n">02</span>
-          <h2>{{ has_deals ? "This week’s edit" : "Most chosen" }}</h2>
-          <router-link :to="has_deals ? dealsRoute : bestRoute" class="v-more">{{ has_deals ? "Every offer" : "See more" }}</router-link>
+          <h2>{{ has_deals ? t("valero.home.edit", "This week’s edit") : t("valero.home.mostChosen", "Most chosen") }}</h2>
+          <router-link :to="has_deals ? dealsRoute : bestRoute" class="v-more">{{ has_deals ? t("valero.home.everyOffer", "Every offer") : t("valero.seeMore", "See more") }}</router-link>
         </header>
         <div class="v-grid">
           <div v-for="p in edit" :key="p.id" class="v-grid__cell">
@@ -89,15 +89,15 @@
       <section v-if="fresh && freshList.length" class="vh-sec">
         <header class="vh-head">
           <span class="vh-head__n">03</span>
-          <h2>Of the season</h2>
+          <h2>{{ t("valero.home.season", "Of the season") }}</h2>
         </header>
         <div class="vh-season">
           <img v-if="seasonPhoto" :src="seasonPhoto" alt="" class="vh-season__img" />
           <div v-else aria-hidden="true" class="vh-season__still"><img v-for="p in freshList.slice(0, 2)" :key="p.id" :src="image(p)" alt="" /></div>
           <div class="vh-season__tx">
             <p class="v-caps vh-gold">{{ fresh.title || fresh.name }}</p>
-            <h3>Crisp, bright and only just picked.</h3>
-            <p class="vh-muted">The best of {{ (fresh.title || fresh.name).toLowerCase() }} this week, from the makers who grow and choose it.</p>
+            <h3>{{ t("valero.home.seasonTitle", "Crisp, bright and only just picked.") }}</h3>
+            <p class="vh-muted">{{ t("valero.home.seasonLede", "The best of {aisle} this week, from the makers who grow and choose it.", { aisle: (fresh.title || fresh.name).toLowerCase() }) }}</p>
             <router-link v-for="p in freshList" :key="p.id" :to="productRoute(p)" class="vh-line">
               <span class="vh-line__pic"><img :src="thumb(p)" alt="" /></span>
               <span class="vh-line__name">
@@ -106,7 +106,7 @@
               </span>
               <u-price :amount="priceNow(p)" :currency="currency" class="vh-line__price" />
             </router-link>
-            <router-link :to="aisleRoute(fresh)" class="v-more vh-season__more">Shop {{ (fresh.title || fresh.name).toLowerCase() }}</router-link>
+            <router-link :to="aisleRoute(fresh)" class="v-more vh-season__more">{{ t("valero.home.shopAisle", "Shop {aisle}", { aisle: (fresh.title || fresh.name).toLowerCase() }) }}</router-link>
           </div>
         </div>
       </section>
@@ -115,14 +115,14 @@
       <section v-if="sellerList.length" class="vh-sec">
         <header class="vh-head">
           <span class="vh-head__n">04</span>
-          <h2>The makers</h2>
+          <h2>{{ t("valero.theMakers", "The makers") }}</h2>
         </header>
         <div class="vh-makers">
           <router-link v-for="v in sellerList" :key="v.id" :to="sellerRoute(v)" class="vh-maker">
             <img v-if="v.icon" :src="vendorImage(v)" alt="" class="vh-maker__mark" />
             <span v-else class="vh-maker__mark -initial">{{ (v.name || "?").charAt(0) }}</span>
             <span class="vh-maker__tx">
-              <small class="v-caps vh-gold">Independent maker</small>
+              <small class="v-caps vh-gold">{{ t("valero.independentMaker", "Independent maker") }}</small>
               <b>{{ v.name }}</b>
               <span v-if="makerLine(v)" class="vh-muted">{{ makerLine(v) }}</span>
               <span class="vh-maker__strip">
@@ -140,9 +140,9 @@
         <small class="v-caps vh-gold">{{ w.word }}</small>
         <b>{{ w.line }}</b>
         <span class="vh-muted">
-          <template v-if="w.free">Free</template>
-          <template v-else-if="w.freeOver">Free over {{ money(w.freeOver, w.currency, "auto") }}</template>
-          <template v-else>Priced with your address</template>
+          <template v-if="w.free">{{ t("valero.free", "Free") }}</template>
+          <template v-else-if="w.freeOver">{{ t("valero.freeOver", "Free over {price}", { price: money(w.freeOver, w.currency, "auto") }) }}</template>
+          <template v-else>{{ t("valero.home.pricedWithAddress", "Priced with your address") }}</template>
         </span>
       </div>
     </section>
@@ -151,8 +151,8 @@
     <section v-if="posts.length" class="vh-sec vh-journal k-wrap">
       <header class="vh-head">
         <span class="vh-head__n">05</span>
-        <h2>From the journal</h2>
-        <router-link :to="journalRoute" class="v-more">The journal</router-link>
+        <h2>{{ t("valero.home.fromJournal", "From the journal") }}</h2>
+        <router-link :to="journalRoute" class="v-more">{{ t("valero.home.theJournal", "The journal") }}</router-link>
       </header>
       <div class="vh-mag">
         <router-link :to="postRoute(posts[0])" class="vh-mag__lead">
@@ -201,6 +201,7 @@ import {
 import { quickAdd } from "../kalio/kalio-basket";
 import { DEALS_FILTER, findAisle, listProducts, money, photo, waysOf } from "./valero-home";
 import { currentCurrency } from "../region-switcher/region";
+import { t } from "../kalio/i18n/kalio-i18n";
 import { dateParts, journalPage, journalRoute, postRoute } from "../kalio/pages/kalio-journal";
 
 export default {
@@ -329,7 +330,7 @@ export default {
     },
     sellerName(p) {
       const sellers = this.sellersOf.get(p.id) || [];
-      return sellers.length > 1 ? `${sellers.length} makers` : sellers[0]?.name || "";
+      return sellers.length > 1 ? t("valero.home.makerCount", { one: "{n} maker", other: "{n} makers" }, { n: sellers.length }) : sellers[0]?.name || "";
     },
     shelf(v) {
       return (this.shelfOf.get(v.id) || []).filter((p) => p.icon).slice(0, 4);

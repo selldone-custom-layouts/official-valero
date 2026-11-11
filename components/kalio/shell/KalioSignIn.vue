@@ -32,29 +32,35 @@
     <div :class="{ '-split': !compact && photo }" class="v-signin">
     <div v-if="!compact && photo" aria-hidden="true" class="v-signin__photo">
       <img :src="photo" alt="" />
-      <p>Your bag waits for you, whenever you come back.</p>
+      <p>{{ t("valero.signin.photo", "Your bag waits for you, whenever you come back.") }}</p>
     </div>
     <div class="t-signin__card">
-      <button aria-label="Close" class="t-signin__x" type="button" @click="show = false">
+      <button :aria-label="t('common.close', 'Close')" class="t-signin__x" type="button" @click="show = false">
         <v-icon>close</v-icon>
       </button>
-      <p class="t-signin__mark v-caps">Welcome to {{ shopTitle }}</p>
-      <h2 id="k-signin-title" class="t-signin__title">Sign in</h2>
+      <p class="t-signin__mark v-caps">{{ t("signin.title", "Welcome to {shop}", { shop: shopTitle }) }}</p>
+      <h2 id="k-signin-title" class="t-signin__title">{{ t("valero.signin.title", "Sign in") }}</h2>
       <p class="t-signin__lede">
-        {{ sellerCount > 1 ? `One account for every maker on ${shopTitle}, your orders and your saved things.` : `Your account is made as you sign in.` }}
+        {{
+          sellerCount > 1
+            ? t("valero.signin.ledeMakers", "One account for every maker on {shop}, your orders and your saved things.", { shop: shopTitle })
+            : t("valero.signin.lede", "Your account is made as you sign in.")
+        }}
       </p>
       <s-shop-login v-model:show="show" class="k-signin__methods t-signin__methods" />
       <ul class="t-signin__perks">
-        <li><v-icon size="20">local_shipping</v-icon>Follow every order to your door</li>
-        <li><v-icon size="20">replay</v-icon>Buy your usual again in one tap</li>
-        <li><v-icon size="20">favorite_border</v-icon>Keep favourites for next week</li>
-        <li v-if="sellerCount > 1"><v-icon size="20">storefront</v-icon>One bag across {{ sellerCount }} independent makers</li>
+        <li><v-icon size="20">local_shipping</v-icon>{{ t("signin.perks.orders", "Follow every order to your door") }}</li>
+        <li><v-icon size="20">replay</v-icon>{{ t("valero.signin.perks.again", "Buy your usual again in one tap") }}</li>
+        <li><v-icon size="20">favorite_border</v-icon>{{ t("signin.perks.saved", "Keep favourites for next week") }}</li>
+        <li v-if="sellerCount > 1">
+          <v-icon size="20">storefront</v-icon>{{ t("signin.perks.sellers", { one: "One bag across {n} independent maker", other: "One bag across {n} independent makers" }, { n: sellerCount }) }}
+        </li>
       </ul>
       <p class="t-signin__legal">
-        By continuing you agree to {{ shopTitle }}’s
-        <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_TERMS }" @click="show = false">Terms</router-link>
-        and
-        <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY }" @click="show = false">Privacy</router-link>.
+        {{ t("signin.legal.lead", "By continuing you agree to {shop}’s", { shop: shopTitle }) }}
+        <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_TERMS }" @click="show = false">{{ t("signin.legal.terms", "Terms") }}</router-link>
+        {{ t("signin.legal.and", "and") }}
+        <router-link :to="{ name: window.$storefront.routes.SHOP_PROFILE_PAGE_PRIVACY }" @click="show = false">{{ t("valero.signin.privacy", "Privacy") }}</router-link>.
       </p>
       <div v-if="busyUser" class="k-signin__busy">
         <v-progress-circular color="primary" indeterminate size="36" width="3" />

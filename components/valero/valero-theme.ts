@@ -19,6 +19,7 @@
  */
 import type { ThemeSwitcherConfig } from "../theme-switcher/theme-switcher";
 import { THEME_SETTINGS } from "./valero-theme.settings";
+import { t } from "../kalio/i18n/kalio-i18n";
 
 export const VALERO_THEME: ThemeSwitcherConfig = {
   settings: THEME_SETTINGS,
@@ -38,31 +39,41 @@ export const VALERO_THEME: ThemeSwitcherConfig = {
   palettes: [
     {
       id: "ivory",
-      name: "Ivory",
+      get name() {
+        return t("valero.palette.ivory", "Ivory");
+      },
       light: { primary: "#0b0b0c", deep: "#2a2a2c", soft: "#f1ece2", onPrimary: "#ffffff", text: "#0b0b0c", accent: "#7a5c28" },
       dark: { primary: "#f4f1ea", deep: "#ffffff", soft: "#241f17", onPrimary: "#0b0b0c", text: "#f4f1ea", accent: "#c9a96e" },
     },
     {
       id: "gold",
-      name: "Gold",
+      get name() {
+        return t("valero.palette.gold", "Gold");
+      },
       light: { primary: "#7a5c28", deep: "#5e461d", soft: "#f5eedf", onPrimary: "#ffffff", text: "#7a5c28", accent: "#7a5c28" },
       dark: { primary: "#c9a96e", deep: "#d9bd88", soft: "#2a2318", onPrimary: "#0b0b0c", text: "#c9a96e", accent: "#c9a96e" },
     },
     {
       id: "emerald",
-      name: "Emerald",
+      get name() {
+        return t("valero.palette.emerald", "Emerald");
+      },
       light: { primary: "#05664a", deep: "#064e3b", soft: "#e3f6ee", onPrimary: "#ffffff", text: "#05664a", accent: "#7a5c28" },
       dark: { primary: "#6ee7b7", deep: "#a7f3d0", soft: "#12261f", onPrimary: "#0b0b0c", text: "#6ee7b7", accent: "#c9a96e" },
     },
     {
       id: "sapphire",
-      name: "Sapphire",
+      get name() {
+        return t("valero.palette.sapphire", "Sapphire");
+      },
       light: { primary: "#1d4ed8", deep: "#1e40af", soft: "#eaf0fe", onPrimary: "#ffffff", text: "#1d4ed8", accent: "#7a5c28" },
       dark: { primary: "#93c5fd", deep: "#bfdbfe", soft: "#141d2b", onPrimary: "#0b0b0c", text: "#93c5fd", accent: "#c9a96e" },
     },
     {
       id: "rose",
-      name: "Rose",
+      get name() {
+        return t("valero.palette.rose", "Rose");
+      },
       light: { primary: "#9f1239", deep: "#881337", soft: "#fdecef", onPrimary: "#ffffff", text: "#9f1239", accent: "#7a5c28" },
       dark: { primary: "#fda4af", deep: "#fecdd3", soft: "#2a1519", onPrimary: "#0b0b0c", text: "#fda4af", accent: "#c9a96e" },
     },
@@ -147,7 +158,36 @@ export const VALERO_THEME: ThemeSwitcherConfig = {
 
   metaThemeColor: false,
   ui: { ink: "var(--k-ink)", muted: "var(--k-muted)", line: "var(--k-line)", surface: "var(--k-card)", font: "var(--k-body)" },
-  labels: { theme: "Theme", palettes: "Colour", mode: "Light or dark", modeTitle: "Mode", light: "Light", dark: "Dark", custom: "Custom colour", adjusted: "Adjusted for readability", brand: "Brand colour" },
+  /* Read when drawn, in the visitor's language (the theme row and the custom colour's note). */
+  labels: {
+    get theme() {
+      return t("theme.title", "Theme");
+    },
+    get palettes() {
+      return t("theme.palettes", "Colour");
+    },
+    get mode() {
+      return t("theme.mode", "Light or dark");
+    },
+    get modeTitle() {
+      return t("theme.modeTitle", "Mode");
+    },
+    get light() {
+      return t("theme.light", "Light");
+    },
+    get dark() {
+      return t("theme.dark", "Dark");
+    },
+    get custom() {
+      return t("theme.custom", "Custom colour");
+    },
+    get adjusted() {
+      return t("theme.adjusted", "Adjusted for readability");
+    },
+    get brand() {
+      return t("theme.brand", "Brand colour");
+    },
+  },
 
   /* "Custom colour" (the owner, 9 November 2026): any colour, made readable
      by paletteFromColor() against Valero's own surfaces. */

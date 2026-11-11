@@ -33,24 +33,24 @@
   <div class="t-about k-wrap">
     <section :style="hero ? { backgroundImage: `url(${hero})` } : null" class="t-about__hero">
       <div class="t-about__card">
-        <p class="t-about__eyebrow">About {{ shopTitle }}</p>
-        <h1>{{ missing || busy ? sample.title.replace("basket", "bag") : `About ${shopTitle}` }}</h1>
+        <p class="t-about__eyebrow">{{ t("about.title", "About {shop}", { shop: shopTitle }) }}</p>
+        <h1>{{ missing || busy ? sample.title.replace("basket", "bag") : t("about.title", "About {shop}", { shop: shopTitle }) }}</h1>
         <p v-if="missing || busy">{{ sample.lead }}</p>
       </div>
     </section>
 
     <div class="t-about__nums">
-      <div v-if="aisleList.length"><b>{{ aisleList.length }}</b><span>aisles</span></div>
-      <div v-if="sellers.length"><b>{{ sellers.length }}</b><span>{{ sellers.length === 1 ? "maker" : "independent makers" }}</span></div>
-      <div><b>1</b><span>bag, one checkout</span></div>
-      <div v-if="ways"><b>{{ ways }}</b><span>{{ ways === 1 ? "way to get it" : "ways to get it" }}</span></div>
+      <div v-if="aisleList.length"><b>{{ formatNumber(aisleList.length) }}</b><span>{{ t("footer.facts.aisles", { one: "aisle", other: "aisles" }, { n: aisleList.length }) }}</span></div>
+      <div v-if="sellers.length"><b>{{ formatNumber(sellers.length) }}</b><span>{{ t("valero.about.makers", { one: "maker", other: "independent makers" }, { n: sellers.length }) }}</span></div>
+      <div><b>{{ formatNumber(1) }}</b><span>{{ t("valero.about.oneBag", "bag, one checkout") }}</span></div>
+      <div v-if="ways"><b>{{ formatNumber(ways) }}</b><span>{{ t("valero.about.ways", { one: "way to get it", other: "ways to get it" }, { n: ways }) }}</span></div>
     </div>
 
     <section class="t-sec">
       <div v-if="busy" aria-hidden="true" class="k-legal__loading"><span></span><span></span><span></span></div>
       <template v-else-if="missing">
         <kalio-sample-note>
-          This text is general copy written to show the page. It is not {{ shopTitle }}'s real story.
+          {{ t("valero.about.sampleNote", "This text is general copy written to show the page. It is not {shop}’s real story.", { shop: shopTitle }) }}
         </kalio-sample-note>
         <p class="t-about__text">{{ sample.text[0].replace("the basket", "the bag") }}</p>
         <div class="t-about__vals">
@@ -65,35 +65,34 @@
     </section>
 
     <section v-if="sellers.length" class="t-sec">
-      <header class="t-sec__head"><h2 class="t-sec__title">Meet the {{ sellers.length === 1 ? "maker" : "makers" }}</h2></header>
+      <header class="t-sec__head"><h2 class="t-sec__title">{{ t("valero.about.meet", { one: "Meet the maker", other: "Meet the makers" }, { n: sellers.length }) }}</h2></header>
       <div class="t-about__meet">
         <router-link v-for="v in sellers" :key="v.id" :to="sellerRoute(v)" class="t-about__seller">
           <img v-if="vendorImage(v)" :src="vendorImage(v)" alt="" />
           <span>
             <b>{{ v.name }}</b>
-            <small v-if="counts[v.id]">{{ counts[v.id] }} {{ counts[v.id] === 1 ? "product" : "products" }}</small>
+            <small v-if="counts[v.id]">{{ t("valero.seller.productCount", { one: "{n} product", other: "{n} products" }, { n: counts[v.id] }) }}</small>
           </span>
-          <em>Visit shop</em>
+          <em>{{ t("valero.about.visit", "Visit shop") }}</em>
         </router-link>
       </div>
     </section>
 
     <section id="contact" class="t-sec t-about__contact">
       <div>
-        <p class="t-about__eyebrow">Contact us</p>
-        <h2>We're here to help</h2>
+        <p class="t-about__eyebrow">{{ t("contact.pageTitle", "Contact us") }}</p>
+        <h2>{{ t("valero.about.help", "We’re here to help") }}</h2>
         <p>
-          For an order, the fastest way is the message thread on the order page: it goes straight to the seller who
-          packed it. For anything else, write to us.
+          {{ t("valero.about.helpText", "For an order, the fastest way is the message thread on the order page: it goes straight to the seller who packed it. For anything else, write to us.") }}
         </p>
         <ul>
-          <li><v-icon size="20">chat_bubble_outline</v-icon>Order questions: from the order page</li>
-          <li><v-icon size="20">mail_outline</v-icon>Everything else: the contact form</li>
+          <li><v-icon size="20">chat_bubble_outline</v-icon>{{ t("valero.about.orderQuestions", "Order questions: from the order page") }}</li>
+          <li><v-icon size="20">mail_outline</v-icon>{{ t("valero.about.everythingElse", "Everything else: the contact form") }}</li>
         </ul>
       </div>
       <div class="t-about__acts">
-        <router-link :to="{ name: window.$storefront.routes.SHOP_CONTACT_US }" class="t-btn -red">Write to us</router-link>
-        <router-link :to="catalogueRoute" class="t-btn -line">Start shopping</router-link>
+        <router-link :to="{ name: window.$storefront.routes.SHOP_CONTACT_US }" class="t-btn -red">{{ t("valero.writeToUs", "Write to us") }}</router-link>
+        <router-link :to="catalogueRoute" class="t-btn -line">{{ t("pages.startShopping", "Start shopping") }}</router-link>
       </div>
     </section>
   </div>
@@ -104,6 +103,7 @@ import KalioSampleNote from "@app-storefront/components/kalio/pages/KalioSampleN
 import { aboutSample, plainText } from "@app-storefront/components/kalio/pages/kalio-sample-pages";
 import { aisles, catalogueRoute, countProducts, offers, productImage, sellerRoute, vendorImage, vendors } from "@app-storefront/components/kalio/kalio-catalog";
 import { photo, waysOf } from "@app-storefront/components/valero/valero-home";
+import { t } from "@app-storefront/components/kalio/i18n/kalio-i18n";
 
 export default {
   name: "StorefrontPageOfficialAboutUs",
@@ -124,7 +124,7 @@ export default {
 
   computed: {
     shopTitle() {
-      return this.$shop?.title || "This shop";
+      return this.$shop?.title || t("sample.thisShop", "This shop");
     },
     hero() {
       return photo("valero-hero-1-weekly");
@@ -141,12 +141,13 @@ export default {
     aisleLine() {
       const names = this.aisleList.map((it) => it.title || it.name);
       if (names.length <= 3) return names.join(", ");
-      return `${names.length}: ${names.slice(0, 3).join(", ")} and ${names.length - 3} more`;
+      const shown = names.slice(0, 3).join(", ");
+      return t("about.facts.aisleLine", { one: "{count}: {names} and {n} more", other: "{count}: {names} and {n} more" }, { count: names.length, names: shown, n: names.length - 3 });
     },
   },
 
   created() {
-    this.setPageTitle?.("About us");
+    this.setPageTitle?.(t("about.pageTitle", "About us"));
 
     window.axios
       .get(window.XAPI.GET_SHOP_PROFILE(this.$shop.name, "about-us"))

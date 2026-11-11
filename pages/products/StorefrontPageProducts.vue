@@ -95,10 +95,10 @@
         />
         <div class="t-resline">
           <span v-if="catalogue_total !== null"
-            ><b>{{ catalogue_total.toLocaleString() }} {{ catalogue_total === 1 ? "result" : "results" }}</b
-            ><template v-if="on_sale"> · {{ on_sale.toLocaleString() }} on sale</template></span
+            ><b>{{ t("valero.listing.results", { one: "{n} result", other: "{n} results" }, { n: catalogue_total }) }}</b
+            ><template v-if="on_sale"> · {{ t("valero.listing.onSale", "{n} on sale", { n: on_sale }) }}</template></span
           >
-          <span v-if="sold_by" class="t-resline__by">{{ sold_by }}</span>
+          <span v-if="sold_by" class="t-resline__by">{{ soldByLine(sold_by) }}</span>
         </div>
       </div>
 
@@ -133,10 +133,10 @@
           :limit="12"
           lazy
           sort="bestselling"
-          title="Popular right now"
+          :title="t('valero.listing.popular', 'Popular right now')"
         />
         <section v-if="more_aisles.length" class="t-keep">
-          <h2 class="t-keep__h">Keep shopping</h2>
+          <h2 class="t-keep__h">{{ t("basket.keepShopping", "Keep shopping") }}</h2>
           <div class="t-keep__list">
             <router-link v-for="a in more_aisles" :key="a.id" :to="aisleTo(a)">{{ a.title || a.name }}</router-link>
           </div>
@@ -150,6 +150,7 @@
 </template>
 
 <script lang="ts">
+import { locale, t } from "@app-storefront/components/kalio/i18n/kalio-i18n";
 import SProductsListing from "@selldone/components-vue/storefront/products/listing/SProductsListing.vue";
 import TemplateMixin from "@selldone/components-vue/mixin/template/TemplateMixin.ts";
 import ValeroHome from "../../components/valero/ValeroHome.vue";
@@ -194,7 +195,7 @@ export default {
     t_filter: null /* The filter the listing has (the bar shows it). */,
     t_sort: null,
     on_sale: null,
-    sold_by: null,
+    sold_by: null /* The aisle's sellers' names; the line is written when drawn (soldByLine). */,
     aisle_list: [],
   }),
   /**
@@ -336,6 +337,15 @@ export default {
   },
 
   methods: {
+    /* "Sold by Mason and Alina", or "Sold by 3 sellers", in the visitor's language. */
+    soldByLine(names) {
+      if (names.length > 2) return t("offers.soldByCount", { one: "Sold by {n} seller", other: "Sold by {n} sellers" }, { n: names.length });
+      let joined = names.join(", ");
+      try {
+        joined = new Intl.ListFormat(locale(), { style: "long", type: "conjunction" }).format(names);
+      } catch {}
+      return t("seller.soldBy", "Sold by {name}", { name: joined });
+    },
     vendorIdFromRoute() {
       return this.$route.params?.vendor_id
         ? this.$route.params?.vendor_id
@@ -408,7 +418,7 @@ export default {
           .filter((v) => (shelfOf.get(v.id) || []).some((p) => p.category_id === aisle.id))
           .map((v) => v.name);
         if (!names.length) return;
-        this.sold_by = "Sold by " + (names.length > 2 ? `${names.length} sellers` : names.join(" and "));
+        this.sold_by = names;
       });
     },
   },

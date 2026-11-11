@@ -11,6 +11,8 @@
      { only_is_original, only_has_discount, prices: { USD: [lo, hi] } | null,
        brands: [], selected_spec: { Key: [v] }, selected_variants: { volumes: [v] } }
    Pills in one group are OR, groups are AND (Selldone's own rule). */
+import { t } from "../../kalio/i18n/kalio-i18n";
+
 
 export interface ValeroGroup {
   /** "spec" groups live in selected_spec, "variant" ones in selected_variants. */
@@ -29,13 +31,14 @@ export interface ValeroFilter {
   selected_variants?: Record<string, string[]>;
 }
 
-const VARIANT_LABEL: Record<string, string> = {
-  volumes: "Size",
-  weights: "Weight",
-  packs: "Pack",
-  colors: "Color",
-  styles: "Style",
-  types: "Kind",
+/* Read when drawn, in the visitor's language. */
+const VARIANT_LABEL: Record<string, () => string> = {
+  volumes: () => t("valero.filter.size", "Size"),
+  weights: () => t("compare.variant.weight", "Weight"),
+  packs: () => t("compare.variant.pack", "Pack"),
+  colors: () => t("valero.filter.color", "Color"),
+  styles: () => t("compare.variant.style", "Style"),
+  types: () => t("valero.filter.kind", "Kind"),
 };
 const RESERVED = ["prices", "brands", "ignore"];
 
@@ -53,7 +56,7 @@ export function groupsOf(filters: any): ValeroGroup[] {
   const out: ValeroGroup[] = [];
   for (const key of Object.keys(VARIANT_LABEL)) {
     const values = list(filters[key]);
-    if (values.length) out.push({ kind: "variant", key, label: VARIANT_LABEL[key], values });
+    if (values.length) out.push({ kind: "variant", key, get label() { return VARIANT_LABEL[key](); }, values });
   }
   for (const key of Object.keys(filters)) {
     if (RESERVED.includes(key) || VARIANT_LABEL[key]) continue;
@@ -61,7 +64,7 @@ export function groupsOf(filters: any): ValeroGroup[] {
     if (values.length) out.push({ kind: "spec", key, label: key, values });
   }
   const brands = list(filters.brands);
-  if (brands.length > 1) out.push({ kind: "brand", key: "brands", label: "Brand", values: brands });
+  if (brands.length > 1) out.push({ kind: "brand", key: "brands", get label() { return t("valero.filter.brand", "Brand"); }, values: brands });
   return out;
 }
 
@@ -121,15 +124,53 @@ export function valueLabel(value: string): string {
   return String(value).split("|")[0].trim();
 }
 
+/* The names are read when drawn, in the visitor's language. */
 export const SORTS = [
-  { val: "bestselling", name: "Best selling" },
-  { val: "newest", name: "Newest" },
-  { val: "cheapest", name: "Price: low to high" },
-  { val: "most_expensive", name: "Price: high to low" },
-  { val: "most_popular", name: "Most liked" },
-  { val: "most_visited", name: "Most viewed" },
+  {
+    val: "bestselling",
+    get name() {
+      return t("valero.sort.bestselling", "Best selling");
+    },
+  },
+  {
+    val: "newest",
+    get name() {
+      return t("valero.sort.newest", "Newest");
+    },
+  },
+  {
+    val: "cheapest",
+    get name() {
+      return t("valero.sort.cheapest", "Price: low to high");
+    },
+  },
+  {
+    val: "most_expensive",
+    get name() {
+      return t("valero.sort.mostExpensive", "Price: high to low");
+    },
+  },
+  {
+    val: "most_popular",
+    get name() {
+      return t("valero.sort.mostLiked", "Most liked");
+    },
+  },
+  {
+    val: "most_visited",
+    get name() {
+      return t("valero.sort.mostViewed", "Most viewed");
+    },
+  },
 ];
 
+/* The order a list keeps when no sort is picked: "Featured" in an aisle or
+   a maker's shelf, "Best match" for a search. */
+const FALLBACKS: Record<string, () => string> = {
+  Featured: () => t("valero.sort.featured", "Featured"),
+  "Best match": () => t("valero.sort.bestMatch", "Best match"),
+};
+
 export function sortName(val: string | null | undefined, fallback = "Featured"): string {
-  return SORTS.find((s) => s.val === val)?.name || fallback;
+  return SORTS.find((s) => s.val === val)?.name || (FALLBACKS[fallback] ? FALLBACKS[fallback]() : fallback);
 }

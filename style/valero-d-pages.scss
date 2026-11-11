@@ -558,7 +558,7 @@ $v-tablet: 1100px;
   }
 
   blockquote {
-    border-left: 1px solid var(--k-gold) !important;
+    border-inline-start: 1px solid var(--k-gold) !important;
     background: transparent !important;
     font-family: var(--k-display);
     font-size: 30px;
@@ -695,9 +695,9 @@ $v-tablet: 1100px;
 
     p {
       position: absolute;
-      right: 34px;
+      inset-inline-end: 34px;
       bottom: 34px;
-      left: 34px;
+      inset-inline-start: 34px;
       margin: 0;
       color: var(--k-ink);
       font-family: var(--k-display);
