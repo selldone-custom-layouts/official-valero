@@ -1270,6 +1270,13 @@ $t-tablet: 1100px;
     transform: rotate(180deg);
   }
 
+  /* A closed fold's content is not laid out at all (Chrome keeps the boxes
+     of a closed <details> and reports them, so a check would see words
+     under the next section). */
+  &:not([open]) > :not(summary) {
+    display: none;
+  }
+
   > :not(summary) {
     margin-bottom: 22px;
   }
