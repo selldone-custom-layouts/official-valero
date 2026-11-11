@@ -1706,6 +1706,27 @@ html[dir="rtl"] .vh-hero__title em {
   font-style: normal;
 }
 
+/* Joined scripts (Arabic, Gurmukhi): Valero's tracked Latin style (eyebrows,
+   buttons, labels, nav links, the promo strip, display headings) would pull
+   the letters apart and break the joins, and the tracking widens the spaces
+   too. Every piece sets solid in these languages; an amount ("200 US$") stays
+   one untracked piece. The saving badge keeps its tight "20 %". The
+   :not(#k-joined) (no such id) lifts the rule over the class-level
+   !important tracking of the footer heads, the wordmark and Selldone's
+   widgets. */
+html:lang(ar):not(#k-joined),
+html:lang(pa):not(#k-joined) {
+  *,
+  *::before,
+  *::after {
+    letter-spacing: 0 !important;
+  }
+
+  *:not(.discount-percent) {
+    word-spacing: normal !important;
+  }
+}
+
 /* Without a photo, the still life darkens toward the words: from the right in
    a right-to-left language. */
 html[dir="rtl"] .vh-hero__still::after {
