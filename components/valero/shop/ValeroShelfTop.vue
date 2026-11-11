@@ -9,6 +9,11 @@
   The catalogue (a search, the deals, every product): its title, how many
   products, and the aisles the results sit in, each a link to the same
   search inside that aisle.
+
+  Language (ES-05 and ES-06, 11 November 2026): the aisle record comes
+  translated from the page (aisleInLanguage), the types' words through
+  valueLabel() (shopText: "Fruit" reads "Fruta"; the filter keeps "Fruit"),
+  and the "In aisles" names from the aisle list, read again after a pick.
 -->
 <template>
   <div class="t-top">
@@ -56,6 +61,7 @@
 import { t } from "../../kalio/i18n/kalio-i18n";
 import { aisleIndex, aisleImage, productImage } from "../../kalio/kalio-catalog";
 import { valueLabel } from "./valero-filters";
+import { currentLanguage } from "../../region-switcher/region";
 
 /* One picture per type, read once per aisle and kept for the visit. */
 const typePictures = new Map();
@@ -84,6 +90,10 @@ export default {
   computed: {
     search() {
       return String(this.$route.query.search || "").trim();
+    },
+    /* The visitor's language: a pick reads the aisle names again in it. */
+    lang() {
+      return currentLanguage();
     },
     deals() {
       return !!this.filter?.only_has_discount;
@@ -132,6 +142,9 @@ export default {
     typeKey: { handler: "readTypes", immediate: true },
     categoryName() {
       this.types = [];
+    },
+    lang() {
+      if (this.mode !== "aisle") aisleIndex().then((index) => (this.index = index));
     },
   },
 

@@ -12,7 +12,9 @@
     04 The makers: each seller with four of their products
     the ways to get it: the shop's own delivery methods
     05 From the journal, last: the shop's own articles as a magazine block
-       (each with its date: the blog list has no body to time)
+       (each with its date: the blog list has no body to time); each post
+       in the visitor's language when it has an edition in it
+       (blog-editions.json, kalio-journal.ts), read again after a pick
   Everything is read live; a section with nothing to show is not drawn. It
   shows on the bare shop page only (StorefrontPageProducts decides).
 -->
@@ -200,9 +202,9 @@ import {
 } from "../kalio/kalio-catalog";
 import { quickAdd } from "../kalio/kalio-basket";
 import { DEALS_FILTER, findAisle, listProducts, money, photo, waysOf } from "./valero-home";
-import { currentCurrency } from "../region-switcher/region";
+import { currentCurrency, currentLanguage } from "../region-switcher/region";
 import { t } from "../kalio/i18n/kalio-i18n";
-import { dateParts, journalPage, journalRoute, postRoute } from "../kalio/pages/kalio-journal";
+import { dateParts, editionsActive, journalPage, journalRoute, postRoute } from "../kalio/pages/kalio-journal";
 
 export default {
   name: "ValeroHome",
@@ -233,6 +235,9 @@ export default {
     currency() {
       return currentCurrency();
     },
+    readerLang() {
+      return currentLanguage();
+    },
     heroPhoto() {
       return photo("valero-hero-dinners");
     },
@@ -260,6 +265,11 @@ export default {
   },
 
   watch: {
+    /* A language picked on the home: the journal's posts in their editions
+       for it (nothing to do while no edition is named). */
+    readerLang() {
+      if (editionsActive()) this.loadPosts();
+    },
     fresh(aisle) {
       if (!aisle) return;
       listProducts(aisle.name, 8, { sort: "bestselling" }).then((list) => (this.freshList = list.filter((p) => p.icon).slice(0, 4)));
@@ -286,12 +296,22 @@ export default {
       this.has_deals = false;
       listProducts(null, 8, { sort: "bestselling" }).then((best) => (this.edit = best));
     });
-    journalPage({ limit: 4 })
-      .then(({ articles }) => (this.posts = articles || []))
-      .catch(() => (this.posts = []));
+    this.loadPosts();
   },
 
   methods: {
+    /* 05 From the journal: the four newest notes, each in the visitor's
+       edition (journalPage), the latest read winning. */
+    loadPosts() {
+      const ask = (this.postsAsk = (this.postsAsk || 0) + 1);
+      journalPage({ limit: 4 })
+        .then(({ articles }) => {
+          if (ask === this.postsAsk) this.posts = articles || [];
+        })
+        .catch(() => {
+          if (ask === this.postsAsk) this.posts = [];
+        });
+    },
     money,
     aisleRoute,
     aisleImage,

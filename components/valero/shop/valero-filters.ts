@@ -10,8 +10,16 @@
    and the listing takes a filter in the shape SCategoryFilter emits:
      { only_is_original, only_has_discount, prices: { USD: [lo, hi] } | null,
        brands: [], selected_spec: { Key: [v] }, selected_variants: { volumes: [v] } }
-   Pills in one group are OR, groups are AND (Selldone's own rule). */
+   Pills in one group are OR, groups are AND (Selldone's own rule).
+
+   Words (ES-06, 11 November 2026): a spec key ("Type") and its values
+   ("Fruit") are the shop's own English words, and they are what the server
+   filters by, so the filter and the address keep them as they are. Only
+   what the shopper reads goes through shopText() (data/<lang>.json):
+   "Tipo", "Fruta" in Spanish. The label is a getter, read when drawn, so a
+   language pick redraws it. */
 import { t } from "../../kalio/i18n/kalio-i18n";
+import { shopText } from "../../kalio/i18n/shop-data";
 
 
 export interface ValeroGroup {
@@ -61,7 +69,7 @@ export function groupsOf(filters: any): ValeroGroup[] {
   for (const key of Object.keys(filters)) {
     if (RESERVED.includes(key) || VARIANT_LABEL[key]) continue;
     const values = list(filters[key]);
-    if (values.length) out.push({ kind: "spec", key, label: key, values });
+    if (values.length) out.push({ kind: "spec", key, get label() { return shopText(key); }, values });
   }
   const brands = list(filters.brands);
   if (brands.length > 1) out.push({ kind: "brand", key: "brands", get label() { return t("valero.filter.brand", "Brand"); }, values: brands });
@@ -119,9 +127,11 @@ export function fromRoute(query: any): ValeroFilter | null {
 }
 
 /** A value as the shopper reads it: Selldone stores a variant's picture
- *  after a "|" in the value itself. */
+ *  after a "|" in the value itself; a spec value in the visitor's language
+ *  ("Fruit" is "Fruta" in Spanish). Display only: the value picked, sent
+ *  and kept in the address stays the shop's own word. */
 export function valueLabel(value: string): string {
-  return String(value).split("|")[0].trim();
+  return shopText(String(value).split("|")[0].trim());
 }
 
 /* The names are read when drawn, in the visitor's language. */

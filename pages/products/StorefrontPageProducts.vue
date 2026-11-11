@@ -158,7 +158,8 @@ import ValeroShelfTop from "../../components/valero/shop/ValeroShelfTop.vue";
 import ValeroFilterBar from "../../components/valero/shop/ValeroFilterBar.vue";
 import ValeroRow from "../../components/valero/ValeroRow.vue";
 import { fromRoute } from "../../components/valero/shop/valero-filters";
-import { aisleRoute, aisles, countProducts, offers, vendors } from "../../components/kalio/kalio-catalog";
+import { aisleInLanguage, aisleRoute, aisles, countProducts, offers, vendors } from "../../components/kalio/kalio-catalog";
+import { currentLanguage } from "../../components/region-switcher/region";
 import ValeroSellerTop from "../../components/valero/shop/ValeroSellerTop.vue";
 import {StorefrontSeo} from "../../helpers/StorefrontSeo";
 import KalioQuickBuy from "../../components/kalio/KalioQuickBuy.vue";
@@ -190,7 +191,9 @@ export default {
     catalogue_total: null /* The listing's total, for the aisle and catalogue headers. */,
     quick_open: false /* Kalio's quick-buy sheet, for the listing's "+". */,
     quick_pick: null,
-    listing_parent: null /* The aisle's record, as the listing read it. */,
+    listing_parent: null /* The aisle's record, in the visitor's language (aisleInLanguage). */,
+    listing_parent_raw: null /* The aisle's record as the listing read it (the shop's own language). */,
+    parent_ask: 0 /* The latest aisleInLanguage() asked; an older answer is dropped. */,
     listing_products: [],
     t_filter: null /* The filter the listing has (the bar shows it). */,
     t_sort: null,
@@ -219,9 +222,11 @@ export default {
       return String(this.$route.query?.search || "").trim();
     },
 
-    /* Selldone's filter record: the aisle's own, or the shop's on the catalogue. */
+    /* Selldone's filter record: the aisle's own, or the shop's on the catalogue.
+       From the record as it came, so the bar does not wait for the aisle's
+       translated name (the title shows only once it is in, never English first). */
     filters_def() {
-      if (this.category_name) return this.listing_parent?.filters || null;
+      if (this.category_name) return (this.listing_parent_raw || this.listing_parent)?.filters || null;
       return this.getShop()?.filters || null;
     },
 
@@ -242,6 +247,11 @@ export default {
         !this.vendor_id &&
         !this.show_home
       );
+    },
+
+    /* The visitor's language: a pick names the aisle again in it. */
+    reader_lang() {
+      return currentLanguage();
     },
 
     show_home() {
@@ -285,6 +295,8 @@ export default {
       /* A new aisle or seller starts without a count until its listing reads. */
       this.catalogue_total = null;
       this.listing_parent = null;
+      this.listing_parent_raw = null;
+      this.parent_ask = (this.parent_ask || 0) + 1; // an older aisle's answer never lands here
       this.listing_products = [];
       this.$nextTick(() => this.readRoute());
     },
@@ -307,6 +319,18 @@ export default {
     /* One seller to another is the same record with a new param. */
     "$route.params.vendor_id"() {
       this.vendor_id = this.vendorIdFromRoute();
+    },
+    /* A language picked on the page: the aisle's title, description, crumb
+       and tab title, and the "Keep shopping" aisles, in the new language. */
+    reader_lang() {
+      aisles().then((list) => (this.aisle_list = list));
+      if (!this.listing_parent_raw) return;
+      const ask = (this.parent_ask = (this.parent_ask || 0) + 1);
+      aisleInLanguage(this.listing_parent_raw).then((parent) => {
+        if (ask !== this.parent_ask) return;
+        this.listing_parent = parent;
+        StorefrontSeo.updateProducts({ products: this.listing_products, total: this.catalogue_total, parent }, this.getShop(), this.seoNavigation);
+      });
     },
   },
 
@@ -351,11 +375,31 @@ export default {
         ? this.$route.params?.vendor_id
         : this.$route.query?.vendor_id || null;
     },
+    /* The aisle's record comes in the shop's own language (products/all
+       sends `parent` untranslated, ES-05): its title and description are
+       taken from the translated aisle list (aisleInLanguage), for Valero's
+       huge serif title, its lede, the crumb and the tab title alike. The
+       filters, slug and id stay the record's own. */
     updateProductsSeo(data) {
       this.catalogue_total = typeof data?.total === "number" ? data.total : null;
-      if (data?.parent !== undefined) this.listing_parent = data.parent && data.parent.id ? data.parent : null;
       this.listing_products = data?.products || [];
-      StorefrontSeo.updateProducts(data, this.getShop(), this.seoNavigation);
+      const shop = this.getShop();
+      const navigation = this.seoNavigation;
+      if (data?.parent === undefined) {
+        StorefrontSeo.updateProducts(data, shop, navigation);
+        return;
+      }
+      const raw = data.parent && data.parent.id ? data.parent : null;
+      this.listing_parent_raw = raw;
+      if (!raw) this.listing_parent = null;
+      /* The latest read wins (a plain counter: the reactive copy of `raw`
+         would never be === raw). */
+      const ask = (this.parent_ask = (this.parent_ask || 0) + 1);
+      aisleInLanguage(raw).then((parent) => {
+        if (ask !== this.parent_ask) return;
+        this.listing_parent = parent;
+        StorefrontSeo.updateProducts({ ...data, parent }, shop, navigation);
+      });
     },
 
     /* ── Valero's filter bar talks to the listing directly ── */
