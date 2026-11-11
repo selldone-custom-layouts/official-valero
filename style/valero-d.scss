@@ -1764,3 +1764,13 @@ html[dir="rtl"] {
     text-align: center;
   }
 }
+
+/* Signed numbers keep their sign in front in a right-to-left page ("−20%",
+   not "20%−"; "+3", not "3+"). */
+.t-card__tag,
+.k-cmp__off,
+.discount-percent,
+.k-board__thumb.-more {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

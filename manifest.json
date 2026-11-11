@@ -3,7 +3,7 @@
   "deploy_path": "",
   "package": "valero-market",
   "name": "Valero Market",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "storefront": true,
   "backoffice": false,
   "description": "A black, after-dark food hall storefront for a grocery marketplace: an editorial hero, the aisles as a numbered index, hairline grids of cards on ivory wells, a split product page with the sellers as a table, a full-height bag panel, a numbered checkout, makers' pages and a magazine journal, in Cormorant Garamond and Jost."
