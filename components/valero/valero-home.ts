@@ -267,7 +267,6 @@ export function freeShippingFrom(shop: any): { amount: number; currency: string 
    visitor's currency, converted with the shop's rates (the region
    switcher). `short`: true drops the cents, "auto" drops them when whole. */
 export function money(amount: number, currency?: string | null, short: boolean | "auto" = false): string {
-  /* An isolate (LRI ... PDI): in a right-to-left sentence the amount keeps its
-     own order ("200 US$", not "$US 200"); invisible everywhere else. */
-  return "\u2066" + regionMoney(amount, currency || baseCurrency(), { short }) + "\u2069";
+  /* The region package isolates the amount in a right-to-left page. */
+  return regionMoney(amount, currency || baseCurrency(), { short });
 }
