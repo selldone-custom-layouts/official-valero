@@ -1711,3 +1711,56 @@ html[dir="rtl"] .vh-hero__title em {
 html[dir="rtl"] .vh-hero__still::after {
   background: linear-gradient(270deg, rgba(11, 11, 12, 0.94) 30%, rgba(11, 11, 12, 0.2));
 }
+
+/* Merchant text in a right-to-left page: names, descriptions and posts the
+   merchant wrote in English take their own direction, so a full stop or a
+   bracket stays on its side ("TVs." not ".TVs"); they still line up with
+   the page (the right edge). Valero's own words are translated and need none. */
+html[dir="rtl"] {
+  .t-card__name,
+  .t-card__by,
+  .vh-index__item b,
+  .vh-index__pic .v-caps,
+  .vh-line__name,
+  .vh-season__tx > .v-caps,
+  .vh-maker b,
+  .vh-maker .vh-muted,
+  .vh-mag h3,
+  .vh-mag b,
+  .v-index__maker,
+  .k-aisle-chip,
+  .k-footer__seller,
+  .k-footer__lede,
+  .t-pdp__title,
+  .t-pdp__brand,
+  .t-hl li span,
+  .t-top__lede,
+  .t-types__it,
+  .t-inaisles__a,
+  .t-keep__list a,
+  .t-sban__who h1,
+  .t-sabout p,
+  .t-saisle,
+  .k-bdrawer__name span,
+  .t-bdrawer__seller,
+  .t-post h3,
+  .t-post p,
+  .t-feat h2,
+  .t-feat p,
+  .k-topic,
+  .t-fbt__name,
+  .t-folds .k-pdp-block p,
+  .t-folds .k-pdp-block li,
+  .k-prose > *,
+  .t-about__real > * {
+    unicode-bidi: plaintext;
+    /* plaintext aligns "start" to the text's own direction; the page's start
+       is the right. (Centred tiles keep their centre.) */
+    text-align: right;
+  }
+
+  .t-types__it,
+  .t-saisle {
+    text-align: center;
+  }
+}
